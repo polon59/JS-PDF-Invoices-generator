@@ -1,0 +1,23 @@
+{
+  "name": "js-pdf-invoices-generator",
+  "version": "1.0.0",
+  "description": "Java Script application for generating invoices and downloading them in PDF",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polon59/JS-PDF-Invoices-generator.git"
+  },
+  "author": "polon59",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polon59/JS-PDF-Invoices-generator/issues"
+  },
+  "homepage": "https://github.com/polon59/JS-PDF-Invoices-generator#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
