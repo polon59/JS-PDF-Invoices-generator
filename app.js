@@ -39,4 +39,9 @@ app.get('/', (req, res) =>{
 });
 
 
+app.post('/users/add', (req, res) =>{
+    console.log("form submitted");
+});
+
+
 app.listen(port, () => {console.log(`listening on port ${port}`)});
