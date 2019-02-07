@@ -25,7 +25,7 @@ class InvoicesController{
             console.log("[INFO] Starting server routes");
             this.setRouteAddingNewInvoice();
             this.setRouteDisplayingAllInvoices();
-            this.setRouteEditingInvoice();
+            this.setRouteAddingInvoice();
             console.log("[INFO] Route initializing completed");
         }
 
@@ -56,7 +56,7 @@ class InvoicesController{
         }
 
 
-        setRouteEditingInvoice(){
+        setRouteAddingInvoice(){
             console.log("-- init GET (/myAccount/invoices/addInvoice) starting route");
 
             this.app.get('/myAccount/invoices/addInvoice', (req,res) =>{
