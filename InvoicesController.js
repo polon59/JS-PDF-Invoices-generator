@@ -55,6 +55,13 @@ class InvoicesController{
                 // });
             });
         }
+
+
+        setRouteEditingInvoice(){
+            this.app.get('/myAccount/invoices/addInvoice', (req,res) =>{
+                res.render("addInvoice");
+            });
+        }
     }
     
     module.exports = InvoicesController;
