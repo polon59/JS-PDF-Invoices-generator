@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Invoice Generator</title>
+    </head>
+
+    <style>
+        table{
+            border: 1px solid black;
+        }
+
+        td{
+            border: 1px solid black;
+        }
+    </style>
+    <body>
+
+        <h3>Your invoices</h3>
+        <br>
+
+
+        <table>
+            <tr>
+              <th>id</th>
+              <th>Title</th> 
+              <th>Bill to</th>
+              <th></th>
+              <th></th>
+            </tr>
+
+
+            <% invoices.forEach(function(invoice){ %>
+                <tr>
+                    <td><%= invoice.id %></td>
+                    <td><%= invoice.title %></td> 
+                    <td><%= invoice.billTo %></td>
+                    <td><a href="/myAccount/invoices/view/1">View</a></td>
+                    <td><a href="/myAccount/invoices/edit/1">Edit</a></td>
+                </tr>
+            <% }); %>
+
+          </table>
+
+
+    </body>
+</html>
