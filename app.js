@@ -49,15 +49,32 @@ app.post('/myAccount', (req, res) =>{
 
 
 app.get('/myAccount/invoices', (req, res) =>{
+    res.send(invoices);
+    // res.render("invoices", {
+    //     invoices
+    // });
+});
+
+
+app.post('/myAccount/invoices', (req,res) =>{
+    const newInvoice = {
+        id: invoices.length+1,
+        title: req.body.title,
+        billFrom: req.body.billFrom,
+        billTo: req.body.billTo
+    }
+
+    invoices.push(newInvoice);
+    
     res.render("invoices", {
         invoices
     });
 });
 
 
-// app.get('/myAccount/invoices/addInvoice'){
-
-// }
+app.get('/myAccount/invoices/addInvoice', (req,res) =>{
+    res.render("addInvoice");
+});
 
 
 
