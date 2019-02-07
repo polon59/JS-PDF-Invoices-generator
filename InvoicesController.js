@@ -22,6 +22,11 @@ class InvoicesController{
 
 
         setRoutes(){
+            this.setRouteAddingNewInvoice();
+        }
+
+
+        setRouteAddingNewInvoice(){
             this.app.post('/myAccount/invoices', (req,res) =>{
             this.addNewInvoice(req);
             let invoices = this.invoices;
@@ -30,9 +35,6 @@ class InvoicesController{
                     invoices
                 });
             });
-
-
-
         }
     }
     
