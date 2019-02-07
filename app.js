@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 var invoicesController = new InvoicesController(app);
-
+invoicesController.setRoutes();
 
 
 app.get('/', (req, res) =>{
@@ -29,13 +29,6 @@ app.post('/myAccount', (req, res) =>{
         login
     });
 });
-
-
-
-app.get('/myAccount/invoices/addInvoice', (req,res) =>{
-    res.render("addInvoice");
-});
-
 
 
 app.listen(port, () => {console.log(`*** server listening on port ${port} ***`)});
