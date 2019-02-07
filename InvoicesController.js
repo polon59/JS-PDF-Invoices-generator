@@ -1,3 +1,5 @@
+const Invoice = require('./model/Invoice.js')
+
 class InvoicesController{
     
         constructor(app){
@@ -22,12 +24,16 @@ class InvoicesController{
 
 
         setRoutes(){
+            console.log("[INFO] Starting server routes");
             this.setRouteAddingNewInvoice();
             this.setRouteDisplayingAllInvoices();
+            console.log("[INFO] Route initializing completed");
         }
 
 
         setRouteAddingNewInvoice(){
+            console.log("-- init POST (/myAccount/invoices) starting route");
+
             this.app.post('/myAccount/invoices', (req,res) =>{
             this.addNewInvoice(req);
             let invoices = this.invoices;
@@ -40,6 +46,8 @@ class InvoicesController{
 
 
         setRouteDisplayingAllInvoices(){
+            console.log("-- init GET (/myAccount/invoices) starting route");
+
             this.app.get('/myAccount/invoices', (req, res) =>{
                 res.send(this.invoices);
                 // res.render("invoices", {

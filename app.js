@@ -23,7 +23,7 @@ app.get('/', (req, res) =>{
 app.post('/myAccount', (req, res) =>{
     const login = req.body.login;
 
-    console.log(`logged user password:${req.body.password} , login: ${login}`);
+    console.log(`[INFO] logged user: (password:${req.body.password} , login: ${login})`);
 
     res.render("myAccount", {
         login
@@ -32,28 +32,10 @@ app.post('/myAccount', (req, res) =>{
 
 
 
-
-
-// app.post('/myAccount/invoices', (req,res) =>{
-//     const newInvoice = {
-//         id: invoices.length+1,
-//         title: req.body.title,
-//         billFrom: req.body.billFrom,
-//         billTo: req.body.billTo
-//     }
-
-//     invoices.push(newInvoice);
-    
-//     res.render("invoices", {
-//         invoices
-//     });
-// });
-
-
 app.get('/myAccount/invoices/addInvoice', (req,res) =>{
     res.render("addInvoice");
 });
 
 
 
-app.listen(port, () => {console.log(`listening on port ${port}`)});
+app.listen(port, () => {console.log(`*** server listening on port ${port} ***`)});
