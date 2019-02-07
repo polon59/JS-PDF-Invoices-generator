@@ -23,6 +23,7 @@ class InvoicesController{
 
         setRoutes(){
             this.setRouteAddingNewInvoice();
+            this.setRouteDisplayingAllInvoices();
         }
 
 
@@ -34,6 +35,16 @@ class InvoicesController{
                 res.render("invoices", {
                     invoices
                 });
+            });
+        }
+
+
+        setRouteDisplayingAllInvoices(){
+            this.app.get('/myAccount/invoices', (req, res) =>{
+                res.send(this.invoices);
+                // res.render("invoices", {
+                //     invoices
+                // });
             });
         }
     }
