@@ -10,6 +10,10 @@ class Invoice{
         this.billTo = billTo;
         this.services = [];
     }
+
+    addNewService(description, quantity, cost, tax){
+        let newService = new Service(description, quantity, cost, tax);
+    }
 }
 
 module.exports = Invoice;
