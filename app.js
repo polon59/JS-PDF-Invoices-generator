@@ -10,37 +10,65 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-const users = [
+var invoices = [
     {
         id: 1,
-        firstname: 'John',
-        lastname: 'Doe',
-        email: 'johnDoe@gmail.com'
+        title: 'Invoice 1/2019',
+        billFrom: 'John Doe',
+        billTo: 'some company'
     },
     {
         id: 2,
-        firstname: 'Jill',
-        lastname: 'Hub',
-        email: 'jj@gmail.com'
+        title: 'Invoice 2/2019',
+        billFrom: 'some other company',
+        billTo: 'another company'
     },
     {
         id: 3,
-        firstname: 'Jack',
-        lastname: 'Doe',
-        email: 'johnjackDoe@gmail.com'
+        title: 'Invoice 3/2019',
+        billFrom: 'and another',
+        billTo: 'to another'
     }
-]
+];
 
 
 app.get('/', (req, res) =>{
-    res.render("index", {
-        users
+    res.render("index");
+});
+
+
+app.post('/myAccount', (req, res) =>{
+    const login = req.body.login;
+
+    console.log(`logged user password:${req.body.password} , login: ${login}`);
+
+    res.render("myAccount", {
+        login
     });
 });
 
 
+app.get('/myAccount/invoices', (req, res) =>{
+    res.render("invoices", {
+        invoices
+    });
+});
+
+
+// app.get('/myAccount/invoices/addInvoice'){
+
+// }
+
+
+
 app.post('/users/add', (req, res) =>{
-    console.log("form submitted");
+    const newUser = {
+        firstname : req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email
+    };
+
+    console.log(newUser);
 });
 
 
