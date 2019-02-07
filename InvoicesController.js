@@ -1,11 +1,10 @@
-const Invoice = require('./model/Invoice.js')
+const Invoice = require('./model/Invoice.js');
 
 class InvoicesController{
     
         constructor(app){
             this.app = app;
             this.invoices = [];
-            this.setRoutes();
         }
 
 
