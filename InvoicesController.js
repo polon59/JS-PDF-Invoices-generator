@@ -9,15 +9,14 @@ class InvoicesController{
 
 
         addNewInvoice(request){
-            let newId = this.invoices.length+1;
-
-            const newInvoice = {
-                id: newId,
-                title: request.body.title,
-                billFrom: request.body.billFrom,
-                billTo: request.body.billTo
-            }
-        
+            const reqBody = request.body;
+            let id = this.invoices.length+1;
+            let title = reqBody.title;
+            let date = reqBody.date;
+            let billFrom = reqBody.billFrom;
+            let billTo = reqBody.billTo;
+            const newInvoice = new Invoice(id, title, date, billFrom, billTo);
+            
             this.invoices.push(newInvoice);
         }
 
