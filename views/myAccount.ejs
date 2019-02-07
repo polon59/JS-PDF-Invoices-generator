@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Invoice Generator</title>
+    </head>
+    <body>
+
+        <h3>Your account</h3>
+
+        <div style="width:100px; height:100px; background-color:aquamarine;">
+            <h3>PHOTO</h3>
+        </div>
+
+        <br>
+
+        <h4><%= login %></h4>
+
+
+        <br><br><br>
+
+        <form method="GET" action="/myAccount/invoices">
+            <input type="submit" value="My invoices">
+        </form>
+        
+        <br><br>
+
+        <a href="/myAccount/invoices/addInvoice">ADD invoice link</a>
+
+        <!-- <form method="GET" action="/myAccount/invoices/addInvoice">
+            <input type="submit" value="Add new invoice">
+        </form> -->
+    </body>
+</html>
