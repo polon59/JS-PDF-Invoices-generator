@@ -2,7 +2,7 @@ const Service = require('./Service.js');
 
 class Invoice{
 
-    constructor(){
+    constructor(id, title, date, billFrom, billTo){
         this.id = id;
         this.title = title;
         this.date = date;
