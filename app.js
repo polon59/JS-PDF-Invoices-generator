@@ -15,29 +15,6 @@ var invoicesController = new InvoicesController(app);
 
 
 
-
-var invoices = [
-    {
-        id: 1,
-        title: 'Invoice 1/2019',
-        billFrom: 'John Doe',
-        billTo: 'some company'
-    },
-    {
-        id: 2,
-        title: 'Invoice 2/2019',
-        billFrom: 'some other company',
-        billTo: 'another company'
-    },
-    {
-        id: 3,
-        title: 'Invoice 3/2019',
-        billFrom: 'and another',
-        billTo: 'to another'
-    }
-];
-
-
 app.get('/', (req, res) =>{
     res.render("index");
 });
@@ -54,12 +31,7 @@ app.post('/myAccount', (req, res) =>{
 });
 
 
-app.get('/myAccount/invoices', (req, res) =>{
-    res.send(invoices);
-    // res.render("invoices", {
-    //     invoices
-    // });
-});
+
 
 
 // app.post('/myAccount/invoices', (req,res) =>{
