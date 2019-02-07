@@ -16,7 +16,7 @@ class InvoicesController{
             let billFrom = reqBody.billFrom;
             let billTo = reqBody.billTo;
             const newInvoice = new Invoice(id, title, date, billFrom, billTo);
-            
+
             this.invoices.push(newInvoice);
         }
 
@@ -25,6 +25,7 @@ class InvoicesController{
             console.log("[INFO] Starting server routes");
             this.setRouteAddingNewInvoice();
             this.setRouteDisplayingAllInvoices();
+            this.setRouteEditingInvoice();
             console.log("[INFO] Route initializing completed");
         }
 
@@ -56,6 +57,8 @@ class InvoicesController{
 
 
         setRouteEditingInvoice(){
+            console.log("-- init GET (/myAccount/invoices/addInvoice) starting route");
+
             this.app.get('/myAccount/invoices/addInvoice', (req,res) =>{
                 res.render("addInvoice");
             });
