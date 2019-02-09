@@ -25,6 +25,7 @@ class InvoicesController{
             this.setRouteAddingNewInvoice();
             this.setRouteDisplayingAllInvoices();
             this.setRouteAddingInvoice();
+            this.setRouteGetEditingInvoice();
         }
 
 
@@ -46,34 +47,41 @@ class InvoicesController{
             console.log("-- init GET (/myAccount/invoices) starting route");
 
             this.app.get('/myAccount/invoices', (req, res) =>{
-                res.send(this.invoices);
-                // res.render("invoices", {
-                //     invoices
-                // });
-            });
-        }
-
-        setGetEditingInvoice(){
-            console.log("-- init GET (/myAccount/invoices/edit/:invoiceId) starting route");
-
-            const invoiceToEdit = this.findInvoiceById(requestedInvoiceId);
-
-            this.app.get('/myAccount/invoices/edit/:invoiceId', (req,res) =>{
-                res.render("addInvoice", {
-                    invoiceToEdit
+                // res.send(this.invoices);
+                const invoices = this.invoices;
+                res.render("invoices", {
+                    invoices
                 });
             });
         }
 
-        findInvoiceById(requestedInvoiceId){
-            this.invoices.forEach(invoice => {
-                if(invoice.id == requestedInvoiceId){
-                    return invoice;
-                }
+        setRouteGetEditingInvoice(){
+            console.log("-- init GET (/myAccount/invoices/edit/:invoiceId) starting route");
+            this.app.get('/myAccount/invoices/edit/:invoiceId', (req,res) =>{
+                const requestedInvoiceId = req.params.invoiceId;
+
+                const invoiceToEdit = this.findInvoiceById(requestedInvoiceId);
+
+                console.log(invoiceToEdit);
+                res.send(invoiceToEdit);
+                // res.render("addInvoice", {
+                //     invoiceToEdit
+                // });
             });
         }
 
-        setPostEditingInvoice(){
+        findInvoiceById(requestedInvoiceId){
+            let foundInvoice;
+            this.invoices.forEach(invoice => {
+                if(invoice.id == requestedInvoiceId){
+                    console.log("found");
+                    foundInvoice = invoice;
+                }
+            });
+            return foundInvoice;
+        }
+
+        setRoutePostEditingInvoice(){
             console.log("-- init GET (/myAccount/invoices/edit/:invoiceId) starting route");
 
             // save recieved invoice to db
