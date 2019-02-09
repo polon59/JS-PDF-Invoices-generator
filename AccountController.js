@@ -7,20 +7,16 @@ class AccountController{
             this.currentUser = undefined;
         }
 
-
-        addNewUser(){
-            
-        }
-
         setRoutes(){
-            this.setRouteMyAccount();
+            this.setPostMyAccount();
+            this.setGetMyAccount();
         }
 
-        setRouteMyAccount(){
+        setPostMyAccount(){
             this.app.post('/myAccount', (req, res) =>{
                 const reqBody = req.body;
-                const login = reqBody.login;
                 this.currentUser = new User(reqBody.login, reqBody.password);
+                const login = this.currentUser.login;
             
                 res.render("myAccount", {
                     login
@@ -28,6 +24,15 @@ class AccountController{
             });
         }
 
+        setGetMyAccount(){
+            this.app.get('/myAccount', (req, res) =>{
+                const login = this.currentUser.login;
+            
+                res.render("myAccount", {
+                    login
+                });
+            });
+        }
     }
     
     module.exports = AccountController;
