@@ -24,15 +24,7 @@ app.get('/', (req, res) =>{
 });
 
 
-app.post('/myAccount', (req, res) =>{
-    const login = req.body.login;
 
-    console.log(`[INFO] logged user: (password:${req.body.password} , login: ${login})`);
-
-    res.render("myAccount", {
-        login
-    });
-});
 
 
 app.listen(port, () => {console.log(`*** server listening on port ${port} ***`)});
