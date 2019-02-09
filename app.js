@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 var invoicesController = new InvoicesController(app);
-var accountController = new AcccountController(app);
+var accountController = new AccountController(app);
 invoicesController.setRoutes();
 accountController.setRoutes();
 
