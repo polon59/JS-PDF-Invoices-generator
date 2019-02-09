@@ -22,11 +22,9 @@ class InvoicesController{
 
 
         setRoutes(){
-            console.log("[INFO] Starting server routes");
             this.setRouteAddingNewInvoice();
             this.setRouteDisplayingAllInvoices();
             this.setRouteAddingInvoice();
-            console.log("[INFO] Route initializing completed");
         }
 
 
@@ -55,6 +53,34 @@ class InvoicesController{
             });
         }
 
+        setGetEditingInvoice(){
+            console.log("-- init GET (/myAccount/invoices/edit/:invoiceId) starting route");
+
+            const invoiceToEdit = this.findInvoiceById(requestedInvoiceId);
+
+            this.app.get('/myAccount/invoices/edit/:invoiceId', (req,res) =>{
+                res.render("addInvoice", {
+                    invoiceToEdit
+                });
+            });
+        }
+
+        findInvoiceById(requestedInvoiceId){
+            this.invoices.forEach(invoice => {
+                if(invoice.id == requestedInvoiceId){
+                    return invoice;
+                }
+            });
+        }
+
+        setPostEditingInvoice(){
+            console.log("-- init GET (/myAccount/invoices/edit/:invoiceId) starting route");
+
+            // save recieved invoice to db
+            // this.app.get('/myAccount/invoices/edit/:invoiceId', (req,res) =>{
+            //     res.render("addInvoice");
+            // });
+        }
 
         setRouteAddingInvoice(){
             console.log("-- init GET (/myAccount/invoices/addInvoice) starting route");
