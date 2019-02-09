@@ -17,14 +17,8 @@ var accountController = new AcccountController(app);
 invoicesController.setRoutes();
 accountController.setRoutes();
 
-
-
 app.get('/', (req, res) =>{
     res.render("index");
 });
-
-
-
-
 
 app.listen(port, () => {console.log(`*** server listening on port ${port} ***`)});
