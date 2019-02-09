@@ -18,9 +18,9 @@ class AccountController{
 
         setRouteMyAccount(){
             this.app.post('/myAccount', (req, res) =>{
-                const login = req.body.login;
-            
-                console.log(`[INFO] logged user: (password:${req.body.password} , login: ${login})`);
+                const reqBody = req.body;
+                const login = reqBody.login;
+                this.currentUser = new User(reqBody.login, reqBody.password);
             
                 res.render("myAccount", {
                     login
