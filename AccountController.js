@@ -1,4 +1,4 @@
-const Invoice = require('./model/Invoice.js');
+const User = require('./model/User.js');
 
 class AccountController{
     
@@ -12,11 +12,9 @@ class AccountController{
             
         }
 
-
         setRoutes(){
             this.setRouteMyAccount();
         }
-
 
         setRouteMyAccount(){
             this.app.post('/myAccount', (req, res) =>{
