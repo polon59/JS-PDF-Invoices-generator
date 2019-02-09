@@ -13,6 +13,8 @@ class AccountController{
         }
 
         setPostMyAccount(){
+            console.log("-- init POST (/myAccount) starting route");
+            
             this.app.post('/myAccount', (req, res) =>{
                 const reqBody = req.body;
                 this.currentUser = new User(reqBody.login, reqBody.password);
@@ -25,6 +27,8 @@ class AccountController{
         }
 
         setGetMyAccount(){
+            console.log("-- init GET (/myAccount/) starting route");
+            
             this.app.get('/myAccount', (req, res) =>{
                 const login = this.currentUser.login;
             
