@@ -14,8 +14,11 @@ app.set('views', path.join(__dirname, 'views'));
 
 var invoicesController = new InvoicesController(app);
 var accountController = new AccountController(app);
+console.log("[INFO] Starting server routes");
 invoicesController.setRoutes();
 accountController.setRoutes();
+console.log("[INFO] Route initializing completed");
+
 
 app.get('/', (req, res) =>{
     res.render("index");
