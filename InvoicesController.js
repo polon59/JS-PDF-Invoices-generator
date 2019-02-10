@@ -62,11 +62,12 @@ class InvoicesController{
 
                 const invoiceToEdit = this.findInvoiceById(requestedInvoiceId);
 
-                console.log(invoiceToEdit);
-                res.send(invoiceToEdit);
-                // res.render("addInvoice", {
-                //     invoiceToEdit
-                // });
+                // console.log(invoiceToEdit);
+                // res.send(invoiceToEdit);
+
+                res.render("editInvoice", {
+                    invoiceToEdit
+                });
             });
         }
 
