@@ -71,6 +71,7 @@ class InvoicesController{
             })
         }
 
+
         findIndexInArrayByID(givenID){
             let foundIndex;
 
@@ -81,6 +82,7 @@ class InvoicesController{
             }
             return foundIndex;
         }
+
 
         setRouteGetEditingInvoice(){
             console.log("-- init GET (/myAccount/invoices/edit/:invoiceId) starting route");
@@ -96,6 +98,7 @@ class InvoicesController{
             });
         }
 
+
         findInvoiceById(requestedInvoiceId){
             let foundInvoice;
             this.invoices.forEach(invoice => {
@@ -107,14 +110,6 @@ class InvoicesController{
             return foundInvoice;
         }
 
-        setRoutePostEditingInvoice(){
-            console.log("-- init GET (/myAccount/invoices/edit/:invoiceId) starting route");
-
-            // save recieved invoice to db
-            // this.app.get('/myAccount/invoices/edit/:invoiceId', (req,res) =>{
-            //     res.render("addInvoice");
-            // });
-        }
 
         setRouteAddingInvoice(){
             console.log("-- init GET (/myAccount/invoices/addInvoice) starting route");
