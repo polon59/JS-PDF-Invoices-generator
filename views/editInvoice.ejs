@@ -6,7 +6,7 @@
 
         <h3>EDIT INVIOCE</h3>
 
-        <form method="POST" action="/myAccount/invoices">
+        <form method="POST" action=<%='/myAccount/invoices/edit/' + invoiceToEdit.id %>>
             <label>title</label>
             <input type="text" name="title" value=<%= invoiceToEdit.title %>>
             <br>
