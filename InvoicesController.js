@@ -61,20 +61,25 @@ class InvoicesController{
                 console.log(`Recived invoice to edit ID: ${invoiceToSaveId}`);
 
                 // Change values of invoice in database with given ID
-
-
-
+                const invoiceToSaveIndex = this.findIndexInArrayByID(invoiceToSaveId);
+                console.log(`Recived invoice to edit INDEX: ${invoiceToSaveIndex}`);
                 const reqBody = req.body;
-                let invoiceToSave = this.findInvoiceById(invoiceToSaveId);
-                const indexOfInvoiceToSave = this.invoices.indexOf(invoiceToSave);
-                console.log(`Recived invoice to edit INDEX: ${indexOfInvoiceToSave}`);
-                invoiceToSave.title = reqBody.title;
-                invoiceToSave.date = reqBody.date;
-                invoiceToSave.billFrom = reqBody.billFrom;
-                invoiceToSave.billTo = reqBody.billTo;
-                this.invoices
-
+                this.invoices[invoiceToSaveIndex].title =  reqBody.title;
+                this.invoices[invoiceToSaveIndex].title = reqBody.date;
+                this.invoices[invoiceToSaveIndex].title = reqBody.billFrom;
+                this.invoices[invoiceToSaveIndex].title = reqBody.billTo;
             })
+        }
+
+        findIndexInArrayByID(givenID){
+            let foundIndex;
+
+            for (let index = 0; index < this.invoices.length; index++) {
+                if (this.invoices[index].id == givenID) {
+                    foundIndex = index;
+                }
+            }
+            return foundIndex;
         }
 
         setRouteGetEditingInvoice(){
