@@ -55,14 +55,34 @@ class InvoicesController{
             });
         }
 
+        setRoutePostEditingInvoice(){
+            this.app.post("'/myAccount/invoices/edit/:invoiceId'" , (req,res) =>{
+                const invoiceToSaveId = req.params.invoiceId;
+                console.log(`Recived invoice to edit ID: ${invoiceToSaveId}`);
+
+                // Change values of invoice in database with given ID
+
+
+
+                const reqBody = req.body;
+                let invoiceToSave = this.findInvoiceById(invoiceToSaveId);
+                const indexOfInvoiceToSave = this.invoices.indexOf(invoiceToSave);
+                console.log(`Recived invoice to edit INDEX: ${indexOfInvoiceToSave}`);
+                invoiceToSave.title = reqBody.title;
+                invoiceToSave.date = reqBody.date;
+                invoiceToSave.billFrom = reqBody.billFrom;
+                invoiceToSave.billTo = reqBody.billTo;
+                this.invoices
+
+            })
+        }
+
         setRouteGetEditingInvoice(){
             console.log("-- init GET (/myAccount/invoices/edit/:invoiceId) starting route");
             this.app.get('/myAccount/invoices/edit/:invoiceId', (req,res) =>{
                 const requestedInvoiceId = req.params.invoiceId;
 
                 const invoiceToEdit = this.findInvoiceById(requestedInvoiceId);
-
-                // console.log(invoiceToEdit);
                 // res.send(invoiceToEdit);
 
                 res.render("editInvoice", {
