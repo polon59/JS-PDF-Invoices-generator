@@ -26,6 +26,7 @@ class InvoicesController{
             this.setRouteDisplayingAllInvoices();
             this.setRouteAddingInvoice();
             this.setRouteGetEditingInvoice();
+            this.setRoutePostEditingInvoice();
         }
 
 
@@ -56,7 +57,7 @@ class InvoicesController{
         }
 
         setRoutePostEditingInvoice(){
-            this.app.post("'/myAccount/invoices/edit/:invoiceId'" , (req,res) =>{
+            this.app.post('/myAccount/invoices/edit/:invoiceId' , (req,res) =>{
                 const invoiceToSaveId = req.params.invoiceId;
                 console.log(`Recived invoice to edit ID: ${invoiceToSaveId}`);
 
@@ -65,9 +66,11 @@ class InvoicesController{
                 console.log(`Recived invoice to edit INDEX: ${invoiceToSaveIndex}`);
                 const reqBody = req.body;
                 this.invoices[invoiceToSaveIndex].title =  reqBody.title;
-                this.invoices[invoiceToSaveIndex].title = reqBody.date;
-                this.invoices[invoiceToSaveIndex].title = reqBody.billFrom;
-                this.invoices[invoiceToSaveIndex].title = reqBody.billTo;
+                this.invoices[invoiceToSaveIndex].date = reqBody.date;
+                this.invoices[invoiceToSaveIndex].billFrom = reqBody.billFrom;
+                this.invoices[invoiceToSaveIndex].billTo = reqBody.billTo;
+
+                res.send("INVOICE SAVED");
             })
         }
 
