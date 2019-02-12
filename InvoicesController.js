@@ -59,11 +59,8 @@ class InvoicesController{
         setRoutePostEditingInvoice(){
             this.app.post('/myAccount/invoices/edit/:invoiceId' , (req,res) =>{
                 const invoiceToSaveId = req.params.invoiceId;
-                console.log(`Recived invoice to edit ID: ${invoiceToSaveId}`);
-
                 // Change values of invoice in database with given ID
                 const invoiceToSaveIndex = this.findIndexInArrayByID(invoiceToSaveId);
-                console.log(`Recived invoice to edit INDEX: ${invoiceToSaveIndex}`);
                 const reqBody = req.body;
                 this.invoices[invoiceToSaveIndex].title =  reqBody.title;
                 this.invoices[invoiceToSaveIndex].date = reqBody.date;
