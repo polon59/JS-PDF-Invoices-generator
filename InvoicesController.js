@@ -103,7 +103,6 @@ class InvoicesController{
             let foundInvoice;
             this.invoices.forEach(invoice => {
                 if(invoice.id == requestedInvoiceId){
-                    console.log("found");
                     foundInvoice = invoice;
                 }
             });
