@@ -67,7 +67,7 @@ class InvoicesController{
                 this.invoices[invoiceToSaveIndex].billFrom = reqBody.billFrom;
                 this.invoices[invoiceToSaveIndex].billTo = reqBody.billTo;
 
-                res.send("INVOICE SAVED");
+                res.send(`INVOICE SAVED  <a href=<'/myAccount/invoices'>RETURN</a>`);
             })
         }
 
