@@ -22,6 +22,11 @@ class App extends Component {
     });
   }
 
+
+  deleteInvoice = (invoiceToDeleteId) => {
+    console.log("deleted");
+  }
+
   render() {
     return (
       <div className="App">
@@ -31,7 +36,7 @@ class App extends Component {
             React application
           </p>
 
-          <InvoicesList invoices={this.state.invoices}/>
+          <InvoicesList deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>
         </header>
         <br/>
         <AddInvoice addInvoice={this.addInvoice}/>
