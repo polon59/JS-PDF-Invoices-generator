@@ -24,7 +24,7 @@ class App extends Component {
 
 
   deleteInvoice = (invoiceToDeleteId) => {
-    console.log("deleted");
+    console.log("deleted " + invoiceToDeleteId);
   }
 
   render() {

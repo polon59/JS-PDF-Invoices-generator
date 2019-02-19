@@ -9,7 +9,7 @@ const InvoicesList = (props)=>{
                 <td>{invoice.id}</td>
                 <td>{invoice.title}</td>
                 <td>{invoice.billTo}</td>
-                <td><button onClick={deleteInvoice}>X</button></td>
+                <td><button onClick={()=>{deleteInvoice(invoice.id)}}>X</button></td>
             </tr>
         );
     });
