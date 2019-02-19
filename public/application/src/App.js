@@ -24,7 +24,12 @@ class App extends Component {
 
 
   deleteInvoice = (invoiceToDeleteId) => {
-    console.log("deleted " + invoiceToDeleteId);
+    let invoices = this.state.invoices.filter(invoice =>{
+      return invoice.id !== invoiceToDeleteId;
+    })
+    this.setState({
+      invoices: invoices
+    });
   }
 
   render() {
