@@ -2,12 +2,14 @@ import React from 'react';
 
 const InvoicesList = (props)=>{
     const { invoices } = props;
+    const { deleteInvoice } = props;
     const invoicesList = invoices.map(invoice =>{
         return (
             <tr key={invoice.id}>
                 <td>{invoice.id}</td>
                 <td>{invoice.title}</td>
                 <td>{invoice.billTo}</td>
+                <td><button onClick={deleteInvoice}>X</button></td>
             </tr>
         );
     });
