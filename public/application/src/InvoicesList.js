@@ -11,6 +11,7 @@ const InvoicesList = (props)=>{
                     <td>{invoice.title}</td>
                     <td>{invoice.billTo}</td>
                     <td><button onClick={()=>{deleteInvoice(invoice.id)}}>X</button></td>
+                    <td><button onClick={()=>{props.setInvoiceToUpdate(invoice)}}>EDIT</button></td>
                 </tr>
             );
         });
