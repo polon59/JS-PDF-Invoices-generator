@@ -15,7 +15,7 @@ const InvoicesList = (props)=>{
             );
         });
         return(
-            <div>
+            <div className="bordered">
                 <table>
                     <thead>
                         <tr>
@@ -34,7 +34,7 @@ const InvoicesList = (props)=>{
     }
     else{
         return (
-            <div>
+            <div className="bordered">
                 <h3>You have no active invoices</h3>
             </div>
         )

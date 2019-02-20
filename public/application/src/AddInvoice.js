@@ -19,7 +19,7 @@ class AddInvoice extends Component{
 
     render(){
         return(
-            <div>
+            <div className="bordered">
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="title">Title</label>
                     <input type="text" id="title" onChange={this.handleChange}/>
