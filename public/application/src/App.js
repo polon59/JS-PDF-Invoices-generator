@@ -3,6 +3,7 @@ import Navbar from './navbar';
 import './App.css';
 import InvoicesList from './InvoicesList';
 import AddInvoice from './AddInvoice';
+import EditInvoice from './EditInvoice';
 
 
 class App extends Component {
@@ -12,8 +13,10 @@ class App extends Component {
       {id: 2, title: "invoice2", billTo:"bill to two"},
       {id: 3, title: "invoice3", billTo:"bill to three"},
       {id: 4, title: "invoice4", billTo:"bill to four"}
-    ]
+    ],
+    invoiceToEdit : ""
   }
+
 
   addInvoice = (invoice) => {
     invoice.id = Math.random();
@@ -22,6 +25,7 @@ class App extends Component {
       invoices: invoices
     });
   }
+
 
 
   deleteInvoice = (invoiceToDeleteId) => {
@@ -40,6 +44,7 @@ class App extends Component {
           <InvoicesList deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>
         <br/>
         <AddInvoice addInvoice={this.addInvoice}/>
+        <EditInvoice invoiceToEdit={this.state.invoices[2]}/>
       </div>
     );
   }
