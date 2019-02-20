@@ -14,7 +14,7 @@ class App extends Component {
       {id: 3, title: "invoice3", billTo:"bill to three"},
       {id: 4, title: "invoice4", billTo:"bill to four"}
     ],
-    invoiceToEdit : {id: 4, title: "invoice4", billTo:"bill to four"}
+    invoiceToEdit : {id: 1, title: "invoice1", billTo:"bill to one"}
   }
 
 
@@ -26,14 +26,25 @@ class App extends Component {
     });
   }
 
+  setInvoiceToEdit = (invoiceToEdit) =>{
+    // console.log(invoiceToEdit);
+
+    this.setState({
+      invoiceToEdit : invoiceToEdit
+    });
+
+    // console.log(this.state.invoiceToEdit);
+  }
+
   updateInvoice = (updatedInvoice) =>{
+    console.log(`UPDATED INVOICE RECIEVED AS ID:${updatedInvoice.id}, TITLE:${updatedInvoice.title} , BILLTO:${updatedInvoice.billTo}`)
     let invoices = this.state.invoices;
-    let invoiceToUpdateIndex  = invoices.findIndex((invoice => invoice.id == updatedInvoice.id));
-    invoices[invoiceToUpdateIndex] = updatedInvoice;
+    let indexToUpdate = invoices.findIndex(invoice => invoice.id === updatedInvoice.id);
+    invoices[indexToUpdate] = updatedInvoice;
+
     this.setState({
       invoices : invoices
     });
-    
   }
 
 
@@ -50,7 +61,7 @@ class App extends Component {
     return (
       <div className="App">
           <Navbar/>
-          <InvoicesList deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>
+          <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>
         <br/>
         <AddInvoice addInvoice={this.addInvoice}/>
         <EditInvoice updateInvoice={this.updateInvoice} invoiceToEdit={this.state.invoiceToEdit}/>

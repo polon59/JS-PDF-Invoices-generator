@@ -7,6 +7,7 @@ class EditInvoice extends Component{
         billTo: this.props.invoiceToEdit.billTo
     }
 
+
     handleSubmit = (e) =>{
         e.preventDefault();
         this.props.updateInvoice(this.state);
