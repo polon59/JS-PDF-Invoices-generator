@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class EditInvoice extends Component{
     state = {
+        id : this.props.invoiceToEdit.id,
         title: this.props.invoiceToEdit.title,
         billTo: this.props.invoiceToEdit.billTo
     }
@@ -15,6 +16,8 @@ class EditInvoice extends Component{
         this.setState({
             [e.target.id] : e.target.value
         });
+
+        console.log(`TITLE: ${this.state.title} BILL TO: ${this.state.billTo}`);
     }
 
 
