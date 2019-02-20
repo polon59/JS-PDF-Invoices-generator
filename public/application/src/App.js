@@ -27,7 +27,13 @@ class App extends Component {
   }
 
   updateInvoice = (updatedInvoice) =>{
-    console.log(`UPDATED INVOICE RECIEVED AS ID:${updatedInvoice.id}, TITLE:${updatedInvoice.title} , BILLTO:${updatedInvoice.billTo}`)
+    let invoices = this.state.invoices;
+    let invoiceToUpdateIndex  = invoices.findIndex((invoice => invoice.id == updatedInvoice.id));
+    invoices[invoiceToUpdateIndex] = updatedInvoice;
+    this.setState({
+      invoices : invoices
+    });
+    
   }
 
 
