@@ -11,9 +11,9 @@ class App extends Component {
     invoices : [
       {id: 1, title: "invoice1", billTo:"bill to one", billFrom:"bill from 1", services:[{id:1, description:"descr", quantity:10, cost:1200, tax:23}, {id:2, description:"descr", quantity:1, cost:100, tax:23}]},
       {id: 2, title: "invoice2", billTo:"bill to two", billFrom:"bill from 2", services:[{id:3, description:"descr", quantity:10, cost:1200, tax:23}, {id:4, description:"descr", quantity:10, cost:120, tax:23}]},
-      {id: 3, title: "invoice3", billTo:"bill to three", billFrom:"bill from 3", services:[{id:5, description:"descr", quantity:1, cost:12050, tax:23}, {id:6, description:"descr", quantity:5, cost:80, tax:23}]},
-      {id: 4, title: "invoice4", billTo:"bill to four", billFrom:"bill from 4", services:[{id:7, description:"descr", quantity:2, cost:1705, tax:23}, {id:8, description:"descr", quantity:7, cost:1200, tax:23}]},
-      {id: 5, title: "invoice5", billTo:"bill to five", billFrom:"bill from 5", services:[{id:9, description:"descr", quantity:10, cost:1200, tax:23}, {id:10, description:"descr", quantity:1, cost:11200, tax:23}]}
+      {id: 3, title: "invoice3", billTo:"bill to three", billFrom:"bill from 3", services:[{id:5, description:"descr", quantity:1, cost:12050, tax:23}]},
+      {id: 4, title: "invoice4", billTo:"bill to four", billFrom:"bill from 4", services:[{id:6, description:"descr", quantity:5, cost:80, tax:23}, {id:7, description:"descr", quantity:2, cost:1705, tax:23}, {id:8, description:"descr", quantity:7, cost:1200, tax:23}]},
+      {id: 5, title: "invoice5", billTo:"bill to five", billFrom:"bill from 5", services:[{id:9, description:"descr", quantity:10, cost:1200, tax:23}, {id:10, description:"descr", quantity:1, cost:11200, tax:23},{id:11, description:"descr", quantity:10, cost:1200, tax:23}, {id:12, description:"descr", quantity:5, cost:10, tax:23}]}
     ],
     invoiceToEdit : ""
   }
