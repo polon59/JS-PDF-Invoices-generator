@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 class EditInvoice extends Component{
+
     state = {
         id : this.props.invoiceToEdit.id,
         title: this.props.invoiceToEdit.title,
@@ -13,12 +14,9 @@ class EditInvoice extends Component{
         this.props.updateInvoice(this.state);
     }
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id] : e.target.value
-        });
 
-        console.log(`TITLE: ${this.state.title} BILL TO: ${this.state.billTo}`);
+    handleChange = (e) => {
+        this.props.changeInvoiceToEdit(e);
     }
 
 
@@ -36,9 +34,9 @@ class EditInvoice extends Component{
                     <h3>EDIT INVOICE</h3>
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="title">Title</label>
-                        <input type="text" id="title" value={this.state.title} onChange={this.handleChange}/>
+                        <input type="text" id="title" value={this.props.invoiceToEdit.title} onChange={this.handleChange}/>
                         <label htmlFor="title">BillTo</label>
-                        <input type="text" id="billTo" value={this.state.billTo} onChange={this.handleChange}/>
+                        <input type="text" id="billTo" value={this.props.invoiceToEdit.billTo} onChange={this.handleChange}/>
                         <button>Submit</button>
                     </form>
                 </div>

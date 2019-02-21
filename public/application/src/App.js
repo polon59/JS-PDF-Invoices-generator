@@ -26,14 +26,24 @@ class App extends Component {
     });
   }
 
-  setInvoiceToEdit = (invoiceToEdit) =>{
+
+  setInvoiceToEdit = (newInvoiceToEdit) =>{
     // console.log(invoiceToEdit);
 
     this.setState({
-      invoiceToEdit : invoiceToEdit
+      invoiceToEdit : newInvoiceToEdit
     });
+    console.log(this.state.invoiceToEdit);
+  }
 
-    // console.log(this.state.invoiceToEdit);
+
+  changeInvoiceToEdit = (e) =>{
+    let changedInvoiceToEdit = this.state.invoiceToEdit;
+    changedInvoiceToEdit[e.target.id] = e.target.value;
+
+    this.setState({
+      invoiceToEdit : changedInvoiceToEdit
+    });
   }
 
   updateInvoice = (updatedInvoice) =>{
@@ -64,7 +74,7 @@ class App extends Component {
           <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>
         <br/>
         <AddInvoice addInvoice={this.addInvoice}/>
-        <EditInvoice updateInvoice={this.updateInvoice} invoiceToEdit={this.state.invoiceToEdit}/>
+        <EditInvoice updateInvoice={this.updateInvoice} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>
       </div>
     );
   }
