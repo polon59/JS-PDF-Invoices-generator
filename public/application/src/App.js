@@ -45,7 +45,7 @@ class App extends Component {
   }
 
 
-  updateInvoice = (updatedInvoice) =>{
+  updateInvoicesList = () =>{
     let invoices = this.state.invoices;
     let indexToUpdate = invoices.findIndex(invoice => invoice.id === this.state.invoiceToEdit.id);
     invoices[indexToUpdate] = this.state.invoiceToEdit;
@@ -72,7 +72,7 @@ class App extends Component {
           <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>
         <br/>
         <AddInvoice addInvoice={this.addInvoice}/>
-        <EditInvoice updateInvoice={this.updateInvoice} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>
+        <EditInvoice updateInvoicesList={this.updateInvoicesList} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>
       </div>
     );
   }
