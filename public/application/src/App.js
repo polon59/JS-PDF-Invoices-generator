@@ -47,6 +47,7 @@ class App extends Component {
 
   saveChanges = () =>{
     // Add saving invoices to DB here
+    console.log("saved to database")
     this.setState({
       invoiceToEdit : ""
     });
@@ -63,7 +64,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.invoices);
     return (
       <div className="App">
           <Navbar/>
