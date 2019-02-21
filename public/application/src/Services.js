@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Service from './Service';
+
 
 class Services extends Component{
 
@@ -11,7 +13,7 @@ class Services extends Component{
         if (this.props.services.length > 0){
             const servicesList = this.props.services.map(service =>{
                 return (
-                    <Service service={service}/>
+                    <Service key={service.id} service={service}/>
                 );
             });
             return(
