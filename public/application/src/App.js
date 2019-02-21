@@ -9,11 +9,11 @@ import EditInvoice from './EditInvoice';
 class App extends Component {
   state = {
     invoices : [
-      {id: 1, title: "invoice1", billTo:"bill to one"},
-      {id: 2, title: "invoice2", billTo:"bill to two"},
-      {id: 3, title: "invoice3", billTo:"bill to three"},
-      {id: 4, title: "invoice4", billTo:"bill to four"},
-      {id: 5, title: "invoice5", billTo:"bill to five"}
+      {id: 1, title: "invoice1", billTo:"bill to one", billFrom:"bill from 1", services:"some service 1"},
+      {id: 2, title: "invoice2", billTo:"bill to two", billFrom:"bill from 2", services:"some service 2"},
+      {id: 3, title: "invoice3", billTo:"bill to three", billFrom:"bill from 3", services:"some service 3"},
+      {id: 4, title: "invoice4", billTo:"bill to four", billFrom:"bill from 4", services:"some service 4"},
+      {id: 5, title: "invoice5", billTo:"bill to five", billFrom:"bill from 5", services:"some service 5"}
     ],
     invoiceToEdit : ""
   }
