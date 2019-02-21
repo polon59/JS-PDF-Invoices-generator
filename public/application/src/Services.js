@@ -9,7 +9,8 @@ class Services extends Component{
     }
 
 
-    addService = () => {
+    addService = (e) => {
+        e.preventDefault();
         let services = this.state.services;
         services.push({
             id: Math.random(),
