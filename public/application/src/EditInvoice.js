@@ -28,8 +28,12 @@ class EditInvoice extends Component{
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="title">Title</label>
                         <input type="text" id="title" value={this.props.invoiceToEdit.title} onChange={this.handleChange}/>
-                        <label htmlFor="title">BillTo</label>
+                        <label htmlFor="title">Bill to:</label>
                         <input type="text" id="billTo" value={this.props.invoiceToEdit.billTo} onChange={this.handleChange}/>
+                        <label htmlFor="title">Bill from:</label>
+                        <input type="text" id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={this.handleChange}/>
+                        <label htmlFor="title">Services:</label>
+                        <input type="text" id="services" value={this.props.invoiceToEdit.services} onChange={this.handleChange}/>
                         <button>Submit</button>
                     </form>
                 </div>
