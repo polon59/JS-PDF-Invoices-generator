@@ -45,14 +45,14 @@ class App extends Component {
   }
 
 
-  updateInvoicesList = () =>{
+  saveChanges = () =>{
     let invoices = this.state.invoices;
     let indexToUpdate = invoices.findIndex(invoice => invoice.id === this.state.invoiceToEdit.id);
     invoices[indexToUpdate] = this.state.invoiceToEdit;
-
+    console.log("UPDATE INV")
     this.setState({
       invoices : invoices,
-      invoiceToEdit : ""
+      // invoiceToEdit : ""
     });
   }
 
@@ -74,7 +74,7 @@ class App extends Component {
           <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>
         <br/>
         <AddInvoice addInvoice={this.addInvoice}/>
-        <EditInvoice updateInvoicesList={this.updateInvoicesList} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>
+        <EditInvoice saveChanges={this.saveChanges} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>
       </div>
     );
   }

@@ -5,7 +5,7 @@ class EditInvoice extends Component{
 
     handleSubmit = (e) =>{
         e.preventDefault();
-        this.props.updateInvoicesList();
+        this.props.saveChanges();
     }
 
 
