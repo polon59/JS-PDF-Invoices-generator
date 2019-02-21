@@ -51,7 +51,8 @@ class App extends Component {
     invoices[indexToUpdate] = this.state.invoiceToEdit;
 
     this.setState({
-      invoices : invoices
+      invoices : invoices,
+      invoiceToEdit : ""
     });
   }
 
