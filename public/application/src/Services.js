@@ -4,20 +4,14 @@ class Services extends Component{
 
 
     handleChange = (e) => {
-        this.props.changeInvoiceToEdit(e);
+        console.log("handle");
     }
 
     render(){
         if (this.props.services.length > 0){
             const servicesList = this.props.services.map(service =>{
                 return (
-                    <tr key={service.id}>
-                        <td>{service.id}</td>
-                        <td>{service.description}</td>
-                        <td>{service.quantity}</td>
-                        <td>{service.cost}</td>
-                        <td>{service.tax}</td>
-                    </tr>
+                    <Service service={service}/>
                 );
             });
             return(
@@ -26,6 +20,7 @@ class Services extends Component{
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>DESCRIPTION</th>
                                 <th>QUANTITY</th>
                                 <th>COST</th>
                                 <th>TAX %</th>
