@@ -46,13 +46,9 @@ class App extends Component {
 
 
   saveChanges = () =>{
-    let invoices = this.state.invoices;
-    let indexToUpdate = invoices.findIndex(invoice => invoice.id === this.state.invoiceToEdit.id);
-    invoices[indexToUpdate] = this.state.invoiceToEdit;
-    console.log("UPDATE INV")
+    // Add saving invoices to DB here
     this.setState({
-      invoices : invoices,
-      // invoiceToEdit : ""
+      invoiceToEdit : ""
     });
   }
 
