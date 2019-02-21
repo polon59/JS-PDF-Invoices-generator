@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class AddInvoice extends Component{
     state = {
+        id : "",
         title: "",
         billTo: ""
     }
@@ -14,6 +15,9 @@ class AddInvoice extends Component{
 
     handleSubmit = (e) =>{
         e.preventDefault();
+        this.setState({
+            id : Math.random()
+        })
         this.props.addInvoice(this.state);
     }
 
