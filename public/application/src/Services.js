@@ -21,7 +21,7 @@ class EditInvoice extends Component{
                 );
             });
             return(
-                <div className="bordered">
+                <div>
                     <table>
                         <thead>
                             <tr>
@@ -41,8 +41,8 @@ class EditInvoice extends Component{
         }
         else{
             return (
-                <div className="bordered">
-                    <h3>You have no active invoices</h3>
+                <div>
+                    <h3>You have no active services</h3>
                 </div>
             )
         }
