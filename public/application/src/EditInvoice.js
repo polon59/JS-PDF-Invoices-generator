@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 
 class EditInvoice extends Component{
 
-    state = {
-        id : this.props.invoiceToEdit.id,
-        title: this.props.invoiceToEdit.title,
-        billTo: this.props.invoiceToEdit.billTo
-    }
-
-
     handleSubmit = (e) =>{
         e.preventDefault();
         this.props.updateInvoicesList();

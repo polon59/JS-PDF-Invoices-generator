@@ -12,7 +12,8 @@ class App extends Component {
       {id: 1, title: "invoice1", billTo:"bill to one"},
       {id: 2, title: "invoice2", billTo:"bill to two"},
       {id: 3, title: "invoice3", billTo:"bill to three"},
-      {id: 4, title: "invoice4", billTo:"bill to four"}
+      {id: 4, title: "invoice4", billTo:"bill to four"},
+      {id: 5, title: "invoice5", billTo:"bill to five"}
     ],
     invoiceToEdit : ""
   }

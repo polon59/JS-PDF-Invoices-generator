@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 class AddInvoice extends Component{
     state = {
-        title: null,
-        billTo: null
+        title: "",
+        billTo: ""
     }
 
     handleChange = (e) => {
