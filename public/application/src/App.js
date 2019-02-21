@@ -14,7 +14,7 @@ class App extends Component {
       {id: 3, title: "invoice3", billTo:"bill to three"},
       {id: 4, title: "invoice4", billTo:"bill to four"}
     ],
-    invoiceToEdit : {id: 1, title: "invoice1", billTo:"bill to one"}
+    invoiceToEdit : ""
   }
 
 
@@ -27,13 +27,13 @@ class App extends Component {
   }
 
 
-  setInvoiceToEdit = (newInvoiceToEdit) =>{
-    // console.log(invoiceToEdit);
+  setInvoiceToEdit = (invoice) =>{
+    let newInvoiceToEdit = Object.assign({}, invoice);
 
+    console.log(newInvoiceToEdit);
     this.setState({
       invoiceToEdit : newInvoiceToEdit
     });
-    console.log(this.state.invoiceToEdit);
   }
 
 
@@ -45,6 +45,7 @@ class App extends Component {
       invoiceToEdit : changedInvoiceToEdit
     });
   }
+
 
   updateInvoice = (updatedInvoice) =>{
     console.log(`UPDATED INVOICE RECIEVED AS ID:${updatedInvoice.id}, TITLE:${updatedInvoice.title} , BILLTO:${updatedInvoice.billTo}`)
