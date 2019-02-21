@@ -29,8 +29,6 @@ class App extends Component {
 
   setInvoiceToEdit = (invoice) =>{
     let newInvoiceToEdit = Object.assign({}, invoice);
-
-    console.log(newInvoiceToEdit);
     this.setState({
       invoiceToEdit : newInvoiceToEdit
     });
@@ -48,7 +46,6 @@ class App extends Component {
 
 
   updateInvoice = (updatedInvoice) =>{
-    // console.log(`UPDATED INVOICE RECIEVED AS ID:${updatedInvoice.id}, TITLE:${updatedInvoice.title} , BILLTO:${updatedInvoice.billTo}`)
     let invoices = this.state.invoices;
     let indexToUpdate = invoices.findIndex(invoice => invoice.id === this.state.invoiceToEdit.id);
     invoices[indexToUpdate] = this.state.invoiceToEdit;
