@@ -4,16 +4,20 @@ import Service from './Service';
 
 class Services extends Component{
 
+    state = {
+        services : this.props.services
+    }
 
-    handleChange = (e) => {
-        console.log("handle");
+
+    handleChange = () => {
     }
 
     render(){
         if (this.props.services.length > 0){
+            //Change to this.state.services
             const servicesList = this.props.services.map(service =>{
                 return (
-                    <Service key={service.id} service={service}/>
+                    <Service key={service.id} service={service} handleChange={this.handleChange}/>
                 );
             });
             return(

@@ -67,6 +67,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.invoices);
     return (
       <div className="App">
           <Navbar/>
