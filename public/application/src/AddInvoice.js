@@ -4,7 +4,8 @@ class AddInvoice extends Component{
     state = {
         id : "",
         title: "",
-        billTo: ""
+        billTo: "",
+        services: []
     }
 
     handleChange = (e) => {
