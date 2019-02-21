@@ -9,12 +9,23 @@ class Services extends Component{
     }
 
 
-    handleChange = () => {
+    addService = () => {
+        let services = this.state.services;
+        services.push({
+            id: Math.random(),
+            description: "",
+            quantity: "",
+            cost: "",
+            tax: ""
+        });
+
+        this.setState({
+            services:services
+        })
     }
 
     render(){
         if (this.props.services.length > 0){
-            //Change to this.state.services
             const servicesList = this.props.services.map(service =>{
                 return (
                     <Service key={service.id} service={service} handleChange={this.handleChange}/>
@@ -22,6 +33,7 @@ class Services extends Component{
             });
             return(
                 <div>
+                <button onClick={this.addService}>ADD SERVICE</button>
                     <table>
                         <thead>
                             <tr>
@@ -44,6 +56,7 @@ class Services extends Component{
             return (
                 <div>
                     <h3>You have no active services</h3>
+                    <button onClick={this.addService}>ADD SERVICE</button>
                 </div>
             )
         }
