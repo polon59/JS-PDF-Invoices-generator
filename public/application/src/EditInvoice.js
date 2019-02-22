@@ -13,6 +13,10 @@ class EditInvoice extends Component{
         this.props.changeInvoiceToEdit(e);
     }
 
+    handleServiceDelete = (serviceId) =>{
+        this.props.deleteServiceFromInvoice(serviceId);
+    }
+
 
     render(){
         if(this.props.invoiceToEdit === ""){
@@ -33,7 +37,7 @@ class EditInvoice extends Component{
                         <input type="text" id="billTo" value={this.props.invoiceToEdit.billTo} onChange={this.handleChange}/>
                         <label htmlFor="title">Bill from:</label>
                         <input type="text" id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={this.handleChange}/>
-                        <Services handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
+                        <Services handleServiceDelete={this.handleServiceDelete} handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
                         <input type="submit" value="submit"/>
                     </form>
                 </div>
