@@ -61,8 +61,17 @@ class App extends Component {
   }
 
 
-  deleteServiceFromInvoiceToEdit = (serviceId) =>{
-    console.log(`DELETESERVICE FROM INVOICE --- ServiceId: ${serviceId}`);
+  deleteServiceFromInvoiceToEdit = (serviceToDeleteId) =>{
+    console.log(`DELETESERVICE FROM INVOICE --- ServiceId: ${serviceToDeleteId}`);
+    let invoiceToEdit = this.state.invoiceToEdit;
+    let updatedServicesList = invoiceToEdit.services.filter(service =>{
+      return service.id !== serviceToDeleteId;
+    });
+    invoiceToEdit.services = updatedServicesList;
+
+    this.setState({
+      invoiceToEdit : invoiceToEdit
+    })
     
   }
 
