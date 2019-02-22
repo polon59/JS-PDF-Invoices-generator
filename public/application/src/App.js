@@ -62,8 +62,8 @@ class App extends Component {
 
 
   deleteServiceFromInvoiceToEdit = (serviceToDeleteId) =>{
-    let invoiceToEdit = this.state.invoiceToEdit;
-    let updatedServicesList = invoiceToEdit.services.filter(service =>{
+    const {invoiceToEdit} = this.state;
+    const updatedServicesList = invoiceToEdit.services.filter(service =>{
       return service.id !== serviceToDeleteId;
     });
     invoiceToEdit.services = updatedServicesList;
@@ -85,19 +85,20 @@ class App extends Component {
 
 
   deleteInvoice = (invoiceToDeleteId) => {
-    let invoices = this.state.invoices.filter(invoice =>{
+    const {invoices} = this.state;
+    const updatedInvoices = invoices.filter(invoice =>{
       return invoice.id !== invoiceToDeleteId;
     })
     this.setState({
-      invoices: invoices
+      invoices: updatedInvoices
     });
   }
 
   render() {
     return (
       <div className="App">
-          <Navbar/>
-          <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>
+        <Navbar/>
+        <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>
         <br/>
         <AddInvoice addInvoice={this.addInvoice}/>
         <EditInvoice deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>
