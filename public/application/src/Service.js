@@ -36,6 +36,9 @@ class Service extends Component{
                 <td>
                     <input id="tax" value={service.tax} onChange={this.handleChange}/>
                 </td>
+                <td>
+                    <h5 onClick={()=>{this.props.handleDelete(service.id)}}>delete</h5>
+                </td>
             </tr>
         );
     }
