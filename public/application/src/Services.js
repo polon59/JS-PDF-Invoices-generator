@@ -4,11 +4,6 @@ import Service from './Service';
 
 class Services extends Component{
 
-    // state = {
-    //     services : this.props.services
-    // }
-
-
     addService = (e) => {
         let newService = {
             id: Math.random(),
