@@ -20,6 +20,7 @@ class App extends Component {
 
 
   addInvoice = (invoice) => {
+    invoice.services = [];
     let invoices = [...this.state.invoices, invoice];
     this.setState({
       invoices: invoices
@@ -28,9 +29,10 @@ class App extends Component {
 
 
   setInvoiceToEdit = (invoice) =>{
-    let newInvoiceToEdit = Object.assign({}, invoice);
+    console.log(invoice);
+
     this.setState({
-      invoiceToEdit : newInvoiceToEdit
+      invoiceToEdit : invoice
     });
   }
 
