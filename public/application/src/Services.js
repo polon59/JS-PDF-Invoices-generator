@@ -19,7 +19,7 @@ class Services extends Component{
         if (this.props.services.length > 0){
             const servicesList = this.props.services.map(service =>{
                 return (
-                    <Service key={service.id} service={service} handleChange={this.props.handleChange}/>
+                    <Service key={service.id} service={service} handleDelete={this.props.handleServiceDelete} handleChange={this.props.handleChange}/>
                 );
             });
             return(
