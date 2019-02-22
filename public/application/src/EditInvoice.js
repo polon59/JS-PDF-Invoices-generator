@@ -33,8 +33,8 @@ class EditInvoice extends Component{
                         <input type="text" id="billTo" value={this.props.invoiceToEdit.billTo} onChange={this.handleChange}/>
                         <label htmlFor="title">Bill from:</label>
                         <input type="text" id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={this.handleChange}/>
-                        <Services handleChange={this.handleChange} services={this.props.invoiceToEdit.services}/>
-                        <button>Submit</button>
+                        <Services handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
+                        <input type="submit" value="submit"/>
                     </form>
                 </div>
             )
