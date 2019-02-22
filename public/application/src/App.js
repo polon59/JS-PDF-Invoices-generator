@@ -64,9 +64,9 @@ class App extends Component {
   saveChanges = () =>{
     // Add saving invoices to DB here
     console.log("saved to database")
-    // this.setState({
-    //   invoiceToEdit : ""
-    // });
+    this.setState({
+      invoiceToEdit : ""
+    });
   }
 
 
