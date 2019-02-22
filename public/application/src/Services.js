@@ -10,6 +10,7 @@ class Services extends Component{
 
 
     addService = (e) => {
+        console.log(this.state.services);
         e.preventDefault();
         let services = this.state.services;
         services.push({
