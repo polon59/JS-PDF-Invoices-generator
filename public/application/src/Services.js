@@ -4,38 +4,32 @@ import Service from './Service';
 
 class Services extends Component{
 
-    state = {
-        services : this.props.services
-    }
+    // state = {
+    //     services : this.props.services
+    // }
 
 
     addService = (e) => {
-        console.log(this.state.services);
-        e.preventDefault();
-        let services = this.state.services;
-        services.push({
+        let newService = {
             id: Math.random(),
             description: "",
             quantity: "",
             cost: "",
             tax: ""
-        });
-
-        this.setState({
-            services:services
-        })
+        };
+        this.props.addService(newService);
     }
 
     render(){
         if (this.props.services.length > 0){
             const servicesList = this.props.services.map(service =>{
                 return (
-                    <Service key={service.id} service={service} handleChange={this.handleChange}/>
+                    <Service key={service.id} service={service} handleChange={this.props.handleChange}/>
                 );
             });
             return(
                 <div>
-                <button onClick={this.addService}>ADD SERVICE</button>
+                <h5 onClick={this.addService}>ADD SERVICE</h5>
                     <table>
                         <thead>
                             <tr>
@@ -58,7 +52,7 @@ class Services extends Component{
             return (
                 <div>
                     <h3>You have no active services</h3>
-                    <button onClick={this.addService}>ADD SERVICE</button>
+                    <h5 onClick={this.addService}>ADD SERVICE</h5>
                 </div>
             )
         }
