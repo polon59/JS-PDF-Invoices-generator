@@ -28,9 +28,8 @@ class App extends Component {
   }
 
   addServiceToInvoiceToEdit = (newService) =>{
-    let invoiceToEdit = this.state.invoiceToEdit;
+    const {invoiceToEdit} = this.state;
     invoiceToEdit.services.push(newService);
-
     this.setState({
       invoiceToEdit : invoiceToEdit
     })
@@ -38,28 +37,23 @@ class App extends Component {
 
   setInvoiceToEdit = (invoiceID) =>{
     let newInvoiceToEdit;
-
     this.state.invoices.forEach(invoice => {
       if(invoice.id === invoiceID){
         newInvoiceToEdit = invoice;
       }
     });
-
     this.setState({
       invoiceToEdit : newInvoiceToEdit
     });
   }
 
-
   changeInvoiceToEdit = (e) =>{
     let changedInvoiceToEdit = this.state.invoiceToEdit;
     changedInvoiceToEdit[e.target.id] = e.target.value;
-
     this.setState({
       invoiceToEdit : changedInvoiceToEdit
     });
   }
-
 
   deleteServiceFromInvoiceToEdit = (serviceToDeleteId) =>{
     const {invoiceToEdit} = this.state;
@@ -67,13 +61,11 @@ class App extends Component {
       return service.id !== serviceToDeleteId;
     });
     invoiceToEdit.services = updatedServicesList;
-
     this.setState({
       invoiceToEdit : invoiceToEdit
     })
     
   }
-
 
   saveChanges = () =>{
     // Add saving invoices to DB here
@@ -82,7 +74,6 @@ class App extends Component {
       invoiceToEdit : ""
     });
   }
-
 
   deleteInvoice = (invoiceToDeleteId) => {
     const {invoices} = this.state;
