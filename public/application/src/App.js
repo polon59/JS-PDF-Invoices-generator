@@ -61,6 +61,12 @@ class App extends Component {
   }
 
 
+  deleteServiceFromInvoiceToEdit = (serviceId) =>{
+    console.log(`DELETESERVICE FROM INVOICE --- ServiceId: ${serviceId}`);
+    
+  }
+
+
   saveChanges = () =>{
     // Add saving invoices to DB here
     console.log("saved to database")
@@ -86,7 +92,7 @@ class App extends Component {
           <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>
         <br/>
         <AddInvoice addInvoice={this.addInvoice}/>
-        <EditInvoice saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>
+        <EditInvoice deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>
       </div>
     );
   }
