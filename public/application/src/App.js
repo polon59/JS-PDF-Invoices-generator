@@ -4,6 +4,7 @@ import './App.css';
 import InvoicesList from './InvoicesList';
 import AddInvoice from './AddInvoice';
 import EditInvoice from './EditInvoice';
+import MyAccount from './MyAccount';
 
 
 class App extends Component {
@@ -117,9 +118,14 @@ class App extends Component {
       case "editInvoice":
         component = <EditInvoice deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
         break;
+      case "statistics":
+        //not implemented
+        console.log("Invalid component");
+        // component = <Statistics/>
+      break;
       default:
-      console.log("invalid displayedComponent");
-        break;
+        component = <MyAccount changeTogle={this.changeDisplayedComponent}/>
+      break;
     }
     return component;
   }
