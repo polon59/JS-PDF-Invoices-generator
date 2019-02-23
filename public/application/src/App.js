@@ -122,6 +122,7 @@ class App extends Component {
         component = <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>;
         break;
       case "addInvoice":
+        this.createNewInvoice();
         component = <AddInvoice addInvoice={this.addInvoice}/>;
         break;
       case "editInvoice":
