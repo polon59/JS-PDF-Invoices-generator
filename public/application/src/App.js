@@ -38,7 +38,6 @@ class App extends Component {
       invoices: invoices,
     });
     this.saveChanges();
-
   }
 
 
@@ -89,7 +88,6 @@ class App extends Component {
     this.setState({
       invoiceToEdit : invoiceToEdit
     })
-    
   }
 
   saveChanges = () =>{
@@ -119,15 +117,7 @@ class App extends Component {
     this.setState({
       displayedComponent : displayedComponent
     })
-    /**
-     * AVAILABLE MODES
-     * my account//not implemented
-     * invoicesList
-     * addInvoice
-     * editInvoice
-     */
   }
-
 
   renderCurrentDisplayedComponent = () =>{
     let component;
@@ -137,11 +127,7 @@ class App extends Component {
         component = <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>;
         break;
       case "addInvoice":
-        component = <AddInvoice addCreatedInvoiceToList={this.addCreatedInvoiceToList} 
-          deleteService={this.deleteServiceFromInvoiceToEdit}
-          addService={this.addServiceToInvoiceToEdit} 
-          changeInvoiceToEdit={this.changeInvoiceToEdit} 
-          invoiceToEdit={this.state.invoiceToEdit}/>;
+        component = <AddInvoice addCreatedInvoiceToList={this.addCreatedInvoiceToList} deleteService={this.deleteServiceFromInvoiceToEdit} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
         break;
       case "editInvoice":
         component = <EditInvoice deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
@@ -155,7 +141,6 @@ class App extends Component {
     }
     return component;
   }
-
 
   render() {
     return (
