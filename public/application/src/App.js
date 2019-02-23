@@ -86,14 +86,16 @@ class App extends Component {
     });
   }
 
-  chnageTogle = (togle) =>{
+  changeTogle = (togle) =>{
     this.setState({
       togle : togle
     })
     /**
-     * my account
-     * add new invoice
-     * edit new invoice
+     * AVAILABLE MODES
+     * my account//not implemented
+     * invoicesList
+     * addInvoice
+     * editInvoice
      */
   }
 
@@ -112,6 +114,7 @@ class App extends Component {
         component = <EditInvoice deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
         break;
       default:
+      console.log("invalid togle");
         break;
     }
     return component;
@@ -121,7 +124,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar/>
+        <Navbar changeTogle={this.changeTogle}/>
         {this.renderCurrentTogleComponent()}
       </div>
     );
