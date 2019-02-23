@@ -24,7 +24,8 @@ class App extends Component {
     invoice.services = [];
     let invoices = [...this.state.invoices, invoice];
     this.setState({
-      invoices: invoices
+      invoices: invoices,
+      togle : "invoicesList"
     });
   }
 
@@ -44,7 +45,8 @@ class App extends Component {
       }
     });
     this.setState({
-      invoiceToEdit : newInvoiceToEdit
+      invoiceToEdit : newInvoiceToEdit,
+      togle : "editInvoice"
     });
   }
 
@@ -72,7 +74,8 @@ class App extends Component {
     // Add saving invoices to DB here
     console.log("saved to database")
     this.setState({
-      invoiceToEdit : ""
+      invoiceToEdit : "",
+      togle : "invoicesList"
     });
   }
 
@@ -82,7 +85,8 @@ class App extends Component {
       return invoice.id !== invoiceToDeleteId;
     })
     this.setState({
-      invoices: updatedInvoices
+      invoices: updatedInvoices,
+      togle : "invoicesList"
     });
   }
 
