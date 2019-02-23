@@ -3,12 +3,6 @@ import React, { Component } from 'react';
 class AddInvoice extends Component{
 
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id] : e.target.value
-        });
-    }
-
     handleSubmit = (e) =>{
         e.preventDefault();
         this.setState({
