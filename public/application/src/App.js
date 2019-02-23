@@ -40,16 +40,6 @@ class App extends Component {
     this.saveChanges();
   }
 
-
-  // addInvoice = (invoice) => {
-  //   invoice.services = [];
-  //   let invoices = [...this.state.invoices, invoice];
-  //   this.setState({
-  //     invoices: invoices,
-  //     displayedComponent : "invoicesList"
-  //   });
-  // }
-
   addServiceToInvoiceToEdit = (newService) =>{
     const {invoiceToEdit} = this.state;
     invoiceToEdit.services.push(newService);
