@@ -34,7 +34,7 @@ class App extends Component {
     console.log("addedToList")
     console.log("ITE: " + this.state.invoiceToEdit.title);
     //t
-    let invoiceToAdd = this.props.invoiceToEdit;
+    let invoiceToAdd = this.state.invoiceToEdit;
     let invoices = this.state.invoices;
     invoices.push(invoiceToAdd);
     this.setState({
