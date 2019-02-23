@@ -39,9 +39,8 @@ class App extends Component {
     invoices.push(invoiceToAdd);
     this.setState({
       invoices: invoices,
-      displayedComponent : "myAccount",
-      invoiceToEdit: "dupa"
     });
+    this.saveChanges();
     console.log(this.state.invoices)
 
   }
