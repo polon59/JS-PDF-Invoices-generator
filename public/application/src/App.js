@@ -18,7 +18,7 @@ class App extends Component {
       {id: 5, title: "invoice5", billTo:"bill to five", billFrom:"bill from 5", services:[{id:9, description:"descr", quantity:10, cost:1200, tax:23}, {id:10, description:"descr", quantity:1, cost:11200, tax:23},{id:11, description:"descr", quantity:10, cost:1200, tax:23}, {id:12, description:"descr", quantity:5, cost:10, tax:23}]}
     ],
     invoiceToEdit : "",
-    displayedComponent: "addInvoice"
+    displayedComponent: "MyAccount"
   }
 
   createNewInvoice = () =>{
