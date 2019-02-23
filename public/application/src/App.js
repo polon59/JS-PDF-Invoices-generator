@@ -17,12 +17,13 @@ class App extends Component {
       {id: 4, title: "invoice4", billTo:"bill to four", billFrom:"bill from 4", services:[{id:6, description:"descr", quantity:5, cost:80, tax:23}, {id:7, description:"descr", quantity:2, cost:1705, tax:23}, {id:8, description:"descr", quantity:7, cost:1200, tax:23}]},
       {id: 5, title: "invoice5", billTo:"bill to five", billFrom:"bill from 5", services:[{id:9, description:"descr", quantity:10, cost:1200, tax:23}, {id:10, description:"descr", quantity:1, cost:11200, tax:23},{id:11, description:"descr", quantity:10, cost:1200, tax:23}, {id:12, description:"descr", quantity:5, cost:10, tax:23}]}
     ],
-    invoiceToEdit : "",
+    invoiceToEdit : {id: 100, title: "", billTo:"", billFrom:"", services:[]},
     displayedComponent: "addInvoice"
   }
 
   createNewInvoice = () =>{
-    let newInvoice = {id: Math.random, title: "", billTo:"", billFrom:"", services:[]};
+    const id = Math.random();
+    let newInvoice = {id: id, title: "", billTo:"", billFrom:"", services:[]};
     this.setState({
       invoiceToEdit : newInvoice,
       displayedComponent : "addInvoice"
@@ -30,25 +31,30 @@ class App extends Component {
   }
 
   addCreatedInvoiceToList = () =>{
-    const invoiceToAdd = this.props.invoiceToEdit;
-    let invoices = [...this.state.invoices, invoiceToAdd];
+    console.log("addedToList")
+    console.log("ITE: " + this.state.invoiceToEdit.title);
+    //t
+    let invoiceToAdd = this.props.invoiceToEdit;
+    let invoices = this.state.invoices;
+    invoices.push(invoiceToAdd);
     this.setState({
       invoices: invoices,
-      displayedComponent : "invoicesList",
-      invoiceToEdit: ""
+      displayedComponent : "myAccount",
+      invoiceToEdit: "dupa"
     });
+    console.log(this.state.invoices)
 
   }
 
 
-  addInvoice = (invoice) => {
-    invoice.services = [];
-    let invoices = [...this.state.invoices, invoice];
-    this.setState({
-      invoices: invoices,
-      displayedComponent : "invoicesList"
-    });
-  }
+  // addInvoice = (invoice) => {
+  //   invoice.services = [];
+  //   let invoices = [...this.state.invoices, invoice];
+  //   this.setState({
+  //     invoices: invoices,
+  //     displayedComponent : "invoicesList"
+  //   });
+  // }
 
   addServiceToInvoiceToEdit = (newService) =>{
     const {invoiceToEdit} = this.state;
@@ -112,6 +118,10 @@ class App extends Component {
   }
 
   changeDisplayedComponent = (displayedComponent) =>{
+    if (displayedComponent==="addInvoice"){
+      this.createNewInvoice();
+    }
+    console.log(this.state.invoiceToEdit);
     this.setState({
       displayedComponent : displayedComponent
     })
@@ -133,8 +143,11 @@ class App extends Component {
         component = <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>;
         break;
       case "addInvoice":
-        this.createNewInvoice();
-        component = <AddInvoice addInvoice={this.addInvoice}/>;
+        component = <AddInvoice addCreatedInvoiceToList={this.addCreatedInvoiceToList} 
+          deleteService={this.deleteServiceFromInvoiceToEdit}
+          addService={this.addServiceToInvoiceToEdit} 
+          changeInvoiceToEdit={this.changeInvoiceToEdit} 
+          invoiceToEdit={this.state.invoiceToEdit}/>;
         break;
       case "editInvoice":
         component = <EditInvoice deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
