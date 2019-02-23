@@ -21,6 +21,14 @@ class App extends Component {
     displayedComponent: "addInvoice"
   }
 
+  createNewInvoice = () =>{
+    let newInvoice = {id: Math.random, title: "", billTo:"", billFrom:"", services:[]};
+    this.setState({
+      invoiceToEdit : newInvoice,
+      displayedComponent : "addInvoice"
+    });
+  }
+
 
   addInvoice = (invoice) => {
     invoice.services = [];
