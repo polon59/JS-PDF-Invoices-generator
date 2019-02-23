@@ -31,9 +31,6 @@ class App extends Component {
   }
 
   addCreatedInvoiceToList = () =>{
-    console.log("addedToList")
-    console.log("ITE: " + this.state.invoiceToEdit.title);
-    //t
     let invoiceToAdd = this.state.invoiceToEdit;
     let invoices = this.state.invoices;
     invoices.push(invoiceToAdd);
@@ -41,7 +38,6 @@ class App extends Component {
       invoices: invoices,
     });
     this.saveChanges();
-    console.log(this.state.invoices)
 
   }
 
@@ -120,7 +116,6 @@ class App extends Component {
     if (displayedComponent==="addInvoice"){
       this.createNewInvoice();
     }
-    console.log(this.state.invoiceToEdit);
     this.setState({
       displayedComponent : displayedComponent
     })
