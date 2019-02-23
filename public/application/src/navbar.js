@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import NavOption from './navOption';
 
 class Navbar extends Component{
-    
+
     render(){
+
         return(
             <div>
-                <NavOption  title="Opt1" desc="descr1"/>
-                <NavOption  title="Opt2" desc="descr2"/>
-                <NavOption  title="Opt3" desc="descr3"/>
-                <NavOption  title="Opt4" desc="descr4"/>
+                <NavOption title="Home" changeTogle={this.props.changeTogle} destination={"home"}/>
+                <NavOption title="My invoices" changeTogle={this.props.changeTogle} destination={"invoicesList"}/>
+                <NavOption title="Add new Invoice" changeTogle={this.props.changeTogle} destination={"addInvoice"}/>
+                <NavOption title="Statistics" changeTogle={this.props.changeTogle} destination={"statistics"}/>
             </div>
         );
     }
