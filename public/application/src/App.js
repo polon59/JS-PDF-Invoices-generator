@@ -16,7 +16,7 @@ class App extends Component {
       {id: 5, title: "invoice5", billTo:"bill to five", billFrom:"bill from 5", services:[{id:9, description:"descr", quantity:10, cost:1200, tax:23}, {id:10, description:"descr", quantity:1, cost:11200, tax:23},{id:11, description:"descr", quantity:10, cost:1200, tax:23}, {id:12, description:"descr", quantity:5, cost:10, tax:23}]}
     ],
     invoiceToEdit : "",
-    togle: "addInvoice"
+    displayedComponent: "addInvoice"
   }
 
 
@@ -25,7 +25,7 @@ class App extends Component {
     let invoices = [...this.state.invoices, invoice];
     this.setState({
       invoices: invoices,
-      togle : "invoicesList"
+      displayedComponent : "invoicesList"
     });
   }
 
@@ -46,7 +46,7 @@ class App extends Component {
     });
     this.setState({
       invoiceToEdit : newInvoiceToEdit,
-      togle : "editInvoice"
+      displayedComponent : "editInvoice"
     });
   }
 
@@ -75,7 +75,7 @@ class App extends Component {
     console.log("saved to database")
     this.setState({
       invoiceToEdit : "",
-      togle : "invoicesList"
+      displayedComponent : "invoicesList"
     });
   }
 
@@ -86,13 +86,13 @@ class App extends Component {
     })
     this.setState({
       invoices: updatedInvoices,
-      togle : "invoicesList"
+      displayedComponent : "invoicesList"
     });
   }
 
-  changeTogle = (togle) =>{
+  changeDisplayedComponent = (displayedComponent) =>{
     this.setState({
-      togle : togle
+      displayedComponent : displayedComponent
     })
     /**
      * AVAILABLE MODES
@@ -104,10 +104,10 @@ class App extends Component {
   }
 
 
-  renderCurrentTogleComponent = () =>{
+  renderCurrentDisplayedComponent = () =>{
     let component;
-    const {togle} = this.state;
-    switch (togle) {
+    const {displayedComponent} = this.state;
+    switch (displayedComponent) {
       case "invoicesList":
         component = <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>;
         break;
@@ -118,7 +118,7 @@ class App extends Component {
         component = <EditInvoice deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
         break;
       default:
-      console.log("invalid togle");
+      console.log("invalid displayedComponent");
         break;
     }
     return component;
@@ -128,8 +128,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar changeTogle={this.changeTogle}/>
-        {this.renderCurrentTogleComponent()}
+        <Navbar changeTogle={this.changeDisplayedComponent}/>
+        {this.renderCurrentDisplayedComponent()}
       </div>
     );
   }
