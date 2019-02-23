@@ -29,6 +29,17 @@ class App extends Component {
     });
   }
 
+  addCreatedInvoiceToList = () =>{
+    const invoiceToAdd = this.props.invoiceToEdit;
+    let invoices = [...this.state.invoices, invoiceToAdd];
+    this.setState({
+      invoices: invoices,
+      displayedComponent : "invoicesList",
+      invoiceToEdit: ""
+    });
+
+  }
+
 
   addInvoice = (invoice) => {
     invoice.services = [];
