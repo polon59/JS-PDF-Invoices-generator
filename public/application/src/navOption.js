@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const NavOption = (props) =>{
-    const { title, chnageTogle, destination} = props;
+class NavOption extends Component{
+        state = {
+            
+        }
 
-    const handleClick = () =>{
-        changeTogle(destination);
+    handleClick = () =>{
+        const {destination} = this.props;
+        this.props.changeTogle(destination);
     }
 
-    return(
-        <div>
-            <h4 onClick={handleClick}>{title}</h4>
-        </div>
-    );
+    render(){
+        const {title} = this.props;
+        return(
+            <div>
+                <h4 onClick={this.handleClick}>{title}</h4>
+            </div>
+        );
+    }
+    
 }
 
 export default NavOption;
