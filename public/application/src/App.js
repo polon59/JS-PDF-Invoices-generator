@@ -98,24 +98,24 @@ class App extends Component {
   }
 
 
-  // renderCurrentTogleComponent = () =>{
-  //   let component;
-  //   const {togle} = this.state;
-  //   switch (togle) {
-  //     case "invoicesList":
-  //       component = <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>;
-  //       break;
-  //     case "addInvoice":
-  //       component = <AddInvoice addInvoice={this.addInvoice}/>;
-  //       break;
-  //     case "editInvoice":
-  //       component = <EditInvoice deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //   return component;
-  // }
+  renderCurrentTogleComponent = () =>{
+    let component;
+    const {togle} = this.state;
+    switch (togle) {
+      case "invoicesList":
+        component = <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>;
+        break;
+      case "addInvoice":
+        component = <AddInvoice addInvoice={this.addInvoice}/>;
+        break;
+      case "editInvoice":
+        component = <EditInvoice deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
+        break;
+      default:
+        break;
+    }
+    return component;
+  }
 
 
   render() {
