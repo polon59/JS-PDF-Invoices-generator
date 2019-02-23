@@ -123,10 +123,6 @@ class App extends Component {
       <div className="App">
         <Navbar/>
         {this.renderCurrentTogleComponent()}
-        {/* <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/> */}
-        {/* <br/> */}
-        {/* <AddInvoice addInvoice={this.addInvoice}/> */}
-        {/* <EditInvoice deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/> */}
       </div>
     );
   }
