@@ -1,11 +1,15 @@
 import React from 'react';
 
 const NavOption = (props) =>{
-    const { title, desc } = props;
+    const { title, chnageTogle, destination} = props;
+
+    const handleClick = () =>{
+        changeTogle(destination);
+    }
+
     return(
         <div>
-            <div>{title}</div>
-            <div>{desc}</div>
+            <h4 onClick={handleClick}>{title}</h4>
         </div>
     );
 }
