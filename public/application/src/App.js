@@ -87,6 +87,12 @@ class App extends Component {
     });
   }
 
+  saveEditedInvoice = (editedInvoice) =>{
+    this.setState({
+      invoiceToEdit : changedInvoiceToEdit
+    });
+  }
+
   deleteServiceFromInvoiceToEdit = (serviceToDeleteId) =>{
     const {invoiceToEdit} = this.state;
     const updatedServicesList = invoiceToEdit.services.filter(service =>{
