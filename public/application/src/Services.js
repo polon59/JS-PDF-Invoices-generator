@@ -10,7 +10,6 @@ class Services extends Component{
             description: "",
             quantity: "",
             unitPrice: "",
-            tax: ""
         };
         this.props.addService(newService);
     }
@@ -32,7 +31,6 @@ class Services extends Component{
                                 <th>DESCRIPTION</th>
                                 <th>QUANTITY</th>
                                 <th>UNIT PRICE</th>
-                                <th>TAX %</th>
                             </tr>
                         </thead>
                         <tbody>
