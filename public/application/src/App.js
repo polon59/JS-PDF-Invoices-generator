@@ -82,9 +82,23 @@ class App extends Component {
   changeInvoiceToEdit = (e) =>{
     const changedProperty = e.target.id;
     const changedValue = e.target.value;
+    if (changedProperty === "salesTax"){
+      this.handleSalesTaxChange(changedValue);
+      console.log("change")
+    }
     let changedInvoiceToEdit = this.state.invoiceToEdit;
     changedInvoiceToEdit[changedProperty] = changedValue;
     this.saveEditedInvoice(changedInvoiceToEdit);
+  }
+
+
+  handleSalesTaxChange = (newSalesTax) =>{
+    let invoiceToEdit = this.state.invoiceToEdit;
+    const {subTotal} = invoiceToEdit;
+    const newSalesTaxVal = subTotal*newSalesTax/100;
+    invoiceToEdit.salesTaxVal = newSalesTaxVal;
+    invoiceToEdit.totalDue = subTotal + newSalesTaxVal;
+    this.saveEditedInvoice(invoiceToEdit);
   }
 
 
