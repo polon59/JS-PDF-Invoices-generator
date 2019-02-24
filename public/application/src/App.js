@@ -21,7 +21,7 @@ class App extends Component {
     displayedComponent: "MyAccount"
   }
 
-  
+
   createNewInvoice = () =>{
     const id = Math.random();
     let newInvoice = {id: id, title: "", billTo:"", billFrom:"",subTotal:0, salesTax:0, salesTaxVal:0, totalDue:0, services:[]};
@@ -90,7 +90,7 @@ class App extends Component {
 
   saveEditedInvoice = (editedInvoice) =>{
     this.setState({
-      invoiceToEdit : changedInvoiceToEdit
+      invoiceToEdit : editedInvoice
     });
   }
 
