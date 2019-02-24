@@ -68,10 +68,13 @@ class App extends Component {
     invoiceToEdit.services.forEach(service =>{
       subTotal += service.unitPrice * service.quantity;
     });
-
-    let salesTaxVal = subTotal*invoiceToEdit.salesTax/100;
-    let totalDue = salesTaxVal + subTotal;
-    console.log(`TAX:${invoiceToEdit.salesTax}, SUBTOTAL:${subTotal}, TOTAL DUE:${totalDue}`);
+    const salesTaxVal = subTotal*invoiceToEdit.salesTax/100;
+    invoiceToEdit.subTotal = subTotal;
+    invoiceToEdit.salesTaxVal = salesTaxVal;
+    invoiceToEdit.totalDue = salesTaxVal + subTotal;
+    this.setState({
+      invoiceToEdit : invoiceToEdit
+    });
   }
 
   changeInvoiceToEdit = (e) =>{
