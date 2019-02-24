@@ -37,7 +37,6 @@ class Services extends Component{
                         {servicesList}
                         </tbody>
                     </table>
-                    
                 </div>
             );
         }

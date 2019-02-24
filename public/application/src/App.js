@@ -61,7 +61,18 @@ class App extends Component {
     });
   }
 
-  
+  calculateSubTotal = () =>{
+    let invoiceToEdit = this.state.invoiceToEdit;
+    let subTotal = 0;
+    let totalDue = 0;
+
+    invoiceToEdit.services.forEach(service =>{
+      subTotal += service.unitPrice * service.quantity;
+    });
+
+    totalDue = subTotal*invoiceToEdit.salesTax/100;
+    console.log(`TAX:${invoiceToEdit.salesTax}, SUBTOTAL:${subTotal}, TOTAL DUE:${totalDue}`);
+  }
 
   changeInvoiceToEdit = (e) =>{
     const changedProperty = e.target.id;
