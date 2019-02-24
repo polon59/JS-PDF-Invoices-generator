@@ -61,9 +61,13 @@ class App extends Component {
     });
   }
 
+  
+
   changeInvoiceToEdit = (e) =>{
+    const changedProperty = e.target.id;
+    const changedValue = e.target.value;
     let changedInvoiceToEdit = this.state.invoiceToEdit;
-    changedInvoiceToEdit[e.target.id] = e.target.value;
+    changedInvoiceToEdit[changedProperty] = changedValue;
     this.setState({
       invoiceToEdit : changedInvoiceToEdit
     });
