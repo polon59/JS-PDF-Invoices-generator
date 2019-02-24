@@ -132,10 +132,10 @@ class App extends Component {
         component = <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>;
         break;
       case "addInvoice":
-        component = <AddInvoice addCreatedInvoiceToList={this.addCreatedInvoiceToList} deleteService={this.deleteServiceFromInvoiceToEdit} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
+        component = <AddInvoice calculateSubTotal={this.calculateSubTotal} addCreatedInvoiceToList={this.addCreatedInvoiceToList} deleteService={this.deleteServiceFromInvoiceToEdit} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
         break;
       case "editInvoice":
-        component = <EditInvoice deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
+        component = <EditInvoice calculateSubTotal={this.calculateSubTotal} deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
         break;
       case "statistics":
         component = <Statistics/>
