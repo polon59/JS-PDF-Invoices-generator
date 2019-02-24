@@ -9,7 +9,7 @@ class Services extends Component{
             id: Math.random(),
             description: "",
             quantity: "",
-            cost: "",
+            unitPrice: "",
             tax: ""
         };
         this.props.addService(newService);
@@ -31,7 +31,7 @@ class Services extends Component{
                                 <th>ID</th>
                                 <th>DESCRIPTION</th>
                                 <th>QUANTITY</th>
-                                <th>COST</th>
+                                <th>UNIT PRICE</th>
                                 <th>TAX %</th>
                             </tr>
                         </thead>

@@ -31,7 +31,7 @@ class Service extends Component{
                     <input id="quantity" value={service.quantity} onChange={this.handleChange}/>
                 </td>
                 <td>
-                    <input id="cost" value={service.cost} onChange={this.handleChange}/>
+                    <input id="unitPrice" value={service.unitPrice} onChange={this.handleChange}/>
                 </td>
                 <td>
                     <input id="tax" value={service.tax} onChange={this.handleChange}/>

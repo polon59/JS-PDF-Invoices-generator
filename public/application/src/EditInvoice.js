@@ -8,7 +8,6 @@ class EditInvoice extends Component{
         this.props.saveChanges();
     }
 
-
     handleChange = (e) => {
         this.props.changeInvoiceToEdit(e);
     }
@@ -16,7 +15,6 @@ class EditInvoice extends Component{
     handleServiceDelete = (serviceId) =>{
         this.props.deleteServiceFromInvoice(serviceId);
     }
-
 
     render(){
         if(this.props.invoiceToEdit === ""){
