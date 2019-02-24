@@ -28,10 +28,10 @@ class Service extends Component{
                     <input id="description" value={service.description} onChange={this.handleChange}/>
                 </td>
                 <td>
-                    <input id="quantity" value={service.quantity} onChange={this.handleChange}/>
+                    <input id="quantity" value={service.quantity} onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
                 </td>
                 <td>
-                    <input id="unitPrice" value={service.unitPrice} onChange={this.handleChange}/>
+                    <input id="unitPrice" value={service.unitPrice} onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
                 </td>
                 <td>
                     <h5 onClick={()=>{this.props.handleDelete(service.id)}}>delete</h5>
