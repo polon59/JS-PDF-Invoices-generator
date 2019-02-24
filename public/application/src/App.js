@@ -21,6 +21,7 @@ class App extends Component {
     displayedComponent: "MyAccount"
   }
 
+  
   createNewInvoice = () =>{
     const id = Math.random();
     let newInvoice = {id: id, title: "", billTo:"", billFrom:"",subTotal:0, salesTax:0, salesTaxVal:0, totalDue:0, services:[]};
@@ -29,6 +30,7 @@ class App extends Component {
       displayedComponent : "addInvoice"
     });
   }
+
 
   addCreatedInvoiceToList = () =>{
     let invoiceToAdd = this.state.invoiceToEdit;
@@ -40,13 +42,13 @@ class App extends Component {
     this.saveChanges();
   }
 
+
   addServiceToInvoiceToEdit = (newService) =>{
     const {invoiceToEdit} = this.state;
     invoiceToEdit.services.push(newService);
-    this.setState({
-      invoiceToEdit : invoiceToEdit
-    })
+    this.saveEditedInvoice(invoiceToEdit);
   }
+
 
   setInvoiceToEdit = (invoiceID) =>{
     let newInvoiceToEdit;
@@ -61,6 +63,7 @@ class App extends Component {
     });
   }
 
+
   calculateSubTotal = () =>{
     let invoiceToEdit = this.state.invoiceToEdit;
     let subTotal = 0;
@@ -72,20 +75,18 @@ class App extends Component {
     invoiceToEdit.subTotal = subTotal;
     invoiceToEdit.salesTaxVal = salesTaxVal;
     invoiceToEdit.totalDue = salesTaxVal + subTotal;
-    this.setState({
-      invoiceToEdit : invoiceToEdit
-    });
+    this.saveEditedInvoice(invoiceToEdit);
   }
+
 
   changeInvoiceToEdit = (e) =>{
     const changedProperty = e.target.id;
     const changedValue = e.target.value;
     let changedInvoiceToEdit = this.state.invoiceToEdit;
     changedInvoiceToEdit[changedProperty] = changedValue;
-    this.setState({
-      invoiceToEdit : changedInvoiceToEdit
-    });
+    this.saveEditedInvoice(changedInvoiceToEdit);
   }
+
 
   saveEditedInvoice = (editedInvoice) =>{
     this.setState({
@@ -93,16 +94,16 @@ class App extends Component {
     });
   }
 
+
   deleteServiceFromInvoiceToEdit = (serviceToDeleteId) =>{
     const {invoiceToEdit} = this.state;
     const updatedServicesList = invoiceToEdit.services.filter(service =>{
       return service.id !== serviceToDeleteId;
     });
     invoiceToEdit.services = updatedServicesList;
-    this.setState({
-      invoiceToEdit : invoiceToEdit
-    })
+    this.saveEditedInvoice(invoiceToEdit);
   }
+
 
   saveChanges = () =>{
     // Add saving invoices to DB here
@@ -112,6 +113,7 @@ class App extends Component {
       displayedComponent : "invoicesList"
     });
   }
+
 
   deleteInvoice = (invoiceToDeleteId) => {
     const {invoices} = this.state;
@@ -124,6 +126,7 @@ class App extends Component {
     });
   }
 
+
   changeDisplayedComponent = (displayedComponent) =>{
     if (displayedComponent==="addInvoice"){
       this.createNewInvoice();
@@ -132,6 +135,7 @@ class App extends Component {
       displayedComponent : displayedComponent
     })
   }
+
 
   renderCurrentDisplayedComponent = () =>{
     let component;
@@ -155,6 +159,7 @@ class App extends Component {
     }
     return component;
   }
+
 
   render() {
     return (
