@@ -11,11 +11,11 @@ import Statistics from './Statistics';
 class App extends Component {
   state = {
     invoices : [
-      {id: 1, title: "invoice1", billTo:"bill to one", billFrom:"bill from 1", services:[{id:1, description:"descr", quantity:10, unitPrice:1200, tax:23}, {id:2, description:"descr", quantity:1, unitPrice:100, tax:23}]},
-      {id: 2, title: "invoice2", billTo:"bill to two", billFrom:"bill from 2", services:[{id:3, description:"descr", quantity:10, unitPrice:1200, tax:23}, {id:4, description:"descr", quantity:10, unitPrice:120, tax:23}]},
-      {id: 3, title: "invoice3", billTo:"bill to three", billFrom:"bill from 3", services:[{id:5, description:"descr", quantity:1, unitPrice:12050, tax:23}]},
-      {id: 4, title: "invoice4", billTo:"bill to four", billFrom:"bill from 4", services:[{id:6, description:"descr", quantity:5, unitPrice:80, tax:23}, {id:7, description:"descr", quantity:2, unitPrice:1705, tax:23}, {id:8, description:"descr", quantity:7, unitPrice:1200, tax:23}]},
-      {id: 5, title: "invoice5", billTo:"bill to five", billFrom:"bill from 5", services:[{id:9, description:"descr", quantity:10, unitPrice:1200, tax:23}, {id:10, description:"descr", quantity:1, unitPrice:11200, tax:23},{id:11, description:"descr", quantity:10, unitPrice:1200, tax:23}, {id:12, description:"descr", quantity:5, unitPrice:10, tax:23}]}
+      {id: 1, title: "invoice1", billTo:"bill to one", billFrom:"bill from 1", salesTax:23, services:[{id:1, description:"descr", quantity:10, unitPrice:1200}, {id:2, description:"descr", quantity:1, unitPrice:100}]},
+      {id: 2, title: "invoice2", billTo:"bill to two", billFrom:"bill from 2", salesTax:23, services:[{id:3, description:"descr", quantity:10, unitPrice:1200}, {id:4, description:"descr", quantity:10, unitPrice:120}]},
+      {id: 3, title: "invoice3", billTo:"bill to three", billFrom:"bill from 3", salesTax:23, services:[{id:5, description:"descr", quantity:1, unitPrice:12050}]},
+      {id: 4, title: "invoice4", billTo:"bill to four", billFrom:"bill from 4", salesTax:23, services:[{id:6, description:"descr", quantity:5, unitPrice:80}, {id:7, description:"descr", quantity:2, unitPrice:1705}, {id:8, description:"descr", quantity:7, unitPrice:1200}]},
+      {id: 5, title: "invoice5", billTo:"bill to five", billFrom:"bill from 5", salesTax:23, services:[{id:9, description:"descr", quantity:10, unitPrice:1200}, {id:10, description:"descr", quantity:1, unitPrice:11200},{id:11, description:"descr", quantity:10, unitPrice:1200}, {id:12, description:"descr", quantity:5, unitPrice:10}]}
     ],
     invoiceToEdit : "",
     displayedComponent: "MyAccount"
