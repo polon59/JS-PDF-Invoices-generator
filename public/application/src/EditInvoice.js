@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Services from './Services';
+import InvoiceSummary from './InvoiceSummary';
 
 class EditInvoice extends Component{
 
@@ -36,11 +37,11 @@ class EditInvoice extends Component{
                         <label htmlFor="title">Bill from:</label>
                         <textarea id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={this.handleChange}/>
                         <Services handleServiceDelete={this.handleServiceDelete} calculateSubTotal={this.props.calculateSubTotal} handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
-                        <h4>SUBTOTAL: {this.props.invoiceToEdit.subTotal}</h4>
-                        <label htmlFor="title">tax %:</label>
-                        <input type="number" min="0" max="100" id="salesTax" value={this.props.invoiceToEdit.salesTax} onChange={this.handleChange}/>
-                        <h4>SALES TAX: {this.props.invoiceToEdit.salesTaxVal}</h4>
-                        <h3>TOTAL DUE{this.props.invoiceToEdit.totalDue}</h3>
+                        
+                        <InvoiceSummary invoiceToEdit={this.props.invoiceToEdit} handleChange={this.handleChange}/>
+                       
+                       
+                        
                         <input type="submit" value="submit"/>
                     </form>
                 </div>
