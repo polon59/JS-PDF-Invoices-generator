@@ -4,6 +4,11 @@
   padding: 10px;
 }
 
+.clickable:hover{
+  cursor: pointer;
+  color: rgb(48, 48, 70);
+}
+
 .invoice-section{
   border: 0.5px solid rgb(73, 73, 73);
   padding: 10px;
