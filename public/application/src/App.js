@@ -115,6 +115,7 @@ class App extends Component {
       return service.id !== serviceToDeleteId;
     });
     invoiceToEdit.services = updatedServicesList;
+    this.calculateSubTotal();
     this.saveEditedInvoice(invoiceToEdit);
   }
 
