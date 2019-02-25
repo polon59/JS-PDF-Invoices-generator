@@ -7,7 +7,7 @@ const InvoiceSummary = (props) =>{
             <tbody>
                 <tr>
                     <td>SUBTOTAL:</td>
-                    <td>{subTotal}</td>
+                    <td>{subTotal.toFixed(2)}</td>
                 </tr>
                 <tr>
                     <td>SALES TAX %:</td>
@@ -15,11 +15,11 @@ const InvoiceSummary = (props) =>{
                 </tr>
                 <tr>
                     <td>SALES TAX:</td>
-                    <td>{salesTaxVal}</td>
+                    <td>{salesTaxVal.toFixed(2)}</td>
                 </tr>
                 <tr>
                     <td><h4>TOTAL DUE:</h4></td>
-                    <td><h4>{totalDue}</h4></td>
+                    <td><h4>{totalDue.toFixed(2)}</h4></td>
                 </tr>
             </tbody>
         </table>
