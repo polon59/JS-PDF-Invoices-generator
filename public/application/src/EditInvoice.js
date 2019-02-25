@@ -36,25 +36,17 @@ class EditInvoice extends Component{
                 <div className="bordered">
                     <h3>EDIT INVOICE</h3>
                     <form onSubmit={this.handleSubmit}>
-                        <label htmlFor="title">Title</label>
-                        <input type="text" id="title" value={this.props.invoiceToEdit.title} onChange={this.handleChange} required/>
-                        
-                        <label htmlFor="title">Bill to:</label>
-                        <textarea id="billTo" value={this.props.invoiceToEdit.billTo} onChange={(e)=>{this.handleChange(e); this.resize(e)}} required/>
-                        
-                        <label htmlFor="title">Bill from:</label>
-                        <textarea id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={(e)=>{this.handleChange(e); this.resize(e)}} required/>
-                        
-                        <label htmlFor="title">DATE</label>
-                        <input id="date" type="date" value={this.props.invoiceToEdit.date} onChange={this.handleChange} min="2015-01-01" required/>
-                        
+                        <div className="invoice-header">
+                            <input type="text" id="title" placeholder="TITLE" value={this.props.invoiceToEdit.title} onChange={this.handleChange} required/>
+                            <input id="date" type="date" value={this.props.invoiceToEdit.date} onChange={this.handleChange} min="2015-01-01" required/>
+                        </div>
+                        <div className="invoice-company">
+                            <textarea id="billTo" placeholder="BILL TO" value={this.props.invoiceToEdit.billTo} onChange={(e)=>{this.handleChange(e); this.resize(e)}} required/>
+                            <textarea id="billFrom" placeholder="BILL FROM" value={this.props.invoiceToEdit.billFrom} onChange={(e)=>{this.handleChange(e); this.resize(e)}} required/>
+                        </div>                    
                         <Services handleServiceDelete={this.handleServiceDelete} calculateSubTotal={this.props.calculateSubTotal} handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
-
                         <InvoiceSummary invoiceToEdit={this.props.invoiceToEdit} handleChange={this.handleChange}/>
-                       
-                       
-                        
-                        <input type="submit" value="submit"/>
+                        <input type="submit" value="Save invoice"/>
                     </form>
                 </div>
             )
