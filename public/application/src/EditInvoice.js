@@ -31,14 +31,14 @@ class EditInvoice extends Component{
                     <h3>EDIT INVOICE</h3>
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="title">Title</label>
-                        <input type="text" id="title" value={this.props.invoiceToEdit.title} onChange={this.handleChange}/>
+                        <input type="text" id="title" value={this.props.invoiceToEdit.title} onChange={this.handleChange} required/>
                         <label htmlFor="title">Bill to:</label>
-                        <textarea id="billTo" value={this.props.invoiceToEdit.billTo} onChange={this.handleChange}/>
+                        <textarea id="billTo" value={this.props.invoiceToEdit.billTo} onChange={this.handleChange} required/>
                         <label htmlFor="title">Bill from:</label>
-                        <textarea id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={this.handleChange}/>
+                        <textarea id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={this.handleChange} required/>
                         
                         <label htmlFor="title">DATE</label>
-                        <input id="date" type="date" value={this.props.invoiceToEdit.date} onChange={this.handleChange} min="2015-01-01"/>
+                        <input id="date" type="date" value={this.props.invoiceToEdit.date} onChange={this.handleChange} min="2015-01-01" required/>
                         <Services handleServiceDelete={this.handleServiceDelete} calculateSubTotal={this.props.calculateSubTotal} handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
 
                         <InvoiceSummary invoiceToEdit={this.props.invoiceToEdit} handleChange={this.handleChange}/>
