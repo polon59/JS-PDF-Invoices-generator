@@ -36,8 +36,11 @@ class EditInvoice extends Component{
                         <textarea id="billTo" value={this.props.invoiceToEdit.billTo} onChange={this.handleChange}/>
                         <label htmlFor="title">Bill from:</label>
                         <textarea id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={this.handleChange}/>
-                        <Services handleServiceDelete={this.handleServiceDelete} calculateSubTotal={this.props.calculateSubTotal} handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
                         
+                        <label htmlFor="title">DATE</label>
+                        <input id="date" type="date" value={this.props.invoiceToEdit.date} onChange={this.handleChange} min="2015-01-01"/>
+                        <Services handleServiceDelete={this.handleServiceDelete} calculateSubTotal={this.props.calculateSubTotal} handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
+
                         <InvoiceSummary invoiceToEdit={this.props.invoiceToEdit} handleChange={this.handleChange}/>
                        
                        
