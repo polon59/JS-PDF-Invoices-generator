@@ -4,6 +4,29 @@
   padding: 10px;
 }
 
+.invoice-section{
+  border: 0.5px solid rgb(73, 73, 73);
+  padding: 10px;
+  margin: 10px;
+}
+
+.invoice-services{
+  padding: 10px;
+  margin: 10px;
+}
+
+.invoice-services table{
+  border: 1px solid rgb(83, 83, 83);
+}
+
+.invoice-services td{
+  border: 1px solid rgb(151, 151, 151);
+}
+
+.right{
+  float: right;
+}
+
 .optionBox{
   background-color: rgb(179, 179, 255);
 }
