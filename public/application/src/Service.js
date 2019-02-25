@@ -25,13 +25,13 @@ class Service extends Component{
                     {service.id}
                 </td>
                 <td>
-                    <input id="description" value={service.description} onChange={this.handleChange}/>
+                    <input type="text" id="description" value={service.description} onChange={this.handleChange}/>
                 </td>
                 <td>
-                    <input id="quantity" value={service.quantity} onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
+                    <input type="number" id="quantity" value={service.quantity} onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
                 </td>
                 <td>
-                    <input id="unitPrice" value={service.unitPrice} onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
+                    <input type="number" id="unitPrice" value={service.unitPrice} onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
                 </td>
                 <td>
                     <h5 onClick={()=>{this.props.handleDelete(service.id)}}>delete</h5>
