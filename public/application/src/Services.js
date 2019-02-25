@@ -23,7 +23,7 @@ class Services extends Component{
             });
             return(
                 <div className="invoice-services">
-                <h5 onClick={this.addService}>ADD SERVICE</h5>
+                <h5 className="clickable" onClick={this.addService}>ADD SERVICE</h5>
                     <table>
                         <thead>
                             <tr>
@@ -44,7 +44,7 @@ class Services extends Component{
             return (
                 <div className="invoice-services">
                     <h3>You have no active services</h3>
-                    <h5 onClick={this.addService}>ADD SERVICE</h5>
+                    <h5 className="clickable" onClick={this.addService}>ADD SERVICE</h5>
                 </div>
             )
         }

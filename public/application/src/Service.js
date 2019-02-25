@@ -33,7 +33,7 @@ class Service extends Component{
                 <td>
                     <input type="number" id="unitPrice" value={service.unitPrice} onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
                 </td>
-                <td onClick={()=>{this.props.handleDelete(service.id)}}>
+                <td className="clickable" onClick={()=>{this.props.handleDelete(service.id)}}>
                     remove
                 </td>
             </tr>
