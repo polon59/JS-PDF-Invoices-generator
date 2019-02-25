@@ -32,13 +32,13 @@ class EditInvoice extends Component{
                         <label htmlFor="title">Title</label>
                         <input type="text" id="title" value={this.props.invoiceToEdit.title} onChange={this.handleChange}/>
                         <label htmlFor="title">Bill to:</label>
-                        <input type="text" id="billTo" value={this.props.invoiceToEdit.billTo} onChange={this.handleChange}/>
+                        <textarea id="billTo" value={this.props.invoiceToEdit.billTo} onChange={this.handleChange}/>
                         <label htmlFor="title">Bill from:</label>
-                        <input type="text" id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={this.handleChange}/>
+                        <textarea id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={this.handleChange}/>
                         <Services handleServiceDelete={this.handleServiceDelete} calculateSubTotal={this.props.calculateSubTotal} handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
                         <h4>SUBTOTAL: {this.props.invoiceToEdit.subTotal}</h4>
                         <label htmlFor="title">tax %:</label>
-                        <input type="text" id="salesTax" value={this.props.invoiceToEdit.salesTax} onChange={this.handleChange}/>
+                        <input type="number" min="0" max="100" id="salesTax" value={this.props.invoiceToEdit.salesTax} onChange={this.handleChange}/>
                         <h4>SALES TAX: {this.props.invoiceToEdit.salesTaxVal}</h4>
                         <h3>TOTAL DUE{this.props.invoiceToEdit.totalDue}</h3>
                         <input type="submit" value="submit"/>
