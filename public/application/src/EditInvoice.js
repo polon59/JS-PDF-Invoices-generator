@@ -17,6 +17,12 @@ class EditInvoice extends Component{
         this.props.deleteServiceFromInvoice(serviceId);
     }
 
+    resize = (e) =>{
+        let {target} = e;
+        target.style.height = 'auto';
+        target.style.height = target.scrollHeight+'px';
+    }
+
     render(){
         if(this.props.invoiceToEdit === ""){
             return(
@@ -32,13 +38,16 @@ class EditInvoice extends Component{
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="title">Title</label>
                         <input type="text" id="title" value={this.props.invoiceToEdit.title} onChange={this.handleChange} required/>
+                        
                         <label htmlFor="title">Bill to:</label>
-                        <textarea id="billTo" value={this.props.invoiceToEdit.billTo} onChange={this.handleChange} required/>
+                        <textarea id="billTo" value={this.props.invoiceToEdit.billTo} onChange={(e)=>{this.handleChange(e); this.resize(e)}} required/>
+                        
                         <label htmlFor="title">Bill from:</label>
-                        <textarea id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={this.handleChange} required/>
+                        <textarea id="billFrom" value={this.props.invoiceToEdit.billFrom} onChange={(e)=>{this.handleChange(e); this.resize(e)}} required/>
                         
                         <label htmlFor="title">DATE</label>
                         <input id="date" type="date" value={this.props.invoiceToEdit.date} onChange={this.handleChange} min="2015-01-01" required/>
+                        
                         <Services handleServiceDelete={this.handleServiceDelete} calculateSubTotal={this.props.calculateSubTotal} handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
 
                         <InvoiceSummary invoiceToEdit={this.props.invoiceToEdit} handleChange={this.handleChange}/>
