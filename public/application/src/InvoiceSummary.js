@@ -3,6 +3,7 @@ import React from 'react';
 const InvoiceSummary = (props) =>{
     const {subTotal,salesTax,salesTaxVal,totalDue} = props.invoiceToEdit;
     return (
+        <div className="invoice-summary">
         <table>
             <tbody>
                 <tr>
@@ -23,6 +24,7 @@ const InvoiceSummary = (props) =>{
                 </tr>
             </tbody>
         </table>
+        </div>
     );
 }
 

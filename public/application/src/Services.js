@@ -22,7 +22,7 @@ class Services extends Component{
                 );
             });
             return(
-                <div>
+                <div className="invoice-services">
                 <h5 onClick={this.addService}>ADD SERVICE</h5>
                     <table>
                         <thead>
@@ -42,7 +42,7 @@ class Services extends Component{
         }
         else{
             return (
-                <div>
+                <div className="invoice-services">
                     <h3>You have no active services</h3>
                     <h5 onClick={this.addService}>ADD SERVICE</h5>
                 </div>

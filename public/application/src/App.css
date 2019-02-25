@@ -15,8 +15,19 @@
   margin: 10px;
 }
 
+.invoice-summary{
+  padding: 10px;
+  margin: 10px;
+}
+
 .invoice-services table{
+  width: 100%;
   border: 1px solid rgb(83, 83, 83);
+}
+
+.invoice-services input{
+  border: none;
+  width: 100%;
 }
 
 .invoice-services td{
