@@ -14,7 +14,7 @@ class NavOption extends Component{
         const {title} = this.props;
         return(
             <div>
-                <h4 onClick={this.handleClick}>{title}</h4>
+                <h4 className="clickable" onClick={this.handleClick}>{title}</h4>
             </div>
         );
     }
