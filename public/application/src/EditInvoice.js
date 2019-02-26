@@ -17,10 +17,20 @@ class EditInvoice extends Component{
         this.props.deleteServiceFromInvoice(serviceId);
     }
 
-    resize = (e) =>{
-        let {target} = e;
+    resize = (target) =>{
         target.style.height = 'auto';
         target.style.height = target.scrollHeight+'px';
+    }
+
+    setInitialTextareasSize = () =>{
+        let billfrom = document.getElementById("billFrom");
+        let billto = document.getElementById("billTo");
+        this.resize(billfrom);
+        this.resize(billto);
+    }
+
+    componentDidMount(){
+        this.setInitialTextareasSize();
     }
 
     render(){
@@ -41,8 +51,8 @@ class EditInvoice extends Component{
                             <input id="date" type="date" className="right" value={this.props.invoiceToEdit.date} onChange={this.handleChange} min="2015-01-01" required/>
                         </div>
                         <div className="invoice-company invoice-section">
-                            <textarea id="billTo" placeholder="BILL TO" value={this.props.invoiceToEdit.billTo} onChange={(e)=>{this.handleChange(e); this.resize(e)}} required/>
-                            <textarea id="billFrom" placeholder="BILL FROM" className="right" value={this.props.invoiceToEdit.billFrom} onChange={(e)=>{this.handleChange(e); this.resize(e)}} required/>
+                            <textarea id="billTo" placeholder="BILL TO" value={this.props.invoiceToEdit.billTo} onChange={(e)=>{this.handleChange(e); this.resize(e.target)}} required/>
+                            <textarea id="billFrom" placeholder="BILL FROM" className="right" value={this.props.invoiceToEdit.billFrom} onChange={(e)=>{this.handleChange(e); this.resize(e.target)}} required/>
                         </div>  
                         <Services handleServiceDelete={this.handleServiceDelete} calculateSubTotal={this.props.calculateSubTotal} handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
                         <InvoiceSummary invoiceToEdit={this.props.invoiceToEdit} handleChange={this.handleChange}/>               
