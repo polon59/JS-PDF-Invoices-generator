@@ -11,23 +11,30 @@ class ViewInvoice extends Component{
     }
 
     render(){
+        const {invoiceToEdit,setInvoiceToEdit} = this.props;
+        const {id,title,date,billFrom,billTo,services} = invoiceToEdit;
         return(
-        <div className="bordered" id="PDF-Content">
+        <div className="bordered">
             <h3>VIEW INVOICE</h3>
-            <div className="invoice-header invoice-section">
-                <h4>{this.props.invoiceToEdit.title}</h4>
-                <h4>{this.props.invoiceToEdit.date}</h4>
+            <div id="PDF-Content">
+                <div className="invoice-header invoice-section">
+                    <h4>{title}</h4>
+                    <h4>{date}</h4>
+                </div>
+                <div className="invoice-company invoice-section">
+                    <h4>{billTo}</h4>
+                    <h4>{billFrom}</h4>
+                </div>
+                <div className="invoice-services">
+                    <ViewServices services={services}/>
+                </div>
+                <div className="invoice-summary">
+                    <ViewInvoiceSummary invoiceToEdit={invoiceToEdit}/>
+                </div>
             </div>
-            <div className="invoice-company invoice-section">
-                <h4>{this.props.invoiceToEdit.billTo}</h4>
-                <h4>{this.props.invoiceToEdit.billFrom}</h4>
-            </div>
-
-            <ViewServices services={this.props.invoiceToEdit.services}/>
-            <ViewInvoiceSummary invoiceToEdit={this.props.invoiceToEdit}/>
-
             <div id="editor"></div>
             <button id="cmd" onClick={this.generatePDFFromInvoice}>generate PDF</button>
+            <button onClick={()=>{setInvoiceToEdit(id)}}>EDIT</button>
         </div>
         )
     }
