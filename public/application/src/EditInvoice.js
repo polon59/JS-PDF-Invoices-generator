@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Services from './Services';
 import InvoiceSummary from './InvoiceSummary';
-import PDFGenerator from './PDF-generators/PDFGenerator';
 
 class EditInvoice extends Component{
 
@@ -30,13 +29,6 @@ class EditInvoice extends Component{
         this.resize(billto);
     }
 
-
-    generatePDFFromInvoice = ()=>{   
-        const {invoiceToEdit} = this.props;
-        const generator = new PDFGenerator();
-        generator.generateDocument();
-    }
-
     componentDidMount(){
         this.setInitialTextareasSize();
     }
@@ -52,10 +44,6 @@ class EditInvoice extends Component{
         else{
             return(
                 <div className="bordered">
-                    <div id="editInvoice">
-                        <h3>EDIT INVOICE</h3>
-                        <p>some text</p>
-                    </div>
                     <h3>EDIT INVOICE</h3>
                     <form onSubmit={this.handleSubmit}>
                         <div className="invoice-header invoice-section">
@@ -69,8 +57,6 @@ class EditInvoice extends Component{
                         <Services handleServiceDelete={this.handleServiceDelete} calculateSubTotal={this.props.calculateSubTotal} handleChange={this.handleChange} addService={this.props.addService} services={this.props.invoiceToEdit.services}/>
                         <InvoiceSummary invoiceToEdit={this.props.invoiceToEdit} handleChange={this.handleChange}/>               
                         <input type="submit" value="Save invoice"/>
-                        <div id="editor"></div>
-                        <button id="cmd" onClick={this.generatePDFFromInvoice}>generate PDF</button>
                     </form>
                 </div>
             )
