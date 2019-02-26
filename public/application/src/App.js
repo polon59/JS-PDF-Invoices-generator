@@ -6,6 +6,7 @@ import AddInvoice from './AddInvoice';
 import EditInvoice from './EditInvoice';
 import MyAccount from './MyAccount';
 import Statistics from './Statistics';
+import ViewInvoice from './View-Invoice-Components/ViewInvoice';
 
 
 class App extends Component {
@@ -165,6 +166,9 @@ class App extends Component {
       case "editInvoice":
         component = <EditInvoice calculateSubTotal={this.calculateSubTotal} deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
         break;
+      case "editInvoice":
+        component = <ViewInvoice invoiceToEdit={this.state.invoiceToEdit} changeTogle={this.changeDisplayedComponent}/>;
+      break;
       case "statistics":
         component = <Statistics/>
       break;
