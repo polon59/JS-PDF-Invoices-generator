@@ -1,6 +1,6 @@
 import React from 'react'
 
-const service = (props) =>{
+const ViewService = (props) =>{
     const {description,quantity,unitPrice} = props.service;
     return(
         <tr>
