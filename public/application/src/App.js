@@ -51,6 +51,20 @@ class App extends Component {
   }
 
 
+  //todo
+  viewInvoice = (invoiceID) =>{
+    let newInvoiceToEdit;
+    this.state.invoices.forEach(invoice => {
+      if(invoice.id === invoiceID){
+        newInvoiceToEdit = invoice;
+      }
+    });
+    this.setState({
+      invoiceToEdit : newInvoiceToEdit,
+      displayedComponent : "viewInvoice"
+    });
+  }
+
   setInvoiceToEdit = (invoiceID) =>{
     let newInvoiceToEdit;
     this.state.invoices.forEach(invoice => {
@@ -158,7 +172,7 @@ class App extends Component {
     const {displayedComponent} = this.state;
     switch (displayedComponent) {
       case "invoicesList":
-        component = <InvoicesList setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>;
+        component = <InvoicesList viewInvoice={this.viewInvoice} setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>;
         break;
       case "addInvoice":
         component = <AddInvoice calculateSubTotal={this.calculateSubTotal} addCreatedInvoiceToList={this.addCreatedInvoiceToList} deleteService={this.deleteServiceFromInvoiceToEdit} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
@@ -166,7 +180,7 @@ class App extends Component {
       case "editInvoice":
         component = <EditInvoice calculateSubTotal={this.calculateSubTotal} deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
         break;
-      case "editInvoice":
+      case "viewInvoice":
         component = <ViewInvoice invoiceToEdit={this.state.invoiceToEdit} changeTogle={this.changeDisplayedComponent}/>;
       break;
       case "statistics":
