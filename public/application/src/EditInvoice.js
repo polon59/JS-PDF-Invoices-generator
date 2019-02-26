@@ -31,8 +31,10 @@ class EditInvoice extends Component{
     }
 
 
-    generatePDFFromInvoice = ()=>{
-        let generator = new PDFGenerator();
+    generatePDFFromInvoice = ()=>{   
+        const {invoiceToEdit} = this.props;
+        const generator = new PDFGenerator(invoiceToEdit);
+        generator.generateDocument();
     }
 
     componentDidMount(){
@@ -49,7 +51,11 @@ class EditInvoice extends Component{
         }
         else{
             return(
-                <div id="editInvoice" className="bordered">
+                <div className="bordered">
+                    <div id="editInvoice">
+                        <h3>EDIT INVOICE</h3>
+                        <p>some text</p>
+                    </div>
                     <h3>EDIT INVOICE</h3>
                     <form onSubmit={this.handleSubmit}>
                         <div className="invoice-header invoice-section">
