@@ -1,4 +1,5 @@
 import React from 'react'
+import ViewService from './ViewService';
 
 const ViewServices = (props) =>{
     const servicesList = this.props.services.map(service =>{

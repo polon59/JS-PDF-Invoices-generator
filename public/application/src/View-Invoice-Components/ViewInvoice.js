@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import ViewServices from './ViewServices';
+import ViewInvoiceSummary from './ViewInvoiceSummary';
 
 class ViewInvoice extends Component{
 
     render(){
         return(
-        <div>
-        <h3>EDIT INVOICE</h3>
+        <div className="bordered">
+            <h3>VIEW INVOICE</h3>
             <div className="invoice-header invoice-section">
                 <h4>{this.props.invoiceToEdit.title}</h4>
                 <h4>{this.props.invoiceToEdit.date}</h4>
@@ -16,7 +18,7 @@ class ViewInvoice extends Component{
             </div>
             <ViewServices services={this.props.invoiceToEdit.services}/>
             <ViewInvoiceSummary invoiceToEdit={this.props.invoiceToEdit}/>
-            
+
             <div id="editor"></div>
             <button id="cmd" onClick={this.generatePDFFromInvoice}>generate PDF</button>
         </div>
