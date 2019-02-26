@@ -181,7 +181,7 @@ class App extends Component {
         component = <EditInvoice calculateSubTotal={this.calculateSubTotal} deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
         break;
       case "viewInvoice":
-        component = <ViewInvoice invoiceToEdit={this.state.invoiceToEdit} changeTogle={this.changeDisplayedComponent}/>;
+        component = <ViewInvoice invoiceToEdit={this.state.invoiceToEdit} setInvoiceToEdit={this.setInvoiceToEdit} changeTogle={this.changeDisplayedComponent}/>;
       break;
       case "statistics":
         component = <Statistics/>
