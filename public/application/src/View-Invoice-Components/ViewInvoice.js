@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ViewServices from './ViewServices';
 import ViewInvoiceSummary from './ViewInvoiceSummary';
-import PDFGenerator from '../PDF-generators/PDFGenerator';
+import PDFGenerator from './PDF-generators/PDFGenerator';
 
 class ViewInvoice extends Component{
 

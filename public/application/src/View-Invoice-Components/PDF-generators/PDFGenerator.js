@@ -14,8 +14,8 @@ class PDFGenerator{
                 return true;
             }
         };
-        
-        this.doc.fromHTML(invoice, 15, 15, {
+
+        this.doc.fromHTML(invoice, 10, 10, {
             'width': 170,
             'elementHandlers': specialElementHandlers
         });
