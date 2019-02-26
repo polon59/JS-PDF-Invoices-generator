@@ -4,7 +4,22 @@ class PDFGenerator{
 
     constructor(){
         this.doc = new JsPDF();
-        console.log(this.doc);
+    }
+
+    generateDocument = () =>{
+        const invoice = document.getElementById("editInvoice").innerHTML;
+
+        let specialElementHandlers = {
+            '#editor': function (element, renderer) {
+                return true;
+            }
+        };
+        
+        this.doc.fromHTML(invoice, 15, 15, {
+            'width': 170,
+            'elementHandlers': specialElementHandlers
+        });
+        this.doc.save('document.pdf');
     }
 }
 
