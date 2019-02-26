@@ -33,7 +33,7 @@ class EditInvoice extends Component{
 
     generatePDFFromInvoice = ()=>{   
         const {invoiceToEdit} = this.props;
-        const generator = new PDFGenerator(invoiceToEdit);
+        const generator = new PDFGenerator();
         generator.generateDocument();
     }
 
