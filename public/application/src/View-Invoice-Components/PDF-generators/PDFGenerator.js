@@ -7,7 +7,7 @@ class PDFGenerator{
     }
 
     generateDocument = () =>{
-        const invoice = document.getElementById("editInvoice").innerHTML;
+        const invoice = document.getElementById("PDF-Content").innerHTML;
 
         let specialElementHandlers = {
             '#editor': function (element, renderer) {

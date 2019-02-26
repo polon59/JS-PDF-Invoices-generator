@@ -12,7 +12,7 @@ class ViewInvoice extends Component{
 
     render(){
         return(
-        <div className="bordered">
+        <div className="bordered" id="PDF-Content">
             <h3>VIEW INVOICE</h3>
             <div className="invoice-header invoice-section">
                 <h4>{this.props.invoiceToEdit.title}</h4>
@@ -22,6 +22,7 @@ class ViewInvoice extends Component{
                 <h4>{this.props.invoiceToEdit.billTo}</h4>
                 <h4>{this.props.invoiceToEdit.billFrom}</h4>
             </div>
+
             <ViewServices services={this.props.invoiceToEdit.services}/>
             <ViewInvoiceSummary invoiceToEdit={this.props.invoiceToEdit}/>
 
