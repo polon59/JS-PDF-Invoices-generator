@@ -205,11 +205,16 @@ class App extends Component {
         <div className="container">
           <Route exact path="/" component={MyAccount}/>
           <Route path="/statistics" component={Statistics} />
-          <Route path="/ViewInvoice" 
-          render={(props) => <ViewInvoice invoiceToEdit={this.state.invoiceToEdit} setInvoiceToEdit={this.setInvoiceToEdit} changeTogle={this.changeDisplayedComponent}/>}
+          <Route 
+            path="/myInvoices/editInvoice/:id" 
+            render={(props) => <EditInvoice calculateSubTotal={this.calculateSubTotal} deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>}
+          />
+          <Route 
+            path="/myInvoices/viewInvoice/:id" 
+            render={(props) => <ViewInvoice invoiceToEdit={this.state.invoiceToEdit} setInvoiceToEdit={this.setInvoiceToEdit} changeTogle={this.changeDisplayedComponent}/>}
           />
           <Route
-            exact path='/invoices'
+            exact path='/myInvoices'
             render={(props) => <InvoicesList viewInvoice={this.viewInvoice} setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>}
           />
         </div>
