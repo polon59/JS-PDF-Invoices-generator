@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import Services from './Services';
 import InvoiceSummary from './InvoiceSummary';
+import {Link,withRouter} from 'react-router-dom';
 
 class EditInvoice extends Component{
 
     handleSubmit = (e) =>{
         e.preventDefault();
+        console.log(this.props.redirect)
+        switch (this.props.redirect) {
+            case 'invoices':
+                this.props.history.push('/myInvoices');
+                break;
+            case 'view':
+                this.props.history.push(`/myInvoices/viewInvoice/${this.props.invoiceToEdit.id}`);
+            break;        
+        }
+        
         this.props.saveChanges();
     }
 
@@ -44,7 +55,6 @@ class EditInvoice extends Component{
         else{
             return(
                 <div className="bordered">
-                    <h3>EDIT INVOICE</h3>
                     <form onSubmit={this.handleSubmit}>
                         <div className="invoice-header invoice-section">
                             <input type="text" id="title" placeholder="TITLE" value={this.props.invoiceToEdit.title} onChange={this.handleChange} required/>
@@ -64,4 +74,4 @@ class EditInvoice extends Component{
     }
 }
 
-export default EditInvoice;
+export default withRouter(EditInvoice);

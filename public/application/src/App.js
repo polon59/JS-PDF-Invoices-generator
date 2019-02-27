@@ -180,7 +180,7 @@ class App extends Component {
           <Route path="/statistics" component={Statistics} />
           <Route 
             path="/myInvoices/editInvoice/:id" 
-            render={(props) => <EditInvoice calculateSubTotal={this.calculateSubTotal} deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>}
+            render={(props) => <EditInvoice calculateSubTotal={this.calculateSubTotal} redirect='view' deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>}
           />
           <Route 
             path="/myInvoices/viewInvoice/:id" 

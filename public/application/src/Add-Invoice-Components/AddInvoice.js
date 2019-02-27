@@ -16,14 +16,17 @@ class AddInvoice extends Component{
     }
 
     render(){
-        const {deleteService,addService,changeInvoiceToEdit,calculateSubTotal} = this.props;
+        const {deleteService,addService,changeInvoiceToEdit,calculateSubTotal,addCreatedInvoiceToList} = this.props;
         return(
             <EditInvoice deleteServiceFromInvoice={deleteService} 
-            saveChanges={this.handleSubmit} 
+            saveChanges={addCreatedInvoiceToList} 
             addService={addService} 
             calculateSubTotal={calculateSubTotal}
             changeInvoiceToEdit={changeInvoiceToEdit} 
-            invoiceToEdit={this.inv}/>            
+            invoiceToEdit={this.inv}
+            redirect='invoices'
+            />
+            
         )
     }
 }
