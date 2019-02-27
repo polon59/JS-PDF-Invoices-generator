@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EditInvoice from './EditInvoice';
+import EditInvoice from './Edit-Invoice-Components/EditInvoice';
 
 class AddInvoice extends Component{
 

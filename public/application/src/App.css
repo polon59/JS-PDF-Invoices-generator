@@ -4,7 +4,7 @@
 
 /* 595 x 842 a4 size */
 .bordered{
-  width: 595px;
+  width: 650px;
   border: 0.5px solid black;
   padding: 10px;
 }

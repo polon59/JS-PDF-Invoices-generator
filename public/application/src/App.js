@@ -3,7 +3,7 @@ import Navbar from './navbar';
 import './App.css';
 import InvoicesList from './InvoicesList';
 import AddInvoice from './AddInvoice';
-import EditInvoice from './EditInvoice';
+import EditInvoice from './Edit-Invoice-Components/EditInvoice';
 import MyAccount from './MyAccount';
 import Statistics from './Statistics';
 import ViewInvoice from './View-Invoice-Components/ViewInvoice';
