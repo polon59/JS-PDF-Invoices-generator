@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar-Components/navbar';
 import './App.css';
-import InvoicesList from './InvoicesList';
+import InvoicesList from './Invoices-List-Components/InvoicesList';
 import AddInvoice from './Add-Invoice-Components/AddInvoice';
 import EditInvoice from './Edit-Invoice-Components/EditInvoice';
 import MyAccount from './My-Account-Components/MyAccount';
