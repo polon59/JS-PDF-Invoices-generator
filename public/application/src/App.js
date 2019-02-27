@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './navbar';
 import './App.css';
 import InvoicesList from './InvoicesList';
-import AddInvoice from './AddInvoice';
+import AddInvoice from './Add-Invoice-Components/AddInvoice';
 import EditInvoice from './Edit-Invoice-Components/EditInvoice';
 import MyAccount from './MyAccount';
 import Statistics from './Statistics';
