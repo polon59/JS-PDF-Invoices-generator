@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navbar from './navbar';
+import Navbar from './Navbar-Components/navbar';
 import './App.css';
 import InvoicesList from './InvoicesList';
 import AddInvoice from './Add-Invoice-Components/AddInvoice';
