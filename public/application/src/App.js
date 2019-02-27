@@ -35,6 +35,7 @@ class App extends Component {
       invoiceToEdit : newInvoice,
       displayedComponent : "addInvoice"
     });
+    return newInvoice;
   }
 
 
@@ -162,14 +163,14 @@ class App extends Component {
   }
 
 
-  changeDisplayedComponent = (displayedComponent) =>{
-    if (displayedComponent==="addInvoice"){
-      this.createNewInvoice();
-    }
-    this.setState({
-      displayedComponent : displayedComponent
-    })
-  }
+  // changeDisplayedComponent = (displayedComponent) =>{
+  //   if (displayedComponent==="addInvoice"){
+  //     this.createNewInvoice();
+  //   }
+  //   this.setState({
+  //     displayedComponent : displayedComponent
+  //   })
+  // }
 
 
   renderCurrentDisplayedComponent = () =>{
@@ -203,6 +204,7 @@ class App extends Component {
     return (
         <Router>
         <div className="container">
+          <Navbar/>
           <Route exact path="/" component={MyAccount}/>
           <Route path="/statistics" component={Statistics} />
           <Route 
@@ -216,6 +218,10 @@ class App extends Component {
           <Route
             exact path='/myInvoices'
             render={(props) => <InvoicesList viewInvoice={this.viewInvoice} setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>}
+          />
+          <Route
+            exact path='/addInvoice'
+            render={(props) => <AddInvoice createNewInvoice={this.createNewInvoice} calculateSubTotal={this.calculateSubTotal} addCreatedInvoiceToList={this.addCreatedInvoiceToList} deleteService={this.deleteServiceFromInvoiceToEdit} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>}
           />
         </div>
       </Router>
