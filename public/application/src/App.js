@@ -7,6 +7,11 @@ import EditInvoice from './Edit-Invoice-Components/EditInvoice';
 import MyAccount from './My-Account-Components/MyAccount';
 import Statistics from './Statistics-Components/Statistics';
 import ViewInvoice from './View-Invoice-Components/ViewInvoice';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 
 
 class App extends Component {
@@ -196,10 +201,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Navbar changeTogle={this.changeDisplayedComponent}/>
-        {this.renderCurrentDisplayedComponent()}
-      </div>
+        <Router>
+        <div className="container">
+          <Route exact path="/" component={MyAccount}/>
+          <Route path="/statistics" component={Statistics} />
+          <Route path="/ViewInvoice" 
+          render={(props) => <ViewInvoice invoiceToEdit={this.state.invoiceToEdit} setInvoiceToEdit={this.setInvoiceToEdit} changeTogle={this.changeDisplayedComponent}/>}
+          />
+          <Route
+            exact path='/invoices'
+            render={(props) => <InvoicesList viewInvoice={this.viewInvoice} setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>}
+          />
+        </div>
+      </Router>
     );
   }
 }
