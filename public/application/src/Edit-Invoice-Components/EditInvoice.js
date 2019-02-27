@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Services from './Services';
 import InvoiceSummary from './InvoiceSummary';
-import {Link,withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class EditInvoice extends Component{
 
