@@ -22,9 +22,7 @@ const InvoicesList = (props)=>{
                         </Link>
                     </td>
                     <td>
-                        <Link to="/myInvoices">
-                            <button onClick={()=>{deleteInvoice(invoice.id)}}>X</button>
-                        </Link>
+                        <button onClick={()=>{deleteInvoice(invoice.id)}}>X</button>
                     </td>
                 </tr>
             );
