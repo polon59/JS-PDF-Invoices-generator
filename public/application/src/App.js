@@ -145,7 +145,6 @@ class App extends Component {
     // Add saving invoices to DB here
     console.log("saved to database")
     this.setState({
-      invoiceToEdit : "",
       displayedComponent : "invoicesList"
     });
   }
@@ -171,34 +170,6 @@ class App extends Component {
   //     displayedComponent : displayedComponent
   //   })
   // }
-
-
-  renderCurrentDisplayedComponent = () =>{
-    let component;
-    const {displayedComponent} = this.state;
-    switch (displayedComponent) {
-      case "invoicesList":
-        component = <InvoicesList viewInvoice={this.viewInvoice} setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>;
-        break;
-      case "addInvoice":
-        component = <AddInvoice calculateSubTotal={this.calculateSubTotal} addCreatedInvoiceToList={this.addCreatedInvoiceToList} deleteService={this.deleteServiceFromInvoiceToEdit} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
-        break;
-      case "editInvoice":
-        component = <EditInvoice calculateSubTotal={this.calculateSubTotal} deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>;
-        break;
-      case "viewInvoice":
-        component = <ViewInvoice invoiceToEdit={this.state.invoiceToEdit} setInvoiceToEdit={this.setInvoiceToEdit} changeTogle={this.changeDisplayedComponent}/>;
-      break;
-      case "statistics":
-        component = <Statistics/>
-      break;
-      default:
-        component = <MyAccount changeTogle={this.changeDisplayedComponent}/>
-      break;
-    }
-    return component;
-  }
-
 
   render() {
     return (
