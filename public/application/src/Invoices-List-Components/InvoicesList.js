@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+  } from 'react-router-dom';
 
 const InvoicesList = (props)=>{
     const { invoices } = props;
@@ -11,7 +16,7 @@ const InvoicesList = (props)=>{
                     <td>{invoice.title}</td>
                     <td>{invoice.billTo}</td>
                     <td><button onClick={()=>{props.setInvoiceToEdit(invoice.id)}}>EDIT</button></td>
-                    <td><button onClick={()=>{viewInvoice(invoice.id)}}>VIEW</button></td>
+                    <td><Link to="/ViewInvoice"><button onClick={()=>{viewInvoice(invoice.id)}}>VIEW</button></Link></td>
                     <td><button onClick={()=>{deleteInvoice(invoice.id)}}>X</button></td>
                 </tr>
             );
