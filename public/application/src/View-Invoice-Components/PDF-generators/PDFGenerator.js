@@ -13,8 +13,6 @@ class PDFGenerator{
             doc.save('document.pdf');
         });
 
-
-
         // html2canvas(invoice, {
         //     onrendered:function (canvas){
         //         const img = canvas.toDataURL("image/png");
