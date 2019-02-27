@@ -7,10 +7,10 @@ class Navbar extends Component{
 
         return(
             <div>
-                <NavOption title="My Account" changeTogle={this.props.changeTogle} destination={"MyAccount"}/>
-                <NavOption title="My invoices" changeTogle={this.props.changeTogle} destination={"invoicesList"}/>
-                <NavOption title="Add new Invoice" changeTogle={this.props.changeTogle} destination={"addInvoice"}/>
-                <NavOption title="Statistics" changeTogle={this.props.changeTogle} destination={"statistics"}/>
+                <NavOption title="My Account" destination={"/"}/>
+                <NavOption title="My invoices" destination={'/myInvoices'}/>
+                <NavOption title="Add new Invoice" destination={'/addInvoice'}/>
+                <NavOption title="Statistics" destination={"/statistics"}/>
             </div>
         );
     }

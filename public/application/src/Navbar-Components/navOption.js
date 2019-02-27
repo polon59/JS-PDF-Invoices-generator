@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 class NavOption extends Component{
         state = {
@@ -6,15 +7,16 @@ class NavOption extends Component{
         }
 
     handleClick = () =>{
-        const {destination} = this.props;
-        this.props.changeTogle(destination);
+        console.log("change style");
     }
 
     render(){
-        const {title} = this.props;
+        const {title, destination} = this.props;
         return(
             <div>
-                <h4 className="clickable" onClick={this.handleClick}>{title}</h4>
+                <Link to={destination}>
+                    <h4 className="clickable" onClick={this.handleClick}>{title}</h4>
+                </Link>
             </div>
         );
     }
