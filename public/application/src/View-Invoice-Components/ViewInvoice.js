@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ViewServices from './ViewServices';
 import ViewInvoiceSummary from './ViewInvoiceSummary';
 import PDFGenerator from './PDF-generators/PDFGenerator';
+import {Link} from 'react-router-dom';
 
 class ViewInvoice extends Component{
 
@@ -34,7 +35,9 @@ class ViewInvoice extends Component{
             </div>
             <div id="editor"></div>
             <button id="cmd" onClick={this.generatePDFFromInvoice}>generate PDF</button>
-            <button onClick={()=>{setInvoiceToEdit(id)}}>EDIT</button>
+            <Link to={`/myInvoices/editInvoice/${this.props.invoiceToEdit.id}`}>
+                <button onClick={()=>{setInvoiceToEdit(id)}}>EDIT</button>
+            </Link>
         </div>
         )
     }
