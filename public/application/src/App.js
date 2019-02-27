@@ -4,7 +4,7 @@ import './App.css';
 import InvoicesList from './InvoicesList';
 import AddInvoice from './Add-Invoice-Components/AddInvoice';
 import EditInvoice from './Edit-Invoice-Components/EditInvoice';
-import MyAccount from './MyAccount';
+import MyAccount from './My-Account-Components/MyAccount';
 import Statistics from './Statistics';
 import ViewInvoice from './View-Invoice-Components/ViewInvoice';
 
