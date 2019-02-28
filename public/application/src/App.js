@@ -64,11 +64,10 @@ class App extends Component {
         newInvoiceToEdit = invoice;
       }
     });
-    this.setState({
-      invoiceToEdit : newInvoiceToEdit,
-    });
+    this.saveEditedInvoice = (newInvoiceToEdit)
   }
 
+  // function unused => remove
   setInvoiceToEdit = (invoiceID) =>{
     let newInvoiceToEdit;
     this.state.invoices.forEach(invoice => {
