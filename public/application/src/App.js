@@ -172,7 +172,7 @@ class App extends Component {
   // }
 
   render() {
-    const {invoiceToEdit,invoices} = this.state;
+    const {invoiceToEdit,invoices} = 
     return (
         <Router>
         <div className="container">
@@ -189,14 +189,14 @@ class App extends Component {
                 saveChanges={this.saveChanges} 
                 addService={this.addServiceToInvoiceToEdit} 
                 changeInvoiceToEdit={this.changeInvoiceToEdit} 
-                invoiceToEdit={this.state.invoiceToEdit}
+                invoiceToEdit={invoiceToEdit}
               />}
           />
           <Route 
             path="/myInvoices/viewInvoice/:id" 
             render={(props) => 
               <ViewInvoice 
-                invoiceToEdit={this.state.invoiceToEdit} 
+                invoiceToEdit={invoiceToEdit} 
                 setInvoiceToEdit={this.setInvoiceToEdit} 
                 changeTogle={this.changeDisplayedComponent}
               />}
@@ -208,7 +208,7 @@ class App extends Component {
                 viewInvoice={this.viewInvoice} 
                 setInvoiceToEdit={this.setInvoiceToEdit} 
                 deleteInvoice={this.deleteInvoice} 
-                invoices={this.state.invoices}
+                invoices={invoices}
               />}
           />
           <Route
@@ -221,7 +221,7 @@ class App extends Component {
                 deleteService={this.deleteServiceFromInvoiceToEdit} 
                 addService={this.addServiceToInvoiceToEdit} 
                 changeInvoiceToEdit={this.changeInvoiceToEdit} 
-                invoiceToEdit={this.state.invoiceToEdit}/>}
+                invoiceToEdit={invoiceToEdit}/>}
           />
         </div>
       </Router>
