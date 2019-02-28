@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 const InvoicesList = (props)=>{
     const { invoices } = props;
     if (invoices.length > 0){
-        const { deleteInvoice,viewInvoice } = props;
+        const { deleteInvoice,changeCurrentInvoice } = props;
         const invoicesList = invoices.map(invoice =>{
             return (
                 <tr key={invoice.id}>
@@ -13,12 +13,12 @@ const InvoicesList = (props)=>{
                     <td>{invoice.billTo}</td>
                     <td>
                         <Link to={`/myInvoices/editInvoice/${invoice.id}`}>
-                            <button onClick={()=>{props.setInvoiceToEdit(invoice.id)}}>EDIT</button>
+                            <button onClick={()=>{props.changeCurrentInvoice(invoice.id)}}>EDIT</button>
                         </Link>
                     </td>
                     <td>
                         <Link to={`/myInvoices/viewInvoice/${invoice.id}`}>
-                            <button onClick={()=>{viewInvoice(invoice.id)}}>VIEW</button>
+                            <button onClick={()=>{changeCurrentInvoice(invoice.id)}}>VIEW</button>
                         </Link>
                     </td>
                     <td>
