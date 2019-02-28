@@ -31,6 +31,7 @@ class App extends Component {
     const id = Math.random();
     let newInvoice = {id: id, title: "", date:"2017-02-14", billTo:"", billFrom:"",subTotal:0, salesTax:0, salesTaxVal:0, totalDue:0, services:[]};
     this.saveEditedInvoice(newInvoice)
+    return newInvoice;
   }
 
 
