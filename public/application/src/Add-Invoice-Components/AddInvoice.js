@@ -10,6 +10,7 @@ class AddInvoice extends Component{
     handleSubmit = () =>{
         this.props.addCreatedInvoiceToList();
     }
+    
 
     componentWillMount(){
         this.inv = this.props.createNewInvoice();

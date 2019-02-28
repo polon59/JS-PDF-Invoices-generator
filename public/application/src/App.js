@@ -64,7 +64,7 @@ class App extends Component {
         newInvoiceToEdit = invoice;
       }
     });
-    this.saveEditedInvoice = (newInvoiceToEdit)
+    this.saveEditedInvoice(newInvoiceToEdit);
   }
 
   // function unused => remove
