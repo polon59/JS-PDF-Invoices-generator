@@ -172,6 +172,7 @@ class App extends Component {
   // }
 
   render() {
+    const {invoiceToEdit,invoices} = this.state;
     return (
         <Router>
         <div className="container">
@@ -180,19 +181,47 @@ class App extends Component {
           <Route path="/statistics" component={Statistics} />
           <Route 
             path="/myInvoices/editInvoice/:id" 
-            render={(props) => <EditInvoice calculateSubTotal={this.calculateSubTotal} redirect='view' deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} saveChanges={this.saveChanges} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>}
+            render={(props) => 
+              <EditInvoice 
+                calculateSubTotal={this.calculateSubTotal} 
+                redirect='view' 
+                deleteServiceFromInvoice={this.deleteServiceFromInvoiceToEdit} 
+                saveChanges={this.saveChanges} 
+                addService={this.addServiceToInvoiceToEdit} 
+                changeInvoiceToEdit={this.changeInvoiceToEdit} 
+                invoiceToEdit={this.state.invoiceToEdit}
+              />}
           />
           <Route 
             path="/myInvoices/viewInvoice/:id" 
-            render={(props) => <ViewInvoice invoiceToEdit={this.state.invoiceToEdit} setInvoiceToEdit={this.setInvoiceToEdit} changeTogle={this.changeDisplayedComponent}/>}
+            render={(props) => 
+              <ViewInvoice 
+                invoiceToEdit={this.state.invoiceToEdit} 
+                setInvoiceToEdit={this.setInvoiceToEdit} 
+                changeTogle={this.changeDisplayedComponent}
+              />}
           />
           <Route
             exact path='/myInvoices'
-            render={(props) => <InvoicesList viewInvoice={this.viewInvoice} setInvoiceToEdit={this.setInvoiceToEdit} deleteInvoice={this.deleteInvoice} invoices={this.state.invoices}/>}
+            render={(props) => 
+              <InvoicesList 
+                viewInvoice={this.viewInvoice} 
+                setInvoiceToEdit={this.setInvoiceToEdit} 
+                deleteInvoice={this.deleteInvoice} 
+                invoices={this.state.invoices}
+              />}
           />
           <Route
-            exact path='/addInvoice'
-            render={(props) => <AddInvoice createNewInvoice={this.createNewInvoice} calculateSubTotal={this.calculateSubTotal} addCreatedInvoiceToList={this.addCreatedInvoiceToList} deleteService={this.deleteServiceFromInvoiceToEdit} addService={this.addServiceToInvoiceToEdit} changeInvoiceToEdit={this.changeInvoiceToEdit} invoiceToEdit={this.state.invoiceToEdit}/>}
+            path='/addInvoice'
+            render={(props) => 
+              <AddInvoice 
+                createNewInvoice={this.createNewInvoice} 
+                calculateSubTotal={this.calculateSubTotal} 
+                addCreatedInvoiceToList={this.addCreatedInvoiceToList} 
+                deleteService={this.deleteServiceFromInvoiceToEdit} 
+                addService={this.addServiceToInvoiceToEdit} 
+                changeInvoiceToEdit={this.changeInvoiceToEdit} 
+                invoiceToEdit={this.state.invoiceToEdit}/>}
           />
         </div>
       </Router>
