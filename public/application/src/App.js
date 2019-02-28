@@ -57,7 +57,7 @@ class App extends Component {
 
 
   //todo
-  viewInvoice = (invoiceID) =>{
+  changeCurrentInvoice = (invoiceID) =>{
     let newInvoiceToEdit;
     this.state.invoices.forEach(invoice => {
       if(invoice.id === invoiceID){
@@ -66,7 +66,6 @@ class App extends Component {
     });
     this.setState({
       invoiceToEdit : newInvoiceToEdit,
-      displayedComponent : "viewInvoice"
     });
   }
 
@@ -172,7 +171,7 @@ class App extends Component {
   // }
 
   render() {
-    const {invoiceToEdit,invoices} = 
+    const {invoiceToEdit,invoices} = this.state;
     return (
         <Router>
         <div className="container">
@@ -197,7 +196,7 @@ class App extends Component {
             render={(props) => 
               <ViewInvoice 
                 invoiceToEdit={invoiceToEdit} 
-                setInvoiceToEdit={this.setInvoiceToEdit} 
+                changeCurrentInvoice={this.changeCurrentInvoice} 
                 changeTogle={this.changeDisplayedComponent}
               />}
           />
@@ -205,8 +204,8 @@ class App extends Component {
             exact path='/myInvoices'
             render={(props) => 
               <InvoicesList 
-                viewInvoice={this.viewInvoice} 
-                setInvoiceToEdit={this.setInvoiceToEdit} 
+                changeCurrentInvoice={this.changeCurrentInvoice} 
+                changeCurrentInvoice={this.changeCurrentInvoice} 
                 deleteInvoice={this.deleteInvoice} 
                 invoices={invoices}
               />}
