@@ -35,7 +35,7 @@ class ViewInvoice extends Component{
             </div>
             <div id="editor"></div>
             <button id="cmd" onClick={this.generatePDFFromInvoice}>generate PDF</button>
-            <Link to={`/myInvoices/editInvoice/${this.props.invoiceToEdit.id}`}>
+            <Link to={`/myInvoices/editInvoice/${id}`}>
                 <button onClick={()=>{setInvoiceToEdit(id)}}>EDIT</button>
             </Link>
         </div>
