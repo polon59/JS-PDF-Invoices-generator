@@ -196,7 +196,6 @@ class App extends Component {
               <ViewInvoice 
                 invoiceToEdit={invoiceToEdit} 
                 changeCurrentInvoice={this.changeCurrentInvoice} 
-                changeTogle={this.changeDisplayedComponent}
               />}
           />
           <Route
