@@ -9,8 +9,7 @@ import Statistics from './Statistics-Components/Statistics';
 import ViewInvoice from './View-Invoice-Components/ViewInvoice';
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 
 
@@ -143,6 +142,7 @@ class App extends Component {
 
   saveChanges = () =>{
     // Add saving invoices to DB here
+    //used by handleSubmit in editInvoice component after redirect to inv.list
     console.log("saved to database")
     this.setState({
       displayedComponent : "invoicesList"
