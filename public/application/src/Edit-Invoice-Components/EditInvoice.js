@@ -7,16 +7,12 @@ class EditInvoice extends Component{
 
     handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(this.props.redirect)
-        switch (this.props.redirect) {
-            case 'invoices':
-                this.props.history.push('/myInvoices');
-                break;
-            case 'view':
-                this.props.history.push(`/myInvoices/viewInvoice/${this.props.invoiceToEdit.id}`);
-            break;        
-        }
-        
+        const {redirect,invoiceToEdit} = this.props;
+        if (redirect=='invoices') {
+            this.props.history.push(`/myInvoices/viewInvoice/${invoiceToEdit.id}`);
+        } else {
+            this.props.history.push('/myInvoices');
+        }   
         this.props.saveChanges();
     }
 
