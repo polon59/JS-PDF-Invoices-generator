@@ -12,7 +12,7 @@ class ViewInvoice extends Component{
     }
 
     render(){
-        const {invoiceToEdit,setInvoiceToEdit} = this.props;
+        const {invoiceToEdit,changeCurrentInvoice} = this.props;
         const {id,title,date,billFrom,billTo,services} = invoiceToEdit;
         return(
         <div className="bordered">
@@ -36,7 +36,7 @@ class ViewInvoice extends Component{
             <div id="editor"></div>
             <button id="cmd" onClick={this.generatePDFFromInvoice}>generate PDF</button>
             <Link to={`/myInvoices/editInvoice/${id}`}>
-                <button onClick={()=>{setInvoiceToEdit(id)}}>EDIT</button>
+                <button onClick={()=>{changeCurrentInvoice(id)}}>EDIT</button>
             </Link>
         </div>
         )
