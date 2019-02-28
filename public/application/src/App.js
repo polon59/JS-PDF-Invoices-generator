@@ -204,7 +204,6 @@ class App extends Component {
             render={(props) => 
               <InvoicesList 
                 changeCurrentInvoice={this.changeCurrentInvoice} 
-                changeCurrentInvoice={this.changeCurrentInvoice} 
                 deleteInvoice={this.deleteInvoice} 
                 invoices={invoices}
               />}
