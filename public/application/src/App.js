@@ -42,10 +42,8 @@ class App extends Component {
     let invoiceToAdd = this.state.invoiceToEdit;
     let invoices = this.state.invoices;
     invoices.push(invoiceToAdd);
-    this.setState({
-      invoices: invoices,
-    });
-    this.saveChanges();
+    this.updateInvoicesList(invoices)
+    //this.saveChanges();
   }
 
 
@@ -147,16 +145,19 @@ class App extends Component {
     });
   }
 
+  updateInvoicesList = (updatedList) =>{
+    this.setState({
+      invoices: updatedList,
+    });
+  }
+
 
   deleteInvoice = (invoiceToDeleteId) => {
     const {invoices} = this.state;
     const updatedInvoices = invoices.filter(invoice =>{
       return invoice.id !== invoiceToDeleteId;
-    })
-    this.setState({
-      invoices: updatedInvoices,
-      displayedComponent : "invoicesList"
     });
+    this.updateInvoicesList(updatedInvoices);
   }
 
 
