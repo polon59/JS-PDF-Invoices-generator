@@ -156,16 +156,7 @@ class App extends Component {
     });
     this.updateInvoicesList(updatedInvoices);
   }
-
-
-  // changeDisplayedComponent = (displayedComponent) =>{
-  //   if (displayedComponent==="addInvoice"){
-  //     this.createNewInvoice();
-  //   }
-  //   this.setState({
-  //     displayedComponent : displayedComponent
-  //   })
-  // }
+  
 
   render() {
     const {invoiceToEdit,invoices} = this.state;
