@@ -62,20 +62,6 @@ class App extends Component {
     this.saveEditedInvoice(newInvoiceToEdit);
   }
 
-  // function unused => remove
-  setInvoiceToEdit = (invoiceID) =>{
-    let newInvoiceToEdit;
-    this.state.invoices.forEach(invoice => {
-      if(invoice.id === invoiceID){
-        newInvoiceToEdit = invoice;
-      }
-    });
-    this.setState({
-      invoiceToEdit : newInvoiceToEdit,
-      displayedComponent : "editInvoice"
-    });
-  }
-
 
   calculateSubTotal = () =>{
     let invoiceToEdit = this.state.invoiceToEdit;
@@ -156,7 +142,6 @@ class App extends Component {
     });
     this.updateInvoicesList(updatedInvoices);
   }
-  
 
   render() {
     const {invoiceToEdit,invoices} = this.state;
