@@ -83,7 +83,6 @@ class App extends Component {
     const changedValue = e.target.value;
     if (changedProperty === "salesTax"){
       this.handleSalesTaxChange(changedValue);
-      console.log("change")
     }
     let changedInvoiceToEdit = this.state.invoiceToEdit;
     changedInvoiceToEdit[changedProperty] = changedValue;
