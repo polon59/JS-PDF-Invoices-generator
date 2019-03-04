@@ -7,7 +7,7 @@ class MyAccount extends Component{
         return(
             <div>
                 <div className="bordered">
-                    <h3>Welcome user1</h3>
+                    <h3>Welcome Username</h3>
                     <p>this is some text added to look like it is nessesary, but honestly i added it to fill this empty space</p>
                 </div>
                 <Link to='/myInvoices'>
