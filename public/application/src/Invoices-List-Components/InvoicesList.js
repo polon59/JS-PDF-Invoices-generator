@@ -50,7 +50,7 @@ class InvoicesList extends Component{
         else{
             return (
                 <div className="bordered">
-                    <h3>You have no active invoices</h3>
+                    <h3>You have no invoices</h3>
                 </div>
             )
         }
