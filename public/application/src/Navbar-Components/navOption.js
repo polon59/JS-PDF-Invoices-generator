@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
 class NavOption extends Component{
-        state = {
-            
-        }
 
     handleClick = () =>{
         console.log("change style");
