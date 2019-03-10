@@ -4,8 +4,7 @@ import {Link} from 'react-router-dom';
 class InvoicesList extends Component{
 
     renderInvoicesList(){
-        const { invoices } = this.props;
-        const { deleteInvoice,changeCurrentInvoice } = this.props;
+        const { deleteInvoice,changeCurrentInvoice,invoices} = this.props;
         const invoicesList = invoices.map(invoice =>{
             return (
                 <tr key={invoice.id}>
