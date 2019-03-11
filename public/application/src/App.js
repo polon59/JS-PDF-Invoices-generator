@@ -62,9 +62,6 @@ class App extends Component {
    .then(function(response){ 
     // console.log(JSON.parse(response));   
    })
-  //  .then(function(data){ 
-  //  console.log(data)
-  //  });
   }
 
 
