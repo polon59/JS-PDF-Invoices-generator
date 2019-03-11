@@ -1,10 +1,10 @@
 class Service{
     
-        constructor(description, quantity, cost, tax){
+        constructor(description, quantity, cost){
+            this.id = id;
             this.description = description;
             this.quantity = quantity;
-            this.cost = cost;
-            this.tax = tax;
+            this.unitPrice = cost;
         }
     }
     
