@@ -61,7 +61,7 @@ class App extends Component {
    })
    .then(function(response){ 
     // console.log(JSON.parse(response));   
-   })
+   });
   }
 
 
@@ -140,12 +140,20 @@ class App extends Component {
 
 
   saveChanges = () =>{
-    // Add saving invoices to DB here
     //used by handleSubmit in editInvoice component after redirect to inv.list
-    console.log("saved to database")
-    this.setState({
-      displayedComponent : "invoicesList"
-    });
+    const updatedInvoice = this.state.invoiceToEdit;
+    console.log(updatedInvoice);
+    fetch(`http://localhost:8000/myAccount/invoices/edit/${updatedInvoice.id}`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedInvoice)
+   })
+   .then(function(response){ 
+    // console.log(JSON.parse(response));   
+   })
   }
 
   updateInvoicesList = (updatedList) =>{
