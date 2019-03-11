@@ -29,13 +29,6 @@ class InvoicesList extends Component{
         });
         return invoicesList;
     }
-
-    componentDidMount() {
-        fetch('http://localhost:8000/myAccount/invoices?')
-          .then(response => response.json())
-          .then(data => console.log({data}));
-        //   .then(data => this.setState({ data }));
-      }
     
 
     render(){
