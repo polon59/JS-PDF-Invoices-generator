@@ -16,13 +16,8 @@ class InvoicesController{
 
         addNewInvoice(request){
             const reqBody = request.body;
-
-            let id = reqBody.id;
-            let title = reqBody.title;
-            let date = reqBody.date;
-            let billFrom = reqBody.billFrom;
-            let billTo = reqBody.billTo;
-            const newInvoice = new Invoice(id, title, date, billFrom, billTo);
+            const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services} = reqBody;
+            const newInvoice = new Invoice(id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services);
             this.invoices.push(newInvoice);
             // console.log(this.invoices)
         }
