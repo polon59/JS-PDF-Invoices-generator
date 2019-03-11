@@ -2,17 +2,21 @@ const Service = require('./Service.js');
 
 class Invoice{
 
-    constructor(id, title, date, billFrom, billTo){
+    constructor(id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services){
         this.id = id;
         this.title = title;
         this.date = date;
-        this.billFrom = billFrom;
         this.billTo = billTo;
-        this.services = [];
+        this.billFrom = billFrom;
+        this.subTotal = subTotal;
+        this.salesTax = salesTax;
+        this.salesTaxVal = salesTaxVal;
+        this.totalDue = salesTaxVal + subTotal;
+        this.services = services;
     }
 
     addNewService(description, quantity, cost, tax){
-        let newService = new Service(description, quantity, cost, tax);
+        let newService = new Service(id,description, quantity, unitPrice);
     }
 }
 
