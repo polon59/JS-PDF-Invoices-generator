@@ -16,14 +16,15 @@ class InvoicesController{
 
         addNewInvoice(request){
             const reqBody = request.body;
-            let id = this.invoices.length+1;
+
+            let id = reqBody.id;
             let title = reqBody.title;
             let date = reqBody.date;
             let billFrom = reqBody.billFrom;
             let billTo = reqBody.billTo;
             const newInvoice = new Invoice(id, title, date, billFrom, billTo);
-
             this.invoices.push(newInvoice);
+            // console.log(this.invoices)
         }
 
 
@@ -38,14 +39,15 @@ class InvoicesController{
 
         setRouteAddingNewInvoice(){
             console.log("-- init POST (/myAccount/invoices) starting route");
-
             this.app.post('/myAccount/invoices', (req,res) =>{
             this.addNewInvoice(req);
+
             let invoices = this.invoices;
 
-                res.render("invoices", {
-                    invoices
-                });
+            res.send(invoices)
+                // res.render("invoices", {
+                //     invoices
+                // });
             });
         }
 
