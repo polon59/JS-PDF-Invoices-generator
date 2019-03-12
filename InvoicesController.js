@@ -32,6 +32,7 @@ class InvoicesController{
         }
 
         setRouteDeleteInvoice(){
+            console.log("-- init DELETE (/myAccount/invoices:invoiceId) starting route");
             this.app.delete('/myAccount/invoices/:invoiceId' , (req,res) =>{
                 this.deleteInvoiceFromList(req);
                 res.send(`INVOICE DELETED`);
@@ -39,6 +40,7 @@ class InvoicesController{
         }
 
         setRoutePostEditingInvoice(){
+            console.log("-- init POST (/myAccount/invoices:invoiceId) starting route");
             this.app.post('/myAccount/invoices/edit/:invoiceId' , (req,res) =>{
                 this.replaceInvoiceProperties(req);
                 res.send(`INVOICE SAVED`);
