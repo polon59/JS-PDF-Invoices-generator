@@ -49,7 +49,6 @@ class InvoicesController{
 
         replaceInvoiceProperties(request,invoiceId){
             const id = request.params.invoiceId;
-            console.log(id);
             const updatedInvoice = this.createNewInvoice(request);
             const invoiceToUpdateIndex = this.findIndexInArrayByID(id);
             this.invoices[invoiceToUpdateIndex] = updatedInvoice;
@@ -57,9 +56,7 @@ class InvoicesController{
 
         setRoutePostEditingInvoice(){
             this.app.post('/myAccount/invoices/edit/:invoiceId' , (req,res) =>{
-                // const invoiceToSaveId = req.params.invoiceId;
                 this.replaceInvoiceProperties(req);
-
                 res.send(`INVOICE SAVED`);
             })
         }
