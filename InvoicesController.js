@@ -13,16 +13,6 @@ class InvoicesController{
               ];
         }
 
-
-        addNewInvoice(request){
-            const reqBody = request.body;
-            const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services} = reqBody;
-            const newInvoice = new Invoice(id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services);
-            this.invoices.push(newInvoice);
-            // console.log(this.invoices)
-        }
-
-
         setRoutes(){
             this.setRouteAddingNewInvoice();
             this.setRouteDisplayingAllInvoices();
@@ -31,45 +21,44 @@ class InvoicesController{
             this.setRoutePostEditingInvoice();
         }
 
-
+        createNewInvoice(request){
+            const reqBody = request.body;
+            const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services} = reqBody;
+            const newInvoice = new Invoice(id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services);
+            return newInvoice;
+        }
+        
         setRouteAddingNewInvoice(){
             console.log("-- init POST (/myAccount/invoices) starting route");
             this.app.post('/myAccount/invoices', (req,res) =>{
-            this.addNewInvoice(req);
+            const newInvoice = this.createNewInvoice(req);
+            this.invoices.push(newInvoice);
 
-            let invoices = this.invoices;
-
+            const invoices = this.invoices;
             res.send(invoices)
-                // res.render("invoices", {
-                //     invoices
-                // });
             });
         }
 
-
         setRouteDisplayingAllInvoices(){
             console.log("-- init GET (/myAccount/invoices) starting route");
-
             this.app.get('/myAccount/invoices', (req, res) =>{
-                // res.send(this.invoices);
                 const invoices = this.invoices;
                 res.send(invoices);
-                // res.render("invoices", {
-                //     invoices
-                // });
             });
+        }
+
+        replaceInvoiceProperties(request,invoiceId){
+            const id = request.params.invoiceId;
+            console.log(id);
+            const updatedInvoice = this.createNewInvoice(request);
+            const invoiceToUpdateIndex = this.findIndexInArrayByID(id);
+            this.invoices[invoiceToUpdateIndex] = updatedInvoice;
         }
 
         setRoutePostEditingInvoice(){
             this.app.post('/myAccount/invoices/edit/:invoiceId' , (req,res) =>{
-                const invoiceToSaveId = req.params.invoiceId;
-                // Change values of invoice in database with given ID
-                const invoiceToSaveIndex = this.findIndexInArrayByID(invoiceToSaveId);
-                const reqBody = req.body;
-                this.invoices[invoiceToSaveIndex].title =  reqBody.title;
-                this.invoices[invoiceToSaveIndex].date = reqBody.date;
-                this.invoices[invoiceToSaveIndex].billFrom = reqBody.billFrom;
-                this.invoices[invoiceToSaveIndex].billTo = reqBody.billTo;
+                // const invoiceToSaveId = req.params.invoiceId;
+                this.replaceInvoiceProperties(req);
 
                 res.send(`INVOICE SAVED`);
             })
@@ -86,6 +75,8 @@ class InvoicesController{
             }
             return foundIndex;
         }
+
+
 
 
         setRouteGetEditingInvoice(){
