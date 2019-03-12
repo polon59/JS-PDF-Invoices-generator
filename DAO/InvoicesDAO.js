@@ -9,7 +9,9 @@ class InvoicesDAO{
           ];
     }
 
-    
+    getAllInvoices(){
+        return this.invoices;
+    }
 
 }
 
