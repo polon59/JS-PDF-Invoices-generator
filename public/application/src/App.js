@@ -30,15 +30,6 @@ class App extends Component {
     this.DBAccess.getInvoicesFromDB().then(invoices => this.setState({
       invoices : invoices
     }));
-    
-    // fetch('http://localhost:8000/myAccount/invoices?')
-    // .then(response => response.json())
-    // .then(data => this.setState({
-    //   invoices : data
-    // }))
-    // .catch(error => {
-    //   alert("Warning: You are in offline mode, Your invoices cannot be loaded");
-    // });
   }
 
   createNewInvoice = () =>{
@@ -54,24 +45,9 @@ class App extends Component {
     let invoices = this.state.invoices;
     invoices.push(invoiceToAdd);
     this.updateLocalInvoicesList(invoices);
-    this.addInvoiceToDB(invoiceToAdd);
+    this.DBAccess.addInvoiceToDB(invoiceToAdd);
+    
     //this.saveChanges();
-  }
-
-
-  addInvoiceToDB = (invoiceToAdd) =>{
-   fetch('http://localhost:8000/myAccount/invoices', {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(invoiceToAdd)
-    })
-    .then(function(response){ 
-      // console.log(JSON.parse(response));   
-    });
-   
   }
 
 
