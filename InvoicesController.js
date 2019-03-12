@@ -57,11 +57,13 @@ class InvoicesController{
             this.app.delete('/myAccount/invoices/:invoiceId' , (req,res) =>{
                 this.deleteInvoiceFromList(req);
                 res.send(`INVOICE DELETED`);
-            })
+            });
         }
 
         deleteInvoiceFromList(request){
             const id = request.params.invoiceId;
+            const indexOfDeletedInvoice = this.findIndexInArrayByID(id);
+            this.invoices.splice(indexOfDeletedInvoice, 1);
         }
 
         setRoutePostEditingInvoice(){
