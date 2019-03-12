@@ -7,6 +7,7 @@ import EditInvoice from './Edit-Invoice-Components/EditInvoice';
 import MyAccount from './My-Account-Components/MyAccount';
 import Statistics from './Statistics-Components/Statistics';
 import ViewInvoice from './View-Invoice-Components/ViewInvoice';
+import DBAccess from './DBAcces/DBAcces';
 import {
   BrowserRouter as Router,
   Route
@@ -16,6 +17,7 @@ import {
 class App extends Component {
   constructor(){
     super();
+    this.DBAccess = new DBAccess();
     this.state = {
       invoices : [],
       invoiceToEdit : "",
@@ -25,14 +27,18 @@ class App extends Component {
   }
 
   initializeInvoices = () =>{
-    fetch('http://localhost:8000/myAccount/invoices?')
-    .then(response => response.json())
-    .then(data => this.setState({
-      invoices : data
-    }))
-    .catch(error => {
-      alert("Warning: You are in offline mode, Your invoices cannot be loaded");
-    });
+    this.DBAccess.getInvoicesFromDB().then(invoices => this.setState({
+      invoices : invoices
+    }));
+    
+    // fetch('http://localhost:8000/myAccount/invoices?')
+    // .then(response => response.json())
+    // .then(data => this.setState({
+    //   invoices : data
+    // }))
+    // .catch(error => {
+    //   alert("Warning: You are in offline mode, Your invoices cannot be loaded");
+    // });
   }
 
   createNewInvoice = () =>{
