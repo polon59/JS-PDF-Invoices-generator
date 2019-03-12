@@ -29,7 +29,10 @@ class App extends Component {
     .then(response => response.json())
     .then(data => this.setState({
       invoices : data
-    }));
+    }))
+    .catch(error => {
+      alert("Warning: You are in offline mode, Your invoices cannot be loaded");
+    });
   }
 
   createNewInvoice = () =>{
@@ -58,10 +61,11 @@ class App extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(invoiceToAdd)
-   })
-   .then(function(response){ 
-    // console.log(JSON.parse(response));   
-   });
+    })
+    .then(function(response){ 
+      // console.log(JSON.parse(response));   
+    });
+   
   }
 
 
@@ -150,10 +154,13 @@ class App extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedInvoice)
-   })
-   .then(function(response){ 
-    // console.log(JSON.parse(response));   
-   })
+    })
+    .then(function(response){ 
+      // console.log(JSON.parse(response));   
+    })
+    .catch(error => {
+      alert("Warning: You are in offline mode, saving to database failed.");
+    })
   }
 
   updateInvoicesList = (updatedList) =>{
