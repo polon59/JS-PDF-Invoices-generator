@@ -37,6 +37,7 @@ class InvoicesController{
             });
         }
 
+
         setRouteDisplayingAllInvoices(){
             console.log("-- init GET (/myAccount/invoices) starting route");
             this.app.get('/myAccount/invoices', (req, res) =>{
@@ -45,11 +46,22 @@ class InvoicesController{
             });
         }
 
-        replaceInvoiceProperties(request,invoiceId){
+        replaceInvoiceProperties(request){
             const id = request.params.invoiceId;
             const updatedInvoice = this.createNewInvoice(request);
             const invoiceToUpdateIndex = this.findIndexInArrayByID(id);
             this.invoices[invoiceToUpdateIndex] = updatedInvoice;
+        }
+
+        setRouteDeleteInvoice(){
+            this.app.delete('/myAccount/invoices/:invoiceId' , (req,res) =>{
+                this.deleteInvoiceFromList(req);
+                res.send(`INVOICE DELETED`);
+            })
+        }
+
+        deleteInvoiceFromList(request){
+            const id = request.params.invoiceId;
         }
 
         setRoutePostEditingInvoice(){
