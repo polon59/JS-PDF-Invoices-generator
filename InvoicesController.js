@@ -17,6 +17,7 @@ class InvoicesController{
             this.setRouteAddingNewInvoice();
             this.setRouteDisplayingAllInvoices();
             this.setRoutePostEditingInvoice();
+            this.setRouteDeleteInvoice();
         }
 
         createNewInvoice(request){
