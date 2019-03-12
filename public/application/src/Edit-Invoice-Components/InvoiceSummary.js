@@ -12,7 +12,7 @@ const InvoiceSummary = (props) =>{
                 </tr>
                 <tr>
                     <td>SALES TAX %:</td>
-                    <td><input type="number" min="0" max="100" id="salesTax" value={salesTax} onChange={props.handleChange}/></td>
+                    <td><input type="number" step="0.01" min="0" max="100" id="salesTax" value={salesTax} onChange={props.handleChange}/></td>
                 </tr>
                 <tr>
                     <td>SALES TAX:</td>

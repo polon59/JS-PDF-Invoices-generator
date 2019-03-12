@@ -31,7 +31,7 @@ class Service extends Component{
                     <input type="number" id="quantity" value={service.quantity} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
                 </td>
                 <td>
-                    <input type="number" id="unitPrice" value={service.unitPrice} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
+                    <input type="number" step="0.01" id="unitPrice" value={service.unitPrice} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
                 </td>
                 <td className="clickable" onClick={()=>{this.props.handleDelete(service.id)}}>
                     remove
