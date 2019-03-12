@@ -16,7 +16,6 @@ class InvoicesController{
         setRoutes(){
             this.setRouteAddingNewInvoice();
             this.setRouteDisplayingAllInvoices();
-            this.setRouteGetEditingInvoice();
             this.setRoutePostEditingInvoice();
         }
 
@@ -60,7 +59,6 @@ class InvoicesController{
             })
         }
 
-
         findIndexInArrayByID(givenID){
             let foundIndex;
             for (let index = 0; index < this.invoices.length; index++) {
@@ -70,24 +68,6 @@ class InvoicesController{
             }
             return foundIndex;
         }
-
-
-
-
-        setRouteGetEditingInvoice(){
-            console.log("-- init GET (/myAccount/invoices/edit/:invoiceId) starting route");
-            this.app.get('/myAccount/invoices/edit/:invoiceId', (req,res) =>{
-                const requestedInvoiceId = req.params.invoiceId;
-
-                const invoiceToEdit = this.findInvoiceById(requestedInvoiceId);
-                // res.send(invoiceToEdit);
-
-                res.render("editInvoice", {
-                    invoiceToEdit
-                });
-            });
-        }
-
 
         findInvoiceById(requestedInvoiceId){
             let foundInvoice;
