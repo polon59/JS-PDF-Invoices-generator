@@ -12,6 +12,20 @@ class DBAcces{
             });
     }
 
+    addInvoiceToDB = (invoiceToAdd) =>{
+        fetch('http://localhost:8000/myAccount/invoices', {
+           method: "POST",
+           headers: {
+             'Accept': 'application/json',
+             'Content-Type': 'application/json',
+           },
+           body: JSON.stringify(invoiceToAdd)
+         })
+         .then(function(response){ 
+           console.log(JSON.parse(response));   
+         });
+    }
+
 
 
 }
