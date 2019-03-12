@@ -171,8 +171,8 @@ class App extends Component {
 
 
   deleteInvoiceFromDB = (invoiceToDeleteId) =>{
-    fetch(`http://localhost:8000/myAccount/invoices/delete/${invoiceToDeleteId}`, {
-      method: "POST",
+    fetch(`http://localhost:8000/myAccount/invoices/${invoiceToDeleteId}`, {
+      method: "DELETE",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
