@@ -13,6 +13,32 @@ class InvoicesDAO{
         return this.invoices;
     }
 
+    addNewInvoice(newInvoice){
+        this.invoices.push(newInvoice);
+    }
+
+    updateInvoice(id, updatedInvoice){
+        const invoiceToUpdateIndex = this.findIndexInArrayByID(id);
+        this.invoices[invoiceToUpdateIndex] = updatedInvoice;
+    }
+
+    deleteInvoice(id){
+        const indexOfDeletedInvoice = this.findIndexInArrayByID(id);
+        this.invoices.splice(indexOfDeletedInvoice, 1);
+    }
+
+
+
+    findIndexInArrayByID(givenID){
+        let foundIndex;
+        for (let index = 0; index < this.invoices.length; index++) {
+            if (this.invoices[index].id == givenID) {
+                foundIndex = index;
+            }
+        }
+        return foundIndex;
+    }
+
 }
 
 module.exports = InvoicesDAO;
