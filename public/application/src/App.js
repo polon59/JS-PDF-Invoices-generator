@@ -170,12 +170,30 @@ class App extends Component {
   }
 
 
+  deleteInvoiceFromDB = (invoiceToDeleteId) =>{
+    fetch(`http://localhost:8000/myAccount/invoices/${invoiceToDeleteId}`, {
+      method: "DELETE",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(invoiceToDeleteId)
+    })
+    .then(function(response){ 
+      // console.log(JSON.parse(response));   
+    })
+    .catch(error => {
+      alert("Warning: You are in offline mode, deleting invoice from database failed.");
+    })
+  }
+
   deleteInvoice = (invoiceToDeleteId) => {
     const {invoices} = this.state;
     const updatedInvoices = invoices.filter(invoice =>{
       return invoice.id !== invoiceToDeleteId;
     });
     this.updateLocalInvoicesList(updatedInvoices);
+    this.deleteInvoiceFromDB(invoiceToDeleteId);
   }
 
   render() {
