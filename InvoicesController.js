@@ -85,16 +85,6 @@ class InvoicesController{
         //     }
         //     return foundIndex;
         // }
-
-        // findInvoiceById(requestedInvoiceId){
-        //     let foundInvoice;
-        //     this.invoices.forEach(invoice => {
-        //         if(invoice.id == requestedInvoiceId){
-        //             foundInvoice = invoice;
-        //         }
-        //     });
-        //     return foundInvoice;
-        // }
     }
     
     module.exports = InvoicesController;
