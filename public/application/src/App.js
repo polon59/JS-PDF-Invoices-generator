@@ -46,10 +46,7 @@ class App extends Component {
     invoices.push(invoiceToAdd);
     this.updateLocalInvoicesList(invoices);
     this.DBAccess.addInvoiceToDB(invoiceToAdd);
-    
-    //this.saveChanges();
   }
-
 
   addServiceToInvoiceToEdit = (newService) =>{
     const {invoiceToEdit} = this.state;
@@ -128,21 +125,7 @@ class App extends Component {
   saveChanges = () =>{
     //used by handleSubmit in editInvoice component after redirect to inv.list
     const updatedInvoice = this.state.invoiceToEdit;
-    console.log(updatedInvoice);
-    fetch(`http://localhost:8000/myAccount/invoices/edit/${updatedInvoice.id}`, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedInvoice)
-    })
-    .then(function(response){ 
-      // console.log(JSON.parse(response));   
-    })
-    .catch(error => {
-      alert("Warning: You are in offline mode, saving to database failed.");
-    })
+    this.DBAccess.updateInvoice(updatedInvoice);
   }
 
   updateLocalInvoicesList = (updatedList) =>{
@@ -151,31 +134,13 @@ class App extends Component {
     });
   }
 
-
-  deleteInvoiceFromDB = (invoiceToDeleteId) =>{
-    fetch(`http://localhost:8000/myAccount/invoices/${invoiceToDeleteId}`, {
-      method: "DELETE",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: invoiceToDeleteId
-    })
-    .then(function(response){ 
-      // console.log(JSON.parse(response));   
-    })
-    .catch(error => {
-      alert("Warning: You are in offline mode, deleting invoice from database failed.");
-    })
-  }
-
   deleteInvoice = (invoiceToDeleteId) => {
     const {invoices} = this.state;
     const updatedInvoices = invoices.filter(invoice =>{
       return invoice.id !== invoiceToDeleteId;
     });
     this.updateLocalInvoicesList(updatedInvoices);
-    this.deleteInvoiceFromDB(invoiceToDeleteId);
+    this.DBAccess.deleteInvoiceFromDB(invoiceToDeleteId);
   }
 
   render() {
