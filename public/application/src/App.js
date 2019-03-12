@@ -8,11 +8,7 @@ import MyAccount from './My-Account-Components/MyAccount';
 import Statistics from './Statistics-Components/Statistics';
 import ViewInvoice from './View-Invoice-Components/ViewInvoice';
 import DBAccess from './DBAcces/DBAcces';
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom';
-
+import {BrowserRouter as Router,Route} from 'react-router-dom';
 
 class App extends Component {
   constructor(){
@@ -39,7 +35,6 @@ class App extends Component {
     return newInvoice;
   }
 
-
   addCreatedInvoiceToList = () =>{
     let invoiceToAdd = this.state.invoiceToEdit;
     let invoices = this.state.invoices;
@@ -54,8 +49,6 @@ class App extends Component {
     this.saveEditedInvoice(invoiceToEdit);
   }
 
-
-  //todo
   changeCurrentInvoice = (invoiceID) =>{
     let newInvoiceToEdit;
     this.state.invoices.forEach(invoice => {
@@ -66,11 +59,9 @@ class App extends Component {
     this.saveEditedInvoice(newInvoiceToEdit);
   }
 
-
   calculateSubTotal = () =>{
     let invoiceToEdit = this.state.invoiceToEdit;
     let subTotal = 0;
-
     invoiceToEdit.services.forEach(service =>{
       subTotal += service.unitPrice * service.quantity;
     });
@@ -80,7 +71,6 @@ class App extends Component {
     invoiceToEdit.totalDue = salesTaxVal + subTotal;
     this.saveEditedInvoice(invoiceToEdit);
   }
-
 
   changeInvoiceToEdit = (e) =>{
     const changedProperty = e.target.id;
@@ -93,7 +83,6 @@ class App extends Component {
     this.saveEditedInvoice(changedInvoiceToEdit);
   }
 
-
   handleSalesTaxChange = (newSalesTax) =>{
     let invoiceToEdit = this.state.invoiceToEdit;
     const {subTotal} = invoiceToEdit;
@@ -103,13 +92,11 @@ class App extends Component {
     this.saveEditedInvoice(invoiceToEdit);
   }
 
-
   saveEditedInvoice = (editedInvoice) =>{
     this.setState({
       invoiceToEdit : editedInvoice
     });
   }
-
 
   deleteServiceFromInvoiceToEdit = (serviceToDeleteId) =>{
     const {invoiceToEdit} = this.state;
@@ -121,9 +108,7 @@ class App extends Component {
     this.saveEditedInvoice(invoiceToEdit);
   }
 
-
   saveChanges = () =>{
-    //used by handleSubmit in editInvoice component after redirect to inv.list
     const updatedInvoice = this.state.invoiceToEdit;
     this.DBAccess.updateInvoice(updatedInvoice);
   }
