@@ -15,13 +15,6 @@ class InvoicesController{
             this.setRouteDeleteInvoice();
         }
 
-        createNewInvoice(request){
-            const reqBody = request.body;
-            const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services} = reqBody;
-            const newInvoice = new Invoice(id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services);
-            return newInvoice;
-        }
-        
         setRouteAddingNewInvoice(){
             console.log("-- init POST (/myAccount/invoices) starting route");
             this.app.post('/myAccount/invoices', (req,res) =>{
@@ -38,12 +31,6 @@ class InvoicesController{
             });
         }
 
-        replaceInvoiceProperties(request){
-            const id = request.params.invoiceId;
-            const updatedInvoice = this.createNewInvoice(request);
-            this.invoicesDAO.updateInvoice(id, updatedInvoice);
-        }
-
         setRouteDeleteInvoice(){
             this.app.delete('/myAccount/invoices/:invoiceId' , (req,res) =>{
                 this.deleteInvoiceFromList(req);
@@ -51,16 +38,29 @@ class InvoicesController{
             });
         }
 
-        deleteInvoiceFromList(request){
-            const id = request.params.invoiceId;
-            this.invoicesDAO.deleteInvoice(id);
-        }
-
         setRoutePostEditingInvoice(){
             this.app.post('/myAccount/invoices/edit/:invoiceId' , (req,res) =>{
                 this.replaceInvoiceProperties(req);
                 res.send(`INVOICE SAVED`);
             })
+        }
+
+        createNewInvoice(request){
+            const reqBody = request.body;
+            const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services} = reqBody;
+            const newInvoice = new Invoice(id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services);
+            return newInvoice;
+        }
+
+        replaceInvoiceProperties(request){
+            const id = request.params.invoiceId;
+            const updatedInvoice = this.createNewInvoice(request);
+            this.invoicesDAO.updateInvoice(id, updatedInvoice);
+        }
+
+        deleteInvoiceFromList(request){
+            const id = request.params.invoiceId;
+            this.invoicesDAO.deleteInvoice(id);
         }
     }
     
