@@ -58,9 +58,6 @@ class DBAcces{
           alert("Warning: You are in offline mode, deleting invoice from database failed.");
         })
       }
-
-
-
 }
 
 export default DBAcces;
