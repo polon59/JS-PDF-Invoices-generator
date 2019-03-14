@@ -6,19 +6,19 @@ var connection = dataBaseConn.connection;
 dropTables();
 
 function dropTables(){
-  dropUsers();
+  // dropUsers();
   dropServices();
   dropInvoices();
 }
 
 
-function dropUsers(){
-  let sql = "DROP TABLE IF EXISTS users;";
-  connection.query(sql, function (err, result) {
-    if (err) {throw err}
-  });
-  console.log("Table Users Dropped");
-}
+// function dropUsers(){
+//   let sql = "DROP TABLE IF EXISTS users;";
+//   connection.query(sql, function (err, result) {
+//     if (err) {throw err}
+//   });
+//   console.log("Table Users Dropped");
+// }
 
 function dropInvoices(){
   let sql = "DROP TABLE IF EXISTS invoices;";
