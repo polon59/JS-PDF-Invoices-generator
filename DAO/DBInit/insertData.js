@@ -5,14 +5,34 @@ var connection = dataBaseConn.connection;
 insertData();
 
 function insertData(){
-  insertInvoices();
+  // insertInvoices();
+  displayInvoices();
+  // replace();
+  // displayInvoices();
 }
 
 function insertInvoices() {
-    let sql = `INSERT INTO invoices (id, title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
-        VALUES (0.11987759939440279, 'invoice 9923/22', '2017-12-23', "Radoslaw Turkuc Podjadek", 'BillFrom company', 5000, 15.5, 400.34, 5400.34);`;
+    let sql = `INSERT INTO invoices (id, title, invDate, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
+        VALUES (0.11987759939440279, "invoice title", '2017-01-18', "Radoslaw Turkuc Podjadek", "BillFrom company", 5000, 15.5, 400.34, 5400.34);`;
     connection.query(sql, function (err, result) {
       if (err) {throw err}
     });
     console.log("Invoices records added");
+}
+
+
+function replace() {
+  let sql = `REPLACE INTO invoices(id, title, invDate, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
+  VALUES(0.44487759939440279, "inny", '2017-01-18', "Bill do", "Bill od", 220, 1.5, 4.34, 540.34);`;
+  connection.query(sql, function (err, result) {
+    if (err) {throw err}
+  });
+  console.log("Invoices records added");
+}
+
+function displayInvoices() {
+    connection.query("SELECT invDate FROM invoices", function (err, result, fields) {
+      if (err) throw err;
+      console.log(result[0].invDate.toString());
+    });
 }
