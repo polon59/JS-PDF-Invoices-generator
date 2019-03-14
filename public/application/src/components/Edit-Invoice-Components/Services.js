@@ -7,12 +7,6 @@ class Services extends Component{
 
     addService = (e) => {
         let newService = new Service();
-        // let newService = {
-        //     id: Math.random(),
-        //     description: "",
-        //     quantity: "",
-        //     unitPrice: "",
-        // };
         this.props.addService(newService);
     }
 
