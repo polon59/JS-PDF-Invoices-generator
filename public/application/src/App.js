@@ -8,6 +8,7 @@ import MyAccount from './components/My-Account-Components/MyAccount';
 import Statistics from './components/Statistics-Components/Statistics';
 import ViewInvoice from './components/View-Invoice-Components/ViewInvoice';
 import DBAccess from './DBAcces/DBAcces';
+import Invoice from './model/invoice';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 
 class App extends Component {
@@ -30,8 +31,9 @@ class App extends Component {
   }
 
   createNewInvoice = () =>{
-    const id = Math.random();
-    let newInvoice = {id: id, title: "", date:"2017-02-14", billTo:"", billFrom:"",subTotal:0, salesTax:0, salesTaxVal:0, totalDue:0, services:[]};
+    let newInvoice = new Invoice();
+    // const id = Math.random();
+    // let newInvoice = {id: id, title: "", date:"2017-02-14", billTo:"", billFrom:"",subTotal:0, salesTax:0, salesTaxVal:0, totalDue:0, services:[]};
     this.saveEditedInvoice(newInvoice)
     return newInvoice;
   }
