@@ -27,15 +27,6 @@ class InvoicesDAO{
                 }
             )}
         );
-
-
-
-        // return this.connection.query("SELECT * FROM invoices").then(
-        // function (err, result, fields) {
-        //     if (err) throw err;
-        //     return result;
-        //     console.log(result[0].date.toString());
-        //   });
     }
 
     addNewInvoice(newInvoice){
