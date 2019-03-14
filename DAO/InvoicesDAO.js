@@ -27,8 +27,6 @@ class InvoicesDAO{
         this.invoices.splice(indexOfDeletedInvoice, 1);
     }
 
-
-
     findIndexInArrayByID(givenID){
         let foundIndex;
         for (let index = 0; index < this.invoices.length; index++) {
