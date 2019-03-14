@@ -6,31 +6,35 @@ var connection = dataBaseConn.connection;
 createTables();
 
 function createTables() {
-    createUsersTable();
+    // createUsersTable();
     createInvoicesTable();
     createServicesTable();
 }
 
-function createUsersTable(){
-    let sql = `CREATE TABLE users (
-        id SERIAL PRIMARY KEY,
-        login VARCHAR(30) UNIQUE,
-        password VARCHAR(30)
-    );`;
-    connection.query(sql, function (err, result) {
-      if (err) {throw err}
-    });
-    console.log("Users Table Created");
-}
+// function createUsersTable(){
+//     let sql = `CREATE TABLE users (
+//         id SERIAL PRIMARY KEY,
+//         login VARCHAR(30) UNIQUE,
+//         password VARCHAR(30)
+//     );`;
+//     connection.query(sql, function (err, result) {
+//       if (err) {throw err}
+//     });
+//     console.log("Users Table Created");
+// }
+
 
 function createInvoicesTable(){
     let sql = `CREATE TABLE invoices (
-        id SERIAL PRIMARY KEY,
-        userID INTEGER REFERENCES users(id),
+        id DECIMAL PRIMARY KEY,
         title TEXT,
-        bill_date TEXT,
-        bill_from TEXT,
-        bill_to TEXT
+        date DATE,
+        billTo TEXT,
+        billFrom TEXT,
+        subTotal DECIMAL,
+        salesTax DECIMAL,
+        salesTaxVal DECIMAL,
+        totalDue DECIMAL
     );`;
     connection.query(sql, function (err, result) {
       if (err) {throw err}
