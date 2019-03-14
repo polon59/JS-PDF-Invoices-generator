@@ -26,15 +26,15 @@ function createTables() {
 
 function createInvoicesTable(){
     let sql = `CREATE TABLE invoices (
-        id DECIMAL PRIMARY KEY,
+        id DOUBLE PRIMARY KEY,
         title TEXT,
-        date DATE,
+        invDate DATE,
         billTo TEXT,
         billFrom TEXT,
-        subTotal DECIMAL,
-        salesTax DECIMAL,
-        salesTaxVal DECIMAL,
-        totalDue DECIMAL
+        subTotal FLOAT,
+        salesTax FLOAT,
+        salesTaxVal FLOAT,
+        totalDue FLOAT
     );`;
     connection.query(sql, function (err, result) {
       if (err) {throw err}
