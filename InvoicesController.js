@@ -26,8 +26,14 @@ class InvoicesController{
         setRouteDisplayingAllInvoices(){
             console.log("-- init GET (/myAccount/invoices) starting route");
             this.app.get('/myAccount/invoices', (req, res) =>{
-                const invoices = this.invoicesDAO.getAllInvoices();
-                res.send(invoices);
+
+                this.invoicesDAO.getAllInvoices().then((invoices)=>{
+                    invoices.forEach(invoice => {
+                        invoice.services = [];
+                    });
+                    res.send(invoices);
+                  })
+                
             });
         }
 
