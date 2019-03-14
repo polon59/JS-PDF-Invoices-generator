@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Navbar from './Navbar-Components/navbar';
+import Navbar from './components/Navbar-Components/navbar';
 import './App.css';
-import InvoicesList from './Invoices-List-Components/InvoicesList';
-import AddInvoice from './Add-Invoice-Components/AddInvoice';
-import EditInvoice from './Edit-Invoice-Components/EditInvoice';
-import MyAccount from './My-Account-Components/MyAccount';
-import Statistics from './Statistics-Components/Statistics';
-import ViewInvoice from './View-Invoice-Components/ViewInvoice';
+import InvoicesList from './components/Invoices-List-Components/InvoicesList';
+import AddInvoice from './components/Add-Invoice-Components/AddInvoice';
+import EditInvoice from './components/Edit-Invoice-Components/EditInvoice';
+import MyAccount from './components/My-Account-Components/MyAccount';
+import Statistics from './components/Statistics-Components/Statistics';
+import ViewInvoice from './components/View-Invoice-Components/ViewInvoice';
 import DBAccess from './DBAcces/DBAcces';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 

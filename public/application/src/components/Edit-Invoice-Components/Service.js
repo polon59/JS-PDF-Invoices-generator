@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Service extends Component{
+class ServiceComponent extends Component{
     state = {
         service : this.props.service
     }
@@ -41,4 +41,4 @@ class Service extends Component{
     }
 }
 
-export default Service;
+export default ServiceComponent;

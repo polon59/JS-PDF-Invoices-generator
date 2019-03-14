@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import Service from './Service';
+import ServiceComponent from './Service';
+import Service from './../../model/service';
 
 
 class Services extends Component{
 
     addService = (e) => {
-        let newService = {
-            id: Math.random(),
-            description: "",
-            quantity: "",
-            unitPrice: "",
-        };
+        let newService = new Service();
+        // let newService = {
+        //     id: Math.random(),
+        //     description: "",
+        //     quantity: "",
+        //     unitPrice: "",
+        // };
         this.props.addService(newService);
     }
 
@@ -18,7 +20,7 @@ class Services extends Component{
         if (this.props.services.length > 0){
             const servicesList = this.props.services.map(service =>{
                 return (
-                    <Service key={service.id} calculateSubTotal={this.props.calculateSubTotal} service={service} handleDelete={this.props.handleServiceDelete} handleChange={this.props.handleChange}/>
+                    <ServiceComponent key={service.id} calculateSubTotal={this.props.calculateSubTotal} service={service} handleDelete={this.props.handleServiceDelete} handleChange={this.props.handleChange}/>
                 );
             });
             return(
