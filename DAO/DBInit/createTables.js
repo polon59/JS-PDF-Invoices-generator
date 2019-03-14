@@ -26,7 +26,7 @@ function createTables() {
 
 function createInvoicesTable(){
     let sql = `CREATE TABLE invoices (
-        id DECIMAL PRIMARY KEY,
+        id DOUBLE PRIMARY KEY,
         title TEXT,
         date DATE,
         billTo TEXT,
