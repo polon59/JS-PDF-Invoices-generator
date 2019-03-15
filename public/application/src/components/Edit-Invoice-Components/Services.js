@@ -27,6 +27,7 @@ class Services extends Component{
                                 <th>DESCRIPTION</th>
                                 <th>QUANTITY</th>
                                 <th>UNIT PRICE</th>
+                                <th>COST</th>
                             </tr>
                         </thead>
                         <tbody>
