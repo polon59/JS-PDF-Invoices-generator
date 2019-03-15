@@ -39,9 +39,11 @@ class App extends Component {
   addCreatedInvoiceToList = () =>{
     let invoiceToAdd = this.state.invoiceToEdit;
     let invoices = this.state.invoices;
-    invoices.push(invoiceToAdd);
-    this.updateLocalInvoicesList(invoices);
-    this.DBAccess.addInvoiceToDB(invoiceToAdd).then(lastID => {console.log(lastID)});
+    this.DBAccess.addInvoiceToDB(invoiceToAdd).then(lastID => {
+      invoiceToAdd.id = lastID;
+      invoices.push(invoiceToAdd);
+      this.updateLocalInvoicesList(invoices);
+    });
   }
 
   addServiceToInvoiceToEdit = (newService) =>{
