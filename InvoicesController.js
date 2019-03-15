@@ -20,11 +20,6 @@ class InvoicesController{
             console.log("-- init PUT (/myAccount/invoices) starting route");
             this.app.put('/myAccount/invoices', (req,res) =>{
                 this.invoicesDAO.addNewInvoice(req)
-                //     .then((assignedID)=>{
-                //     console.log(`[SQL INFO] inserted new record to INVOICES table (NEW ID:${assignedID})`);
-                //     //then add services
-                //     res.send(assignedID);
-                // });
             });
         }
 
@@ -32,7 +27,7 @@ class InvoicesController{
             console.log("-- init GET (/myAccount/invoices/addInvoice) starting route");
             this.app.get('/myAccount/invoices/addInvoice', (req,res) =>{
                 this.invoicesDAO.getLastInsertedRecordID().then((assignedID)=>{
-                    console.log(`[SQL INFO] selected last assigned ID from INVOICES table (VAL:${assignedID})`);
+                    console.log(`[SQL INFO] selected last assigned ID from INVOICES table (VAL:${assignedID['LAST_INSERT_ID()']})`);
                     res.send(assignedID);
                 });
             });

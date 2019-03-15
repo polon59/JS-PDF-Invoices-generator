@@ -52,7 +52,7 @@ class InvoicesDAO{
         return new Promise((resolve,reject) =>{
             this.connection.query("SELECT LAST_INSERT_ID();", (err, result)=>{
                 if (err) reject(new Error("Error selecting last inserted ID"));
-                else{resolve(result);
+                else{resolve(result[0]);
                 }
             })
         })
