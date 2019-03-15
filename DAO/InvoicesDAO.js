@@ -1,5 +1,6 @@
 const DbCon = require('./dbConn');
 const mysql=require('mysql');
+const ServicesDAO = require('./ServicesDAO');
 
 class InvoicesDAO{
     constructor(){
@@ -12,6 +13,7 @@ class InvoicesDAO{
           ];
           this.dataBaseConn = new DbCon();
           this.connection = this.dataBaseConn.connection;
+          this.servicesDAO = new ServicesDAO(this.connection);
     }
 
     getAllInvoices(){
@@ -31,7 +33,7 @@ class InvoicesDAO{
     }
 
     prepareInsertQuery(request){
-        const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,totalDue,services} = request.body;
+        const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,totalDue} = request.body;
         return `INSERT INTO invoices (title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
             VALUES ("${title}", '${date}', "${billTo}", "${billFrom}", ${subTotal}, ${salesTax}, ${salesTaxVal}, ${totalDue});`;
     }
@@ -43,7 +45,10 @@ class InvoicesDAO{
                 if (err){
                     reject(new Error(err.message));
                 }
-                this.getLastInsertedRecordID().then(assignedID =>{resolve(assignedID)});
+                this.getLastInsertedRecordID().then(assignedID =>{
+                    this.servicesDAO.addNewInvoiceServices(request,assignedID)
+                        resolve(assignedID);
+                });
             });
         });
     }
