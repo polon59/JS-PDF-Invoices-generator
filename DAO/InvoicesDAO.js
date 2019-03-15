@@ -23,14 +23,35 @@ class InvoicesDAO{
                         reject(new Error("Error result is undefined"));
                     }else{
                         resolve(result);
+                        console.log("[SQL INFO] returned all records from INVOICES table")
                     }
                 }
             )}
         );
     }
 
-    addNewInvoice(newInvoice){
-        this.invoices.push(newInvoice);
+    addNewInvoice(request){
+        const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,totalDue,services} = request.body;
+        const insertSQL = `INSERT INTO invoices (title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
+            VALUES ("${title}", '${date}', "${billFrom}", "${billTo}", ${subTotal}, ${salesTax}, ${salesTaxVal}, ${totalDue});`;
+        this.connection.query(insertSQL, (err)=> {
+        if (err) {throw err;}
+        else{
+            this.getLastInsertedRecordID().then((assignedID) =>{
+                console.log(`[SQL INFO] inserted new record to INVOICES table (NEW ID:${assignedID})`);
+            }) 
+        }
+        });
+    }
+
+    getLastInsertedRecordID(){
+        return new Promise((resolve,reject) =>{
+            this.connection.query("SELECT LAST_INSERT_ID();", (err, result)=>{
+                if (err) {throw err;}
+                else{resolve(result[0]['LAST_INSERT_ID()']);
+                }
+            })
+        })
     }
 
     updateInvoice(id, updatedInvoice){
@@ -39,11 +60,10 @@ class InvoicesDAO{
     }
 
     deleteInvoice(id){
-        const query = `DELETE FROM invoices WHERE id = ${id}`;
-        this.connection.query(query, (err, result)=>{                                                
-            if(err){
-                throw err;
-            }
+        const sql = `DELETE FROM invoices WHERE id = ${id}`;
+        this.connection.query(sql, (err, result)=>{                                                
+            if(err){throw err;}
+            else{console.log(`[SQL INFO] deleted record from INVOICES table (ID:${id})`)}
         });
     }
 
