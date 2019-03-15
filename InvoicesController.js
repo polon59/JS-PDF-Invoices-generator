@@ -24,25 +24,15 @@ class InvoicesController{
             });
         }
 
-        getLastAssignedID(){
-            return this.invoicesDAO.getLastInsertedRecordID().then((assignedID)=>{
-                console.log(`[SQL INFO] selected last assigned ID from INVOICES table (VAL:${assignedID['LAST_INSERT_ID()']})`);
-                return assignedID;
-            });
-        }
-
         setRouteDisplayingAllInvoices(){
             console.log("-- init GET (/myAccount/invoices) starting route");
-
             this.app.get('/myAccount/invoices', (req, res) =>{
-
                 this.invoicesDAO.getAllInvoices().then((invoices)=>{
                     invoices.forEach(invoice => {
                         invoice.services = [];
                     });
                     res.send(invoices);
                   })
-                
             });
         }
 

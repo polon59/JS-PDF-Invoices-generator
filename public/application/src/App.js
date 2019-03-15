@@ -41,9 +41,7 @@ class App extends Component {
     let invoices = this.state.invoices;
     invoices.push(invoiceToAdd);
     this.updateLocalInvoicesList(invoices);
-    this.DBAccess.addInvoiceToDB(invoiceToAdd);
-    console.log("INSIDE");
-    this.DBAccess.getLastAssignedID().then(lastID => {console.log(lastID)});
+    this.DBAccess.addInvoiceToDB(invoiceToAdd).then(lastID => {console.log(lastID)});
   }
 
   addServiceToInvoiceToEdit = (newService) =>{

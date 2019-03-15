@@ -14,7 +14,7 @@ class DBAcces{
     }
 
     addInvoiceToDB = (invoiceToAdd) =>{
-        fetch('http://localhost:8000/myAccount/invoices', {
+        return fetch('http://localhost:8000/myAccount/invoices', {
            method: "PUT",
            headers: {
              'Accept': 'application/json',
@@ -22,23 +22,29 @@ class DBAcces{
            },
            body: JSON.stringify(invoiceToAdd)
          })
-        //  .then(function(response){
-        //    console.log("assigned id:") 
-        //  });
+         .then(response => response.json())
+         .then(data=>{
+           console.log(data);
+           return data['LAST_INSERT_ID()'];
+         })
+         .catch(error => {
+           // alert("Warning: You are in offline mode, Your invoices cannot be loaded");
+           return "DUPA";
+           });
     }
 
-    getLastAssignedID = () =>{
-      return fetch('http://localhost:8000/myAccount/invoices/addInvoice')
-        .then(response => response.json())
-        .then(data=>{
-          console.log(data);
-          return data['LAST_INSERT_ID()'];
-        })
-        .catch(error => {
-          // alert("Warning: You are in offline mode, Your invoices cannot be loaded");
-          return "DUPA";
-          });
-    }
+    // getLastAssignedID = () =>{
+    //   return fetch('http://localhost:8000/myAccount/invoices/addInvoice')
+    //     .then(response => response.json())
+    //     .then(data=>{
+    //       console.log(data);
+    //       return data['LAST_INSERT_ID()'];
+    //     })
+    //     .catch(error => {
+    //       // alert("Warning: You are in offline mode, Your invoices cannot be loaded");
+    //       return "DUPA";
+    //       });
+    // }
 
     updateInvoice = (updatedInvoice) =>{
         fetch(`http://localhost:8000/myAccount/invoices/edit/${updatedInvoice.id}`, {
