@@ -39,8 +39,12 @@ class InvoicesDAO{
     }
 
     deleteInvoice(id){
-        const indexOfDeletedInvoice = this.findIndexInArrayByID(id);
-        this.invoices.splice(indexOfDeletedInvoice, 1);
+        const query = `DELETE FROM invoices WHERE id = ${id}`;
+        this.connection.query(query, (err, result)=>{                                                
+            if(err){
+                throw err;
+            }
+        });
     }
 
     findIndexInArrayByID(givenID){
