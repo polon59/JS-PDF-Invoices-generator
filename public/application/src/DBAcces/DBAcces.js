@@ -27,8 +27,9 @@ class DBAcces{
          })
          .then(response => response.json())
          .then(data=>{
-           console.log(data);
-           return data['LAST_INSERT_ID()'];
+           const assignedID = data['LAST_INSERT_ID()'];
+          console.log(`Created new invoice with id = ${assignedID} recieved from database`)  
+           return assignedID;
          })
          .catch(error => {
            alert("Warning: You are in offline mode, new invoice will be saved locally");
@@ -64,7 +65,7 @@ class DBAcces{
           body: invoiceToDeleteId
         })
         .then((response)=>{ 
-          console.log(`Deleted invoice with id = ${invoiceToDeleteId} from database`)  
+          console.log(`Deleted invoice with id = ${invoiceToDeleteId} from database`);  
         })
         .catch(error => {
           alert("Warning: You are in offline mode, Changes will be saved locally");
