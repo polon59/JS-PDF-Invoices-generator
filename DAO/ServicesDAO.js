@@ -5,9 +5,7 @@ class ServicesDAO{
           this.connection = connection;
     }
 
-    prepareInsertQuery(services,assignedID){
-        const servicesNumber = services.length;
-        const invoiceID = assignedID['LAST_INSERT_ID()'];
+    prepareQueryInsertValues(services,invoiceID,servicesNumber){
         const queryValues = services.map((service,i) =>{
             const {id,description,quantity,unitPrice,total} = service;
             if (servicesNumber === i + 1) {
@@ -16,8 +14,14 @@ class ServicesDAO{
                 return  `("${id}", ${invoiceID}, '${description}', ${quantity}, ${unitPrice}, ${total})`;
             }
         });
+        return queryValues;
+    }
 
+    prepareInsertQuery(services,assignedID){
+        const servicesNumber = services.length;
+        const invoiceID = assignedID['LAST_INSERT_ID()'];
         const queryBegin = "REPLACE INTO services (id, invoiceID, description, quantity, unitPrice, total) VALUES";
+        const queryValues = this.prepareQueryInsertValues(services,invoiceID,servicesNumber);
         const fullQuery = queryBegin + queryValues;
         return fullQuery;
     }
