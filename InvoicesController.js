@@ -13,38 +13,26 @@ class InvoicesController{
             this.setRouteDisplayingAllInvoices();
             this.setRoutePostEditingInvoice();
             this.setRouteDeleteInvoice();
-            this.setRouteGettingLastID();
         }
 
         setRouteAddingNewInvoice(){
             console.log("-- init PUT (/myAccount/invoices) starting route");
             this.app.put('/myAccount/invoices', (req,res) =>{
-                this.invoicesDAO.addNewInvoice(req)
-            });
-        }
-
-        setRouteGettingLastID(){
-            console.log("-- init GET (/myAccount/invoices/addInvoice) starting route");
-            this.app.get('/myAccount/invoices/addInvoice', (req,res) =>{
-                this.invoicesDAO.getLastInsertedRecordID().then((assignedID)=>{
-                    console.log(`[SQL INFO] selected last assigned ID from INVOICES table (VAL:${assignedID['LAST_INSERT_ID()']})`);
+                this.invoicesDAO.addNewInvoice(req).then((assignedID)=>{
                     res.send(assignedID);
-                });
+                }).catch(error => {console.log(error.message)});
             });
         }
 
         setRouteDisplayingAllInvoices(){
             console.log("-- init GET (/myAccount/invoices) starting route");
-
             this.app.get('/myAccount/invoices', (req, res) =>{
-
                 this.invoicesDAO.getAllInvoices().then((invoices)=>{
                     invoices.forEach(invoice => {
                         invoice.services = [];
                     });
                     res.send(invoices);
                   })
-                
             });
         }
 
