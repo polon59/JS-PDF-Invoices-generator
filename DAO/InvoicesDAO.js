@@ -33,7 +33,7 @@ class InvoicesDAO{
     prepareInsertQuery(request){
         const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,totalDue,services} = request.body;
         return `INSERT INTO invoices (title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
-            VALUES ("${title}", '${date}', "${billFrom}", "${billTo}", ${subTotal}, ${salesTax}, ${salesTaxVal}, ${totalDue});`;
+            VALUES ("${title}", '${date}', "${billTo}", "${billFrom}", ${subTotal}, ${salesTax}, ${salesTaxVal}, ${totalDue});`;
     }
 
     addNewInvoice(request){
