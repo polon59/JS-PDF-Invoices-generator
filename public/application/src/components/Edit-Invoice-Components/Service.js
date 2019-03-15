@@ -6,15 +6,22 @@ class ServiceComponent extends Component{
     }
 
     handleChange = (e) => {
-        let name = e.target.id;
-        let newValue = e.target.value;
-
+        const name = e.target.id;
+        const newValue = e.target.value;
         let service = this.state.service;
         service[name] = newValue;
-
+        if (name !== "description") {
+            service = this.calculateTotalServiceCost(service);
+        }
         this.setState({
             service : service
         })
+    }
+
+    calculateTotalServiceCost = (service)=>{
+        const {quantity, unitPrice} = service;
+        service.total = unitPrice * quantity;
+        return service;
     }
 
     render(){
@@ -32,6 +39,9 @@ class ServiceComponent extends Component{
                 </td>
                 <td>
                     <input type="number" step="0.01" id="unitPrice" value={service.unitPrice} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
+                </td>
+                <td>
+                    {service.total}
                 </td>
                 <td className="clickable" onClick={()=>{this.props.handleDelete(service.id)}}>
                     remove

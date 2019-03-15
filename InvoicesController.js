@@ -13,21 +13,38 @@ class InvoicesController{
             this.setRouteDisplayingAllInvoices();
             this.setRoutePostEditingInvoice();
             this.setRouteDeleteInvoice();
+            this.setRouteGettingLastID();
         }
 
         setRouteAddingNewInvoice(){
-            console.log("-- init POST (/myAccount/invoices) starting route");
-            this.app.post('/myAccount/invoices', (req,res) =>{
-            const newInvoice = this.createNewInvoice(req);
-            this.invoicesDAO.addNewInvoice(newInvoice);
+            console.log("-- init PUT (/myAccount/invoices) starting route");
+            this.app.put('/myAccount/invoices', (req,res) =>{
+                this.invoicesDAO.addNewInvoice(req)
+            });
+        }
+
+        setRouteGettingLastID(){
+            console.log("-- init GET (/myAccount/invoices/addInvoice) starting route");
+            this.app.get('/myAccount/invoices/addInvoice', (req,res) =>{
+                this.invoicesDAO.getLastInsertedRecordID().then((assignedID)=>{
+                    console.log(`[SQL INFO] selected last assigned ID from INVOICES table (VAL:${assignedID['LAST_INSERT_ID()']})`);
+                    res.send(assignedID);
+                });
             });
         }
 
         setRouteDisplayingAllInvoices(){
             console.log("-- init GET (/myAccount/invoices) starting route");
+
             this.app.get('/myAccount/invoices', (req, res) =>{
-                const invoices = this.invoicesDAO.getAllInvoices();
-                res.send(invoices);
+
+                this.invoicesDAO.getAllInvoices().then((invoices)=>{
+                    invoices.forEach(invoice => {
+                        invoice.services = [];
+                    });
+                    res.send(invoices);
+                  })
+                
             });
         }
 
@@ -45,13 +62,6 @@ class InvoicesController{
                 this.replaceInvoiceProperties(req);
                 res.send(`INVOICE SAVED`);
             })
-        }
-
-        createNewInvoice(request){
-            const reqBody = request.body;
-            const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services} = reqBody;
-            const newInvoice = new Invoice(id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,services);
-            return newInvoice;
         }
 
         replaceInvoiceProperties(request){
