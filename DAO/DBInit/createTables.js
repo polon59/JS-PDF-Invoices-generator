@@ -8,7 +8,7 @@ createTables();
 function createTables() {
     // createUsersTable();
     createInvoicesTable();
-    createServicesTable();
+    // createServicesTable();
 }
 
 // function createUsersTable(){
@@ -26,7 +26,7 @@ function createTables() {
 
 function createInvoicesTable(){
     let sql = `CREATE TABLE invoices (
-        id DOUBLE PRIMARY KEY,
+        id SERIAL PRIMARY KEY,
         title TEXT,
         date DATE,
         billTo TEXT,
@@ -41,6 +41,7 @@ function createInvoicesTable(){
     });
     console.log("Invoices Table Created");
 }
+
 
 function createServicesTable(){
     let sql = `CREATE TABLE services (
