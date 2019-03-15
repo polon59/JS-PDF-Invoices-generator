@@ -30,32 +30,35 @@ class InvoicesDAO{
         );
     }
 
-    addNewInvoice(request){
+    prepareInsertQuery(request){
         const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,totalDue,services} = request.body;
-        const insertSQL = `INSERT INTO invoices (title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
+        return `INSERT INTO invoices (title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
             VALUES ("${title}", '${date}', "${billFrom}", "${billTo}", ${subTotal}, ${salesTax}, ${salesTaxVal}, ${totalDue});`;
-        // return new Promise((resolve,reject)=>{
+    }
+
+    addNewInvoice(request){
+        const insertSQL = this.prepareInsertQuery(request);
+        return new Promise((resolve,reject)=>{
             this.connection.query(insertSQL, (err)=> {
-                if (err) reject(new Error("Error inserting row to INVOICES table"));
-                else{console.log('[SQL INFO] inserted new record to INVOICES table');}
-            // else{
-            //     this.getLastInsertedRecordID().then((assignedID) =>{
-            //         console.log(`[SQL INFO] inserted new record to INVOICES table (NEW ID:${assignedID})`);
-            //         resolve(assignedID);
-            //     }) 
-            // }
+                if (err){
+                    reject(new Error(err.message));
+                }
+                this.getLastInsertedRecordID().then(assignedID =>{resolve(assignedID)});
             });
-        // });
+        });
     }
 
     getLastInsertedRecordID(){
         return new Promise((resolve,reject) =>{
             this.connection.query("SELECT LAST_INSERT_ID();", (err, result)=>{
-                if (err) reject(new Error("Error selecting last inserted ID"));
-                else{resolve(result[0]);
+                if (err){
+                    reject(new Error(err.message));
                 }
-            })
-        })
+                let assignedID = result[0];
+                console.log(`[SQL INFO] inserted new record to INVOICES table (NEW ID:${assignedID['LAST_INSERT_ID()']})`);
+                resolve(assignedID);
+            });
+        });
     }
 
     updateInvoice(id, updatedInvoice){
