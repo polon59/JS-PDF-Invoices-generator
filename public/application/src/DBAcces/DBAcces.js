@@ -33,19 +33,6 @@ class DBAcces{
            });
     }
 
-    // getLastAssignedID = () =>{
-    //   return fetch('http://localhost:8000/myAccount/invoices/addInvoice')
-    //     .then(response => response.json())
-    //     .then(data=>{
-    //       console.log(data);
-    //       return data['LAST_INSERT_ID()'];
-    //     })
-    //     .catch(error => {
-    //       // alert("Warning: You are in offline mode, Your invoices cannot be loaded");
-    //       return "DUPA";
-    //       });
-    // }
-
     updateInvoice = (updatedInvoice) =>{
         fetch(`http://localhost:8000/myAccount/invoices/edit/${updatedInvoice.id}`, {
           method: "POST",
