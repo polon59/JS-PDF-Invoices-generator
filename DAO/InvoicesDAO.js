@@ -39,8 +39,9 @@ class InvoicesDAO{
                     reject(new Error(err.message));
                 }
                 this.getLastInsertedRecordID().then(assignedID =>{
-                    this.servicesDAO.addNewInvoiceServices(request,assignedID)
+                    this.servicesDAO.addNewInvoiceServices(request,assignedID).then(() =>{
                         resolve(assignedID);
+                    });
                 });
             });
         });
