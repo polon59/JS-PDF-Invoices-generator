@@ -5,10 +5,10 @@ var connection = dataBaseConn.connection;
 insertData();
 
 function insertData(){
-  insertInvoices();
-  displayInvoices();
-  // replace();
+  // insertInvoices();
   // displayInvoices();
+  // replace();
+  displayServices();
 }
 
 function insertInvoices() {
@@ -29,6 +29,13 @@ function replace() {
     if (err) {throw err}
   });
   console.log("Invoices records added");
+}
+
+function displayServices() {
+  connection.query("SELECT * FROM services", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+  });
 }
 
 function displayInvoices() {

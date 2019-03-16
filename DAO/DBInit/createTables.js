@@ -7,8 +7,8 @@ createTables();
 
 function createTables() {
     // createUsersTable();
-    createInvoicesTable();
-    // createServicesTable();
+    // createInvoicesTable();
+    createServicesTable();
 }
 
 // function createUsersTable(){
@@ -42,14 +42,14 @@ function createInvoicesTable(){
     console.log("Invoices Table Created");
 }
 
-
 function createServicesTable(){
     let sql = `CREATE TABLE services (
-        id SERIAL PRIMARY KEY,
-        userID INTEGER REFERENCES invoices(id),
+        id DOUBLE PRIMARY KEY,
+        invoiceID INTEGER REFERENCES invoices(id),
         description TEXT,
         quantity INTEGER,
-        tax INTEGER
+        unitPrice FLOAT,
+        total FLOAT
     );`;
     connection.query(sql, function (err, result) {
       if (err) {throw err}
