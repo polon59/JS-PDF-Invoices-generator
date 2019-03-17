@@ -54,10 +54,34 @@ class InvoicesDAO{
                 }
                 this.getLastInsertedRecordID().then(assignedID =>{
                     const {services} = request.body;
+                    const id = assignedID['LAST_INSERT_ID()'];
                     this.servicesDAO.addNewInvoiceServices(services,assignedID).then(() =>{
                         resolve(assignedID);
                     });
                 });
+            });
+        });
+    }
+
+    prepareUpdateQuery(request){
+        const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,totalDue} = request.body;
+        console.log("=============================PREPARE QUERY")
+        console.log(request.body);
+        return `REPLACE INTO invoices (id, title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
+            VALUES (${id},"${title}", '${date}', "${billTo}", "${billFrom}", ${subTotal}, ${salesTax}, ${salesTaxVal}, ${totalDue});`;
+    }
+
+    updateExistingInvoice(request){
+        const updateSQL = this.prepareUpdateQuery(request);
+        console.log(updateSQL);
+        return new Promise((resolve,reject)=>{
+            this.connection.query(updateSQL, (err)=> {
+                if (err){
+                    reject(new Error(err.message));
+                    console.log("ERROR in updateEXIstingInvoice" + err.message);
+                    return;
+                }
+                resolve();
             });
         });
     }
@@ -76,14 +100,21 @@ class InvoicesDAO{
         });
     }
 
-    updateInvoice(id, updatedInvoice){
-        const updatedServices = updatedInvoice.services;
+    updateInvoice(request){
+        const {id,services} = request.body;
         this.servicesDAO.deleteAllInvoiceServices(id).then(()=>{
-
+            this.servicesDAO.addNewInvoiceServices(services,id).then(()=>{
+                this.updateExistingInvoice(request).then(()=>{
+                    console.log(`[SQL INFO] updated properties of invoice (ID:${id})`);
+                });
+            })
+            .catch(err =>{
+                console.log(err.message);
+            })
         })
 
-        const invoiceToUpdateIndex = this.findIndexInArrayByID(id);
-        this.invoices[invoiceToUpdateIndex] = updatedInvoice;
+        // const invoiceToUpdateIndex = this.findIndexInArrayByID(id);
+        // this.invoices[invoiceToUpdateIndex] = updatedInvoice;
     }
 
     deleteInvoice(id){
