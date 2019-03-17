@@ -53,7 +53,8 @@ class InvoicesDAO{
                     return;
                 }
                 this.getLastInsertedRecordID().then(assignedID =>{
-                    this.servicesDAO.addNewInvoiceServices(request,assignedID).then(() =>{
+                    const {services} = request.body;
+                    this.servicesDAO.addNewInvoiceServices(services,assignedID).then(() =>{
                         resolve(assignedID);
                     });
                 });
@@ -76,6 +77,11 @@ class InvoicesDAO{
     }
 
     updateInvoice(id, updatedInvoice){
+        const updatedServices = updatedInvoice.services;
+        this.servicesDAO.deleteAllInvoiceServices(id).then(()=>{
+
+        })
+
         const invoiceToUpdateIndex = this.findIndexInArrayByID(id);
         this.invoices[invoiceToUpdateIndex] = updatedInvoice;
     }
