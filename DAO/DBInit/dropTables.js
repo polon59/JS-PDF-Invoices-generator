@@ -8,7 +8,7 @@ dropTables();
 function dropTables(){
   // dropUsers();
   dropServices();
-  dropInvoices();
+  // dropInvoices();
 }
 
 

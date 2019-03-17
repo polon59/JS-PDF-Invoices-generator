@@ -44,7 +44,7 @@ function createInvoicesTable(){
 
 function createServicesTable(){
     let sql = `CREATE TABLE services (
-        id DOUBLE PRIMARY KEY,
+        id SERIAL PRIMARY KEY,
         invoiceID INTEGER REFERENCES invoices(id),
         description TEXT,
         quantity INTEGER,

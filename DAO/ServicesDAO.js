@@ -8,7 +8,7 @@ class ServicesDAO{
     
     prepareInsertQuery(services,invoiceID){
         const servicesNumber = services.length;
-        const queryBegin = "REPLACE INTO services (id, invoiceID, description, quantity, unitPrice, total) VALUES";
+        const queryBegin = "INSERT INTO services (invoiceID, description, quantity, unitPrice, total) VALUES";
         const queryValues = this.prepareQueryInsertValues(services,invoiceID,servicesNumber);
         const fullQuery = queryBegin + queryValues;
         return fullQuery;
@@ -18,9 +18,9 @@ class ServicesDAO{
         const queryValues = services.map((service,i) =>{
             const {id,description,quantity,unitPrice,total} = service;
             if (servicesNumber === i + 1) {
-                return  `("${id}", ${invoiceID}, '${description}', ${quantity}, ${unitPrice}, ${total});`;
+                return  `(${invoiceID}, '${description}', ${quantity}, ${unitPrice}, ${total});`;
             }else {
-                return  `("${id}", ${invoiceID}, '${description}', ${quantity}, ${unitPrice}, ${total})`;
+                return  `(${invoiceID}, '${description}', ${quantity}, ${unitPrice}, ${total})`;
             }
         });
         return queryValues;
