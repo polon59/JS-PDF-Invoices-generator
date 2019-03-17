@@ -12,15 +12,13 @@ class InvoicesDAO{
 
     getRecordsFromInvoices(){
         return new Promise((resolve,reject)=>{
-            this.connection.query(
-                "SELECT * FROM invoices", 
-                function(err, result){                                                
-                    if(result === undefined){
-                        reject(new Error("Error result is undefined"));
+            this.connection.query("SELECT * FROM invoices", (err, result)=>{                                                
+                    if(err){
+                        reject(new Error(err.message));
                         return;
                     }
                     resolve(result);
-                    console.log("[SQL INFO] returned all records from INVOICES table")
+                    console.log("[SQL INFO] returned all records from INVOICES table");
                 });
         });
     }
@@ -30,14 +28,11 @@ class InvoicesDAO{
                 this.getRecordsFromInvoices().then((invoices)=>{
                     this.servicesDAO.assignServicesToInvoices(invoices)
                     .then((invoices)=>{
-                        console.log("=========================RESULT IN INVOICES DAO");
-                        console.log(invoices);
                         resolve(invoices);
                     })
                     .catch(err=>{
-                        console.log("ERROR IN INV DAO (getAllInvoices)")
                         console.log(err.message);
-                        reject(result);
+                        reject(err);
                     })
                 });
             });
