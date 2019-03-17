@@ -6,9 +6,8 @@ class ServicesDAO{
         this.connection = connection;
     }
     
-    prepareInsertQuery(services,assignedID){
+    prepareInsertQuery(services,invoiceID){
         const servicesNumber = services.length;
-        const invoiceID = assignedID['LAST_INSERT_ID()'];
         const queryBegin = "REPLACE INTO services (id, invoiceID, description, quantity, unitPrice, total) VALUES";
         const queryValues = this.prepareQueryInsertValues(services,invoiceID,servicesNumber);
         const fullQuery = queryBegin + queryValues;
@@ -56,6 +55,10 @@ class ServicesDAO{
     }
 
     addNewInvoiceServices(services,assignedID){
+        console.log("addNewInvoiceServices SERVICES ==================================>")
+        console.log(services);
+        console.log("addNewInvoiceServices assignedID ==================================>")
+        console.log(assignedID)
         const sql = this.prepareInsertQuery(services,assignedID);
         return new Promise((resolve,reject)=>{
             this.connection.query(sql, (err)=> {
