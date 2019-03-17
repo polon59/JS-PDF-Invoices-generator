@@ -68,7 +68,6 @@ class EditInvoice extends Component{
                             className="right" 
                             value={date} 
                             onChange={this.handleChange} 
-                            min="2015-01-01" 
                             required
                         />
                     </div>

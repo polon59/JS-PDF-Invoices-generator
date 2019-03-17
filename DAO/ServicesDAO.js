@@ -26,7 +26,6 @@ class ServicesDAO{
         return queryValues;
     }
 
-
     deleteAllInvoiceServices(invoiceID){
         return new Promise((resolve,reject)=>{
             const sql = `DELETE FROM services WHERE invoiceID=${invoiceID};`;
@@ -35,9 +34,17 @@ class ServicesDAO{
                 else{resolve();}
             });
         });
-
     }
 
+    adjustDate(date){
+        let day = date.getDate();
+        if(day < 10){day = `0${day}`;}
+        let month = date.getMonth();
+        if (month <10){month = `0${month}`;}
+        let year = date.getFullYear();
+        let adjustedDate = `${month}-${day}-${year}`;
+        return adjustedDate;
+    }
 
     assignServicesToInvoices(invoices){
         return new Promise((resolve,reject)=>{
@@ -47,6 +54,8 @@ class ServicesDAO{
                         reject(new Error(err.message));
                     }else{
                         invoice["services"] = result;
+                        let date = invoice.date;
+                        invoice.date = this.adjustDate(date);
                     }
                     callback();
                 });
@@ -55,10 +64,8 @@ class ServicesDAO{
     }
 
     addNewInvoiceServices(services,assignedID){
-        console.log("addNewInvoiceServices SERVICES ==================================>")
+        console.log("[SQL INFO] added New Invoice Services SERVICES:")
         console.log(services);
-        console.log("addNewInvoiceServices assignedID ==================================>")
-        console.log(assignedID)
         const sql = this.prepareInsertQuery(services,assignedID);
         return new Promise((resolve,reject)=>{
             this.connection.query(sql, (err)=> {
