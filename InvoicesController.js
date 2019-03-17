@@ -48,15 +48,8 @@ class InvoicesController{
             console.log("-- init POST (/myAccount/invoices:invoiceId) starting route");
             this.app.post('/myAccount/invoices/edit/:invoiceId' , (req,res) =>{
                 this.invoicesDAO.updateInvoice(req);
-                // this.replaceInvoiceProperties(req);
                 res.send(`INVOICE SAVED`);
             })
-        }
-
-        replaceInvoiceProperties(request){
-            const id = request.params.invoiceId;
-            // const updatedInvoice = this.createNewInvoice(request);
-            // this.invoicesDAO.updateInvoice(id, updatedInvoice);
         }
 
         deleteInvoiceFromList(request){
