@@ -29,10 +29,14 @@ class ServicesDAO{
 
 
     deleteAllInvoiceServices(invoiceID){
-        const sql = `DELETE FROM services WHERE invoiceID=${invoiceID};`;
-        this.connection.query(sql, (err)=> {
-            if (err){throw(new Error(err.message));}
+        return new Promise((resolve,reject)=>{
+            const sql = `DELETE FROM services WHERE invoiceID=${invoiceID};`;
+            this.connection.query(sql, (err)=> {
+                if (err){reject(new Error(err.message));}
+                else{resolve();}
+            });
         });
+
     }
 
 
@@ -51,8 +55,7 @@ class ServicesDAO{
         });
     }
 
-    addNewInvoiceServices(request,assignedID){
-        const {services} = request.body;
+    addNewInvoiceServices(services,assignedID){
         const sql = this.prepareInsertQuery(services,assignedID);
         return new Promise((resolve,reject)=>{
             this.connection.query(sql, (err)=> {
