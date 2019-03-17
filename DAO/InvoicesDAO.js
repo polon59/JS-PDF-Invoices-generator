@@ -1,11 +1,10 @@
-const DbCon = require('./dbConn');
 const ServicesDAO = require('./ServicesDAO');
 
 class InvoicesDAO{
-    constructor(){
-          this.dataBaseConn = new DbCon();
-          this.connection = this.dataBaseConn.connection;
-          this.servicesDAO = new ServicesDAO(this.connection);
+
+    constructor(connection){
+        this.connection = connection;
+        this.servicesDAO = new ServicesDAO(connection);
     }
 
     deleteInvoice(id){
@@ -64,7 +63,7 @@ class InvoicesDAO{
                 this.getLastInsertedRecordID().then(assignedID =>{
                     const {services} = request.body;
                     const id = assignedID['LAST_INSERT_ID()'];
-                    this.servicesDAO.addNewInvoiceServices(services,assignedID).then(() =>{
+                    this.servicesDAO.addNewInvoiceServices(services,id).then(() =>{
                         resolve(assignedID);
                     });
                 });
@@ -72,7 +71,6 @@ class InvoicesDAO{
         });
     }
 
-    
     getLastInsertedRecordID(){
         return new Promise((resolve,reject) =>{
             this.connection.query("SELECT LAST_INSERT_ID();", (err, result)=>{
