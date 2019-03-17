@@ -9,8 +9,9 @@ class InvoicesDAO{
           this.servicesDAO = new ServicesDAO(this.connection);
     }
 
-    getAllInvoices(){
-        return new Promise((resolve, reject)=>{
+
+    getRecordsFromInvoices(){
+        return new Promise((resolve,reject)=>{
             this.connection.query(
                 "SELECT * FROM invoices", 
                 function(err, result){                                                
@@ -20,6 +21,24 @@ class InvoicesDAO{
                     }
                     resolve(result);
                     console.log("[SQL INFO] returned all records from INVOICES table")
+                });
+        });
+    }
+
+    getAllInvoices(){
+        return new Promise((resolve, reject)=>{
+                this.getRecordsFromInvoices().then((invoices)=>{
+                    this.servicesDAO.assignServicesToInvoices(invoices)
+                    .then((invoices)=>{
+                        console.log("=========================RESULT IN INVOICES DAO");
+                        console.log(invoices);
+                        resolve(invoices);
+                    })
+                    .catch(err=>{
+                        console.log("ERROR IN INV DAO (getAllInvoices)")
+                        console.log(err.message);
+                        reject(result);
+                    })
                 });
             });
     }
