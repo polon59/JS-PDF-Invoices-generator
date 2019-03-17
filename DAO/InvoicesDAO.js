@@ -9,6 +9,16 @@ class InvoicesDAO{
           this.servicesDAO = new ServicesDAO(this.connection);
     }
 
+    deleteInvoice(id){
+        const sql = `DELETE FROM invoices WHERE id = ${id}`;
+        this.connection.query(sql, (err, result)=>{                                                
+            if(err){
+                throw err;
+                return;
+            }
+            console.log(`[SQL INFO] deleted record from INVOICES table (ID:${id})`);
+        });
+    }
 
     getRecordsFromInvoices(){
         return new Promise((resolve,reject)=>{
@@ -63,29 +73,7 @@ class InvoicesDAO{
         });
     }
 
-    prepareUpdateQuery(request){
-        const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,totalDue} = request.body;
-        console.log("=============================PREPARE QUERY")
-        console.log(request.body);
-        return `REPLACE INTO invoices (id, title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
-            VALUES (${id},"${title}", '${date}', "${billTo}", "${billFrom}", ${subTotal}, ${salesTax}, ${salesTaxVal}, ${totalDue});`;
-    }
-
-    updateExistingInvoice(request){
-        const updateSQL = this.prepareUpdateQuery(request);
-        console.log(updateSQL);
-        return new Promise((resolve,reject)=>{
-            this.connection.query(updateSQL, (err)=> {
-                if (err){
-                    reject(new Error(err.message));
-                    console.log("ERROR in updateEXIstingInvoice" + err.message);
-                    return;
-                }
-                resolve();
-            });
-        });
-    }
-
+    
     getLastInsertedRecordID(){
         return new Promise((resolve,reject) =>{
             this.connection.query("SELECT LAST_INSERT_ID();", (err, result)=>{
@@ -112,19 +100,25 @@ class InvoicesDAO{
                 console.log(err.message);
             })
         })
-
-        // const invoiceToUpdateIndex = this.findIndexInArrayByID(id);
-        // this.invoices[invoiceToUpdateIndex] = updatedInvoice;
     }
 
-    deleteInvoice(id){
-        const sql = `DELETE FROM invoices WHERE id = ${id}`;
-        this.connection.query(sql, (err, result)=>{                                                
-            if(err){
-                throw err;
-                return;
-            }
-            console.log(`[SQL INFO] deleted record from INVOICES table (ID:${id})`);
+    prepareUpdateQuery(request){
+        const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,totalDue} = request.body;
+        return `REPLACE INTO invoices (id, title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
+            VALUES (${id},"${title}", '${date}', "${billTo}", "${billFrom}", ${subTotal}, ${salesTax}, ${salesTaxVal}, ${totalDue});`;
+    }
+
+    updateExistingInvoice(request){
+        const updateSQL = this.prepareUpdateQuery(request);
+        return new Promise((resolve,reject)=>{
+            this.connection.query(updateSQL, (err)=> {
+                if (err){
+                    reject(new Error(err.message));
+                    console.log("ERROR in updateEXIstingInvoice" + err.message);
+                    return;
+                }
+                resolve();
+            });
         });
     }
 
