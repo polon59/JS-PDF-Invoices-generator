@@ -28,7 +28,6 @@ class InvoicesController{
             console.log("-- init GET (/myAccount/invoices) starting route");
             this.app.get('/myAccount/invoices', (req, res) =>{
                 this.invoicesDAO.getAllInvoices().then((invoices)=>{
-                    console.log(invoices);
                     res.send(invoices);
                   })
             });
@@ -45,15 +44,16 @@ class InvoicesController{
         setRoutePostEditingInvoice(){
             console.log("-- init POST (/myAccount/invoices:invoiceId) starting route");
             this.app.post('/myAccount/invoices/edit/:invoiceId' , (req,res) =>{
-                this.replaceInvoiceProperties(req);
+                this.invoicesDAO.updateInvoice(req);
+                // this.replaceInvoiceProperties(req);
                 res.send(`INVOICE SAVED`);
             })
         }
 
         replaceInvoiceProperties(request){
             const id = request.params.invoiceId;
-            const updatedInvoice = this.createNewInvoice(request);
-            this.invoicesDAO.updateInvoice(id, updatedInvoice);
+            // const updatedInvoice = this.createNewInvoice(request);
+            // this.invoicesDAO.updateInvoice(id, updatedInvoice);
         }
 
         deleteInvoiceFromList(request){
