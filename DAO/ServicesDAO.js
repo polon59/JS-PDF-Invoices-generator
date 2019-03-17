@@ -1,9 +1,18 @@
-const mysql=require('mysql');
 const async=require('async');
 
 class ServicesDAO{
+
     constructor(connection){
-          this.connection = connection;
+        this.connection = connection;
+    }
+    
+    prepareInsertQuery(services,assignedID){
+        const servicesNumber = services.length;
+        const invoiceID = assignedID['LAST_INSERT_ID()'];
+        const queryBegin = "REPLACE INTO services (id, invoiceID, description, quantity, unitPrice, total) VALUES";
+        const queryValues = this.prepareQueryInsertValues(services,invoiceID,servicesNumber);
+        const fullQuery = queryBegin + queryValues;
+        return fullQuery;
     }
 
     prepareQueryInsertValues(services,invoiceID,servicesNumber){
@@ -18,14 +27,6 @@ class ServicesDAO{
         return queryValues;
     }
 
-    prepareInsertQuery(services,assignedID){
-        const servicesNumber = services.length;
-        const invoiceID = assignedID['LAST_INSERT_ID()'];
-        const queryBegin = "REPLACE INTO services (id, invoiceID, description, quantity, unitPrice, total) VALUES";
-        const queryValues = this.prepareQueryInsertValues(services,invoiceID,servicesNumber);
-        const fullQuery = queryBegin + queryValues;
-        return fullQuery;
-    }
 
     assignServicesToInvoices(invoices){
         return new Promise((resolve,reject)=>{
@@ -45,7 +46,6 @@ class ServicesDAO{
     addNewInvoiceServices(request,assignedID){
         const {services} = request.body;
         const sql = this.prepareInsertQuery(services,assignedID);
-
         return new Promise((resolve,reject)=>{
             this.connection.query(sql, (err)=> {
                 if (err){
@@ -53,7 +53,6 @@ class ServicesDAO{
                 }else{resolve();}
             });
         });
-        console.log(sql);
     }
 }
 
