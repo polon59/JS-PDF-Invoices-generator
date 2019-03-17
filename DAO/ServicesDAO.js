@@ -1,4 +1,5 @@
 const mysql=require('mysql');
+const async=require('async');
 
 class ServicesDAO{
     constructor(connection){
@@ -24,6 +25,43 @@ class ServicesDAO{
         const queryValues = this.prepareQueryInsertValues(services,invoiceID,servicesNumber);
         const fullQuery = queryBegin + queryValues;
         return fullQuery;
+    }
+
+    assignServicesToInvoices(invoices){
+        return new Promise((resolve,reject)=>{
+            // console.log(invoices[0]);
+            // console.log("++++++++++++++++++++++++++");
+            // invoices.forEach(invoice => {
+            //     this.connection.query(`SELECT * FROM services WHERE invoiceID=${invoice.id}`, (err,result)=> {
+            //         if (err){
+            //             reject(new Error(err.message));
+            //         }else{
+            //             console.log("single invoice services:")
+            //             console.log(result);
+            //             invoice["services"] = result;
+            //         }
+            //     });
+            // });
+            async.forEachOf(invoices,(invoice,key,callback)=>{
+
+                this.connection.query(`SELECT * FROM services WHERE invoiceID=${invoice.id}`, (err,result)=> {
+                    if (err){
+                        reject(new Error(err.message));
+                        console.log("ERROR REJECTED")
+                    }else{
+                        console.log("=================================")
+                        console.log(invoice);
+                        console.log(result);
+                        invoice["services"] = result;
+                    }
+                    callback();
+                });
+            },function (err) {
+                console.log("RESOLVE")
+                resolve(invoices);
+            });
+            
+        });
     }
 
     addNewInvoiceServices(request,assignedID){
