@@ -28,9 +28,7 @@ class InvoicesController{
             console.log("-- init GET (/myAccount/invoices) starting route");
             this.app.get('/myAccount/invoices', (req, res) =>{
                 this.invoicesDAO.getAllInvoices().then((invoices)=>{
-                    invoices.forEach(invoice => {
-                        invoice.services = [];
-                    });
+                    console.log(invoices);
                     res.send(invoices);
                   })
             });
