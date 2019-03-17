@@ -28,6 +28,14 @@ class ServicesDAO{
     }
 
 
+    deleteAllInvoiceServices(invoiceID){
+        const sql = `DELETE FROM services WHERE invoiceID=${invoiceID};`;
+        this.connection.query(sql, (err)=> {
+            if (err){throw(new Error(err.message));}
+        });
+    }
+
+
     assignServicesToInvoices(invoices){
         return new Promise((resolve,reject)=>{
             async.forEachOf(invoices,(invoice,key,callback)=>{
