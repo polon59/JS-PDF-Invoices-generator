@@ -1,5 +1,4 @@
 const DbCon = require('./dbConn');
-const mysql=require('mysql');
 const ServicesDAO = require('./ServicesDAO');
 
 class InvoicesDAO{
