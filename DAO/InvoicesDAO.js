@@ -120,16 +120,5 @@ class InvoicesDAO{
         });
     }
 
-    findIndexInArrayByID(givenID){
-        let foundIndex;
-        for (let index = 0; index < this.invoices.length; index++) {
-            if (this.invoices[index].id == givenID) {
-                foundIndex = index;
-            }
-        }
-        return foundIndex;
-    }
-
 }
-
 module.exports = InvoicesDAO;
