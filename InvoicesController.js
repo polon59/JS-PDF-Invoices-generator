@@ -1,11 +1,14 @@
 const Invoice = require('./model/Invoice.js');
 const InvoicesDAO = require('./DAO/InvoicesDAO');
+const DbCon = require('./DAO/dbConn');
 
 class InvoicesController{
     
         constructor(app){
             this.app = app;
-            this.invoicesDAO = new InvoicesDAO();
+            this.dataBaseConn = new DbCon();
+            this.connection = this.dataBaseConn.connection;
+            this.invoicesDAO = new InvoicesDAO(this.connection);
         }
 
         setRoutes(){
