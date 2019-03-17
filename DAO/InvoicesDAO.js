@@ -22,29 +22,29 @@ class InvoicesDAO{
     getRecordsFromInvoices(){
         return new Promise((resolve,reject)=>{
             this.connection.query("SELECT * FROM invoices", (err, result)=>{                                                
-                    if(err){
-                        reject(new Error(err.message));
-                        return;
-                    }
-                    resolve(result);
-                    console.log("[SQL INFO] returned all records from INVOICES table");
-                });
+                if(err){
+                    reject(new Error(err.message));
+                    return;
+                }
+                resolve(result);
+                console.log("[SQL INFO] returned all records from INVOICES table");
+            });
         });
     }
 
     getAllInvoices(){
         return new Promise((resolve, reject)=>{
-                this.getRecordsFromInvoices().then((invoices)=>{
-                    this.servicesDAO.assignServicesToInvoices(invoices)
-                    .then((invoices)=>{
-                        resolve(invoices);
-                    })
-                    .catch(err=>{
-                        console.log(err.message);
-                        reject(err);
-                    })
-                });
+            this.getRecordsFromInvoices().then((invoices)=>{
+                this.servicesDAO.assignServicesToInvoices(invoices)
+                .then((invoices)=>{
+                    resolve(invoices);
+                })
+                .catch(err=>{
+                    console.log(err.message);
+                    reject(err);
+                })
             });
+        });
     }
 
     prepareInsertQuery(request){
@@ -113,7 +113,6 @@ class InvoicesDAO{
             this.connection.query(updateSQL, (err)=> {
                 if (err){
                     reject(new Error(err.message));
-                    console.log("ERROR in updateEXIstingInvoice" + err.message);
                     return;
                 }
                 resolve();
