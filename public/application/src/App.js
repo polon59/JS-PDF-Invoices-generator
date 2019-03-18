@@ -19,7 +19,6 @@ class App extends Component {
     this.state = {
       invoices : [],
       invoiceToEdit : "",
-      displayedComponent: "MyAccount"
     }
     this.initializeInvoices();
   }
