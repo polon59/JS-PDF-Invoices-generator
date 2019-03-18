@@ -63,9 +63,14 @@ class InvoicesDAO{
                 this.getLastInsertedRecordID().then(assignedID =>{
                     const {services} = request.body;
                     const id = assignedID['LAST_INSERT_ID()'];
-                    this.servicesDAO.addNewInvoiceServices(services,id).then(() =>{
+                    if (services.length > 0) {
+                        this.servicesDAO.addNewInvoiceServices(services,id).then(() =>{
+                            resolve(assignedID);
+                        });
+                    } else {
                         resolve(assignedID);
-                    });
+                    }
+                    
                 });
             });
         });
