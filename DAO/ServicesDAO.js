@@ -17,11 +17,9 @@ class ServicesDAO{
     prepareQueryInsertValues(services,invoiceID,servicesNumber){
         const queryValues = services.map((service,i) =>{
             const {id,description,quantity,unitPrice,total} = service;
-            if (servicesNumber === i + 1) {
-                return  `(${invoiceID}, '${description}', ${quantity}, ${unitPrice}, ${total});`;
-            }else {
-                return  `(${invoiceID}, '${description}', ${quantity}, ${unitPrice}, ${total})`;
-            }
+            let queryValue = `(${invoiceID}, '${description}', ${quantity}, ${unitPrice}, ${total})`;
+            if (servicesNumber === i + 1) queryValue += ";";
+            return queryValue;
         });
         return queryValues;
     }
@@ -30,7 +28,7 @@ class ServicesDAO{
         return new Promise((resolve,reject)=>{
             const sql = `DELETE FROM services WHERE invoiceID=${invoiceID};`;
             this.connection.query(sql, (err)=> {
-                if (err){reject(new Error(err.message));}
+                if (err)reject(new Error(err.message));
                 else{resolve();}
             });
         });
