@@ -49,17 +49,21 @@ class ServicesDAO{
     assignServicesToInvoices(invoices){
         return new Promise((resolve,reject)=>{
             async.forEachOf(invoices,(invoice,key,callback)=>{
-                this.connection.query(`SELECT * FROM services WHERE invoiceID=${invoice.id}`, (err,result)=> {
-                    if (err){
-                        reject(new Error(err.message));
-                    }else{
-                        invoice["services"] = result;
-                        let date = invoice.date;
-                        invoice.date = this.adjustDate(date);
-                    }
-                    callback();
-                });
+                this.assignServicesToInvoice(invoice,callback);
             },()=>{resolve(invoices);});
+        });
+    }
+
+    assignServicesToInvoice(invoice, callback){
+        const sql = `SELECT * FROM services WHERE invoiceID=${invoice.id}`;
+        this.connection.query(sql, (err,result)=> {
+            if (err){reject(new Error(err.message));}
+            else{
+                invoice["services"] = result;
+                let date = invoice.date;
+                invoice.date = this.adjustDate(date);
+            }
+            callback();
         });
     }
 
