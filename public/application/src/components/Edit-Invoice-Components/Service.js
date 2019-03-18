@@ -25,25 +25,25 @@ class ServiceComponent extends Component{
     }
 
     render(){
-        const { service } = this.state;
+        const { id,description,quantity,unitPrice,total } = this.state.service;
         return (
             <tr>
                 <td>
-                    {service.id}
+                    {id}
                 </td>
                 <td>
-                    <input type="text" id="description" value={service.description} onChange={this.handleChange}/>
+                    <input type="text" id="description" value={description} onChange={this.handleChange}/>
                 </td>
                 <td>
-                    <input type="number" id="quantity" value={service.quantity} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
+                    <input type="number" id="quantity" value={quantity} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
                 </td>
                 <td>
-                    <input type="number" step="0.01" id="unitPrice" value={service.unitPrice} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
+                    <input type="number" step="0.01" id="unitPrice" value={unitPrice} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
                 </td>
                 <td>
-                    {service.total}
+                    {total.toFixed(2)}
                 </td>
-                <td className="clickable" onClick={()=>{this.props.handleDelete(service.id)}}>
+                <td className="clickable" onClick={()=>{this.props.handleDelete(id)}}>
                     remove
                 </td>
             </tr>
