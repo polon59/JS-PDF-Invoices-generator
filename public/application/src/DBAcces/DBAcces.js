@@ -47,12 +47,13 @@ class DBAcces{
           },
           body: JSON.stringify(updatedInvoice)
         })
-        .then(response => response.json())
+        // .then(response => response.json())
         .then((response)=>{ 
-          console.log(response) 
+          console.log(`Successfully updated invoice with ID = ${updatedInvoice.id}`);
         })
         .catch(error => {
           alert("Warning: You are in offline mode, saving to database failed.");
+          //add invoice to delete to list in LStorage
         })
     }
 
