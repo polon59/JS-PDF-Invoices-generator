@@ -4,10 +4,11 @@ import {Link} from 'react-router-dom';
 class InvoicesList extends Component{
 
     renderInvoicesList(){
-        const { deleteInvoice,changeCurrentInvoice,invoices} = this.props;
-        const invoicesList = invoices.map(invoice =>{
+        const {deleteInvoice,changeCurrentInvoice,invoices} = this.props;
+        const invoicesList = invoices.map((invoice,index) =>{
             return (
                 <tr key={invoice.id}>
+                    <td>{index+1}</td>
                     <td>{invoice.id}</td>
                     <td>{invoice.title}</td>
                     <td>{invoice.billTo}</td>
@@ -40,7 +41,8 @@ class InvoicesList extends Component{
                     <table>
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>no.</th>
+                                <th>ID in DB</th>
                                 <th>TITLE</th>
                                 <th>BILL TO</th>
                             </tr>
