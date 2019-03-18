@@ -37,13 +37,15 @@ class EditInvoice extends Component{
     }
 
     componentDidMount(){
-        this.setInitialTextareasSize();
+        if (this.props.invoiceToEdit !== "") {
+            this.setInitialTextareasSize();
+        }
     }
 
     render(){
         const {invoiceToEdit,calculateSubTotal,addService} = this.props;
         const {title,date,billTo,billFrom,services} = invoiceToEdit;
-        if(invoiceToEdit === ""){
+        if(invoiceToEdit === "" || invoiceToEdit === undefined){
             return(
                 <div className="bordered">
                     <h3>No invoice to edit chosen</h3>

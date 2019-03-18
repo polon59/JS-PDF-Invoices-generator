@@ -47,7 +47,6 @@ class DBAcces{
           },
           body: JSON.stringify(updatedInvoice)
         })
-        // .then(response => response.json())
         .then((response)=>{ 
           console.log(`Successfully updated invoice with ID = ${updatedInvoice.id}`);
         })
