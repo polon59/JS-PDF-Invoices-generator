@@ -17,25 +17,25 @@ class DBAcces{
     }
 
     addInvoiceToDB = (invoiceToAdd) =>{
-        return fetch('http://localhost:8000/myAccount/invoices', {
-           method: "PUT",
-           headers: {
-             'Accept': 'application/json',
-             'Content-Type': 'application/json',
-           },
-           body: JSON.stringify(invoiceToAdd)
-         })
-         .then(response => response.json())
-         .then(data=>{
-           const assignedID = data['LAST_INSERT_ID()'];
-          console.log(`Created new invoice with id = ${assignedID} recieved from database`)  
-           return assignedID;
-         })
-         .catch(error => {
-           alert("Warning: You are in offline mode, new invoice will be saved locally");
-           let temporaryID = Math.random();
-           return temporaryID;
-           });
+      return fetch('http://localhost:8000/myAccount/invoices', {
+          method: "PUT",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(invoiceToAdd)
+        })
+        .then(response => response.json())
+        .then(data=>{
+          const assignedID = data['LAST_INSERT_ID()'];
+          console.log(`Created new invoice with id = ${assignedID} recieved from database`) ;
+          return assignedID;
+        })
+        .catch(error => {
+          alert("Warning: You are in offline mode, new invoice will be saved locally");
+          let temporaryID = Math.random();
+          return temporaryID;
+        });
     }
 
     updateInvoice = (updatedInvoice) =>{
@@ -47,11 +47,12 @@ class DBAcces{
           },
           body: JSON.stringify(updatedInvoice)
         })
-        .then(function(response){ 
-          // console.log(JSON.parse(response));   
+        .then(response => response.json())
+        .then((response)=>{ 
+          console.log(response) 
         })
         .catch(error => {
-          // alert("Warning: You are in offline mode, saving to database failed.");
+          alert("Warning: You are in offline mode, saving to database failed.");
         })
     }
 
