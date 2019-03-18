@@ -49,6 +49,21 @@ class StatisticsDAO{
         //     RowDataPacket { month: 6, income: 82 } ]          
         });
     }
+
+    getIncomeByMonthInYearWithTax(year){
+        const sql = 
+        `SELECT  MONTH(date) as month, ROUND(SUM(totalDue), 2) as income
+        FROM invoices
+        WHERE YEAR(date) = ${year}
+        GROUP BY month;`;
+        connection.query(sql, function (err, result, fields) {
+          if (err) throw err;
+          console.log(result);
+        //   returned object:
+        // [ RowDataPacket { month: 3, income: 7279.41 },
+        //     RowDataPacket { month: 6, income: 82 } ]          
+        });
+    }
 }
 
 module.exports = StatisticsDAO;
