@@ -19,42 +19,36 @@ class InvoicesController{
         }
 
         setRouteAddingNewInvoice(){
-            console.log("-- init PUT (/myAccount/invoices) starting route");
             this.app.put('/myAccount/invoices', (req,res) =>{
-                this.invoicesDAO.addNewInvoice(req).then((assignedID)=>{
+                this.invoicesDAO.addNewInvoice(req)
+                .then((assignedID)=>{
                     res.send(assignedID);
-                }).catch(error => {console.log(error.message)});
+                })
+                .catch(error => {console.log(error.message)});
             });
         }
 
         setRouteDisplayingAllInvoices(){
-            console.log("-- init GET (/myAccount/invoices) starting route");
             this.app.get('/myAccount/invoices', (req, res) =>{
-                this.invoicesDAO.getAllInvoices().then((invoices)=>{
+                this.invoicesDAO.getAllInvoices()
+                .then((invoices)=>{
                     res.send(invoices);
-                  })
+                })
+                .catch(error => {console.log(error.message)});
             });
         }
 
         setRouteDeleteInvoice(){
-            console.log("-- init DELETE (/myAccount/invoices:invoiceId) starting route");
-            this.app.delete('/myAccount/invoices/:invoiceId' , (req,res) =>{
-                this.deleteInvoiceFromList(req);
-                res.send(`INVOICE DELETED`);
+            this.app.delete('/myAccount/invoices/:invoiceId' , (req) =>{
+                const id = request.params.invoiceId;
+                this.invoicesDAO.deleteInvoice(id);
             });
         }
 
         setRoutePostEditingInvoice(){
-            console.log("-- init POST (/myAccount/invoices:invoiceId) starting route");
-            this.app.post('/myAccount/invoices/edit/:invoiceId' , (req,res) =>{
+            this.app.post('/myAccount/invoices/edit/:invoiceId' , (req) =>{
                 this.invoicesDAO.updateInvoice(req);
-                res.send(`INVOICE SAVED`);
             })
-        }
-
-        deleteInvoiceFromList(request){
-            const id = request.params.invoiceId;
-            this.invoicesDAO.deleteInvoice(id);
         }
     }
     
