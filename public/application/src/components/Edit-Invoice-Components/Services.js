@@ -12,9 +12,9 @@ class Services extends Component{
 
     render(){
         if (this.props.services.length > 0){
-            const servicesList = this.props.services.map(service =>{
+            const servicesList = this.props.services.map((service,index) =>{
                 return (
-                    <ServiceComponent key={service.id} calculateSubTotal={this.props.calculateSubTotal} service={service} handleDelete={this.props.handleServiceDelete} handleChange={this.props.handleChange}/>
+                    <ServiceComponent key={service.id} index={index} calculateSubTotal={this.props.calculateSubTotal} service={service} handleDelete={this.props.handleServiceDelete} handleChange={this.props.handleChange}/>
                 );
             });
             return(
@@ -23,7 +23,8 @@ class Services extends Component{
                     <table>
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>no.</th>
+                                <th>ID in DB</th>
                                 <th>DESCRIPTION</th>
                                 <th>QUANTITY</th>
                                 <th>UNIT PRICE</th>

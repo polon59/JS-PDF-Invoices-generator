@@ -29,6 +29,9 @@ class ServiceComponent extends Component{
         return (
             <tr>
                 <td>
+                    {this.props.index+1}
+                </td>
+                <td>
                     {id}
                 </td>
                 <td>
@@ -38,7 +41,7 @@ class ServiceComponent extends Component{
                     <input type="number" id="quantity" value={quantity} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
                 </td>
                 <td>
-                    <input type="number" step="0.01" id="unitPrice" value={unitPrice} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
+                    <input type="number" step="0.01" id="unitPrice" value={unitPrice.toFixed(2)} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
                 </td>
                 <td>
                     {total.toFixed(2)}
