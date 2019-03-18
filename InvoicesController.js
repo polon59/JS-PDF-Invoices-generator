@@ -4,11 +4,9 @@ const DbCon = require('./DAO/dbConn');
 
 class InvoicesController{
     
-        constructor(app){
+        constructor(app,connection){
             this.app = app;
-            this.dataBaseConn = new DbCon();
-            this.connection = this.dataBaseConn.connection;
-            this.invoicesDAO = new InvoicesDAO(this.connection);
+            this.invoicesDAO = new InvoicesDAO(connection);
         }
 
         setRoutes(){
