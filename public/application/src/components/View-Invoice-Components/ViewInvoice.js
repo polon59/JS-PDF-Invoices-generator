@@ -13,33 +13,41 @@ class ViewInvoice extends Component{
 
     render(){
         const {invoiceToEdit,changeCurrentInvoice} = this.props;
-        const {id,title,date,billFrom,billTo,services} = invoiceToEdit;
-        return(
-        <div className="bordered">
-            <h3>VIEW INVOICE</h3>
-            <div id="PDF-Content">
-                <div className="invoice-header invoice-section">
-                    <h4>{title}</h4>
-                    <h4>{date}</h4>
+        if (invoiceToEdit === "") {
+            return (
+                <div className="bordered">
+                    <h3>No invoice to view chosen</h3>
                 </div>
-                <div className="invoice-company invoice-section">
-                    <h4>{billTo}</h4>
-                    <h4>{billFrom}</h4>
+            )
+        } else {
+            const {id,title,date,billFrom,billTo,services} = invoiceToEdit;
+            return(
+            <div className="bordered">
+                <h3>VIEW INVOICE</h3>
+                <div id="PDF-Content">
+                    <div className="invoice-header invoice-section">
+                        <h4>{title}</h4>
+                        <h4>{date}</h4>
+                    </div>
+                    <div className="invoice-company invoice-section">
+                        <h4>{billTo}</h4>
+                        <h4>{billFrom}</h4>
+                    </div>
+                    <div className="invoice-services">
+                        <ViewServices services={services}/>
+                    </div>
+                    <div className="invoice-summary">
+                        <ViewInvoiceSummary invoiceToEdit={invoiceToEdit}/>
+                    </div>
                 </div>
-                <div className="invoice-services">
-                    <ViewServices services={services}/>
-                </div>
-                <div className="invoice-summary">
-                    <ViewInvoiceSummary invoiceToEdit={invoiceToEdit}/>
-                </div>
+                <div id="editor"></div>
+                <button id="cmd" onClick={this.generatePDFFromInvoice}>generate PDF</button>
+                <Link to={`/myInvoices/editInvoice/${id}`}>
+                    <button onClick={()=>{changeCurrentInvoice(id)}}>EDIT</button>
+                </Link>
             </div>
-            <div id="editor"></div>
-            <button id="cmd" onClick={this.generatePDFFromInvoice}>generate PDF</button>
-            <Link to={`/myInvoices/editInvoice/${id}`}>
-                <button onClick={()=>{changeCurrentInvoice(id)}}>EDIT</button>
-            </Link>
-        </div>
-        )
+            )
+        }
     }
 }
 
