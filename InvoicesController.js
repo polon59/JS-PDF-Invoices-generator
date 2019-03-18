@@ -39,15 +39,17 @@ class InvoicesController{
         }
 
         setRouteDeleteInvoice(){
-            this.app.delete('/myAccount/invoices/:invoiceId' , (req) =>{
-                const id = request.params.invoiceId;
+            this.app.delete('/myAccount/invoices/:invoiceId' , (req,res) =>{
+                const id = req.params.invoiceId;
                 this.invoicesDAO.deleteInvoice(id);
+                res.send(`INVOICE DELETED`);
             });
         }
 
         setRoutePostEditingInvoice(){
-            this.app.post('/myAccount/invoices/edit/:invoiceId' , (req) =>{
+            this.app.post('/myAccount/invoices/edit/:invoiceId' , (req,res) =>{
                 this.invoicesDAO.updateInvoice(req);
+                res.send(`INVOICE SAVED`);
             })
         }
     }
