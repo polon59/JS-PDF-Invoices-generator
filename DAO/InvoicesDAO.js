@@ -69,20 +69,6 @@ class InvoicesDAO{
         });
     }
 
-    getLastInsertedRecordID(){
-        return new Promise((resolve,reject) =>{
-            this.connection.query("SELECT LAST_INSERT_ID();", (err, result)=>{
-                if (err){
-                    reject(new Error(err.message));
-                    return;
-                }
-                let assignedID = result[0];
-                console.log(`[SQL INFO] inserted new record to INVOICES table (NEW ID:${assignedID['LAST_INSERT_ID()']})`);
-                resolve(assignedID);
-            });
-        });
-    }
-
     updateInvoice(request){
         const {id,services} = request.body;
         this.servicesDAO.deleteAllInvoiceServices(id).then(()=>{
