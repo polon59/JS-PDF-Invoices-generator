@@ -56,6 +56,22 @@ class DBAcces{
         })
     }
 
+    getStatisticsForYear = (year) =>{
+      return fetch(`http://localhost:8000/myAccount/statistics/${year}`,{
+        method: "GET",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(response => response.json())
+      .then(data => {return data;})
+      .catch(error => {
+        alert("Warning: You are in offline mode, Your invoices cannot be loaded");
+        return [];
+      });
+    }
+
     deleteInvoiceFromDB = (invoiceToDeleteId) =>{
         fetch(`http://localhost:8000/myAccount/invoices/${invoiceToDeleteId}`, {
           method: "DELETE",
