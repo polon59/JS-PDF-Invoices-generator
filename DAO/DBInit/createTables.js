@@ -8,7 +8,8 @@ createTables();
 function createTables() {
     // createUsersTable();
     // createInvoicesTable();
-    createServicesTable();
+    // createServicesTable();
+    createMonthsTable();
 }
 
 // function createUsersTable(){
@@ -22,6 +23,16 @@ function createTables() {
 //     });
 //     console.log("Users Table Created");
 // }
+
+function createMonthsTable(){
+    let sql = `CREATE TABLE months (
+        no INTEGER PRIMARY KEY
+    );`;
+    connection.query(sql, function (err, result) {
+      if (err) {throw err}
+    });
+    console.log("MONTHS Table Created");
+}
 
 
 function createInvoicesTable(){

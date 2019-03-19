@@ -8,8 +8,18 @@ function insertData(){
   // insertInvoices();
   // displayInvoices();
   // replace();
-  displayServices();
+  // displayServices();
+  insertMonths();
 }
+
+function insertMonths(){
+  let sql = `INSERT INTO months (no)
+  VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12);`;
+  connection.query(sql, function (err, result) {
+  if (err) {throw err}
+  });
+  console.log("Months records added");
+  }
 
 function insertInvoices() {
     let sql = `INSERT INTO invoices (title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
