@@ -27,7 +27,7 @@ class DBAcces{
         })
         .then(response => response.json())
         .then(data=>{
-          const assignedID = data['LAST_INSERT_ID()'];
+          const assignedID = data["idValue"];
           console.log(`Created new invoice with id = ${assignedID} recieved from database`) ;
           return assignedID;
         })
