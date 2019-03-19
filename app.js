@@ -17,5 +17,6 @@ var accountController = new AccountController(app);
 var statisticsController = new StatisticsController(app,connection);
 invoicesController.setRoutes();
 accountController.setRoutes();
+statisticsController.setRoutes();
 
 app.listen(port, () => {console.log(`*** server listening on port ${port} ***`)});
