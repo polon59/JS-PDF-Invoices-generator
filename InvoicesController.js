@@ -20,7 +20,7 @@ class InvoicesController{
             this.app.put('/myAccount/invoices', (req,res) =>{
                 this.invoicesDAO.addNewInvoice(req)
                 .then((assignedID)=>{
-                    res.send(assignedID);
+                    res.send({"idValue":assignedID});
                 })
                 .catch(error => {console.log(error.message)});
             });
