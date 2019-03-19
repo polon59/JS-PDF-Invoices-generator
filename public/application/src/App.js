@@ -137,7 +137,13 @@ class App extends Component {
         <div className="container">
           <Navbar/>
           <Route exact path="/" component={MyAccount}/>
-          <Route path="/statistics" component={Statistics} />
+          <Route 
+            path="/statistics"
+            render={(props) => 
+              <Statistics 
+                DBAccess={this.DBAccess} 
+              />}
+          />
           <Route 
             path="/myInvoices/editInvoice/:id" 
             render={(props) => 
