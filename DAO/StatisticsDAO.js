@@ -35,7 +35,7 @@ class StatisticsDAO{
 
     getNumberOfServicesByMonthInYear(year){
         const sql = 
-        `SELECT  MONTH(date) as month, COUNT(*) as doneServices FROM invoices 
+        `SELECT  MONTH(date) as month, SUM(quantity) as doneServices FROM invoices 
         JOIN services ON invoices.id = services.invoiceID
         WHERE YEAR(date) = ${year}
         GROUP BY month;`;
