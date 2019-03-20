@@ -8,31 +8,35 @@ class Statistics extends Component{
         this.dataParser = new StatisticsDataParser();
         this.DBAccess = props.DBAccess;
         this.state = {
-            data : null
+            areaChartsData : null
         }
     }
 
     componentWillMount() {
         this.DBAccess.getStatisticsForYear(2019).then((result)=>{
-            let parsedData = this.dataParser.parseDataForStatistics(result);
-            // console.log(parsedData);
+            console.log(result);
+            let areaChartsResult = result.slice(0,4);
+            // let sChartResult = result.slice(4,6);
+
+            let areaChartsParsedData = this.dataParser.parseDataForStatistics(areaChartsResult);
+            // console.log(areaChartsParsedData);
             this.setState({
-                data: parsedData,
+                areaChartsData: areaChartsParsedData,
             });
         })
     }
     
     render(){
-        const {data} = this.state;
-        if (!data) {
+        const {areaChartsData} = this.state;
+        if (!areaChartsData) {
             return (
                 <div><h3>Loading data...</h3></div>
             )
         }
         return(
             <div>
-                <CreatedDataChart chartsData={[data[0],data[1]]}/>
-                <CreatedDataChart chartsData={[data[2],data[3]]}/>
+                <CreatedDataChart chartsData={[areaChartsData[0],areaChartsData[1]]} areaFillColor={"#0289ff"} areaStrokeColor={"#0734ff"}/>
+                <CreatedDataChart chartsData={[areaChartsData[2],areaChartsData[3]]} areaFillColor={"#01f2ff"} areaStrokeColor={"#0734ff"}/>
             </div>
         )
     }
