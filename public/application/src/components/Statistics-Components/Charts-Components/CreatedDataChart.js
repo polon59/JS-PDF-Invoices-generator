@@ -3,13 +3,12 @@ import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,} from 'recharts';
 import { curveCardinal } from 'd3-shape';
 
 class CreatedDataChart extends PureComponent{
-    // static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xujpnxxp/';
 
     constructor(props){
         super();
         this.DBAccess = props.DBAccess;
         this.state = {
-          data : [
+          currentChartData : [
             {
               name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
             },
@@ -71,7 +70,7 @@ class CreatedDataChart extends PureComponent{
             <AreaChart
               width={500}
               height={400}
-              data={this.state.data}
+              data={this.state.currentChartData}
               margin={{
                 top: 10, right: 30, left: 0, bottom: 0,
               }}
