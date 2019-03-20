@@ -50,10 +50,6 @@ class StatisticsDAO{
                 reject(err);
             })
         })
-        //   returned object:
-        // [ RowDataPacket { month: 3, doneServices: 7 },
-        //     RowDataPacket { month: 6, doneServices: 1 },
-        //     RowDataPacket { month: 12, doneServices: 4 } ]
     }
 
     getNumberOfInvoicesByMonthInYear(year){
@@ -71,9 +67,6 @@ class StatisticsDAO{
                 reject(err);
             })
         })
-        //   returned object:
-        //   [ RowDataPacket { month: '6', createdInvoices: 1 },
-        //   RowDataPacket { month: '3', createdInvoices: 2 } ]
     }
 
     getIncomeByMonthInYearWithoutTax(year){
@@ -91,10 +84,7 @@ class StatisticsDAO{
                 console.log(err.message);
                 reject(err);
             })
-        })
-        //   returned object:
-        // [ RowDataPacket { month: 3, income: 7279.41 },
-        //     RowDataPacket { month: 6, income: 82 } ]          
+        })       
     }
 
     getIncomeByMonthInYearWithTax(year){
@@ -112,10 +102,7 @@ class StatisticsDAO{
                 console.log(err.message);
                 reject(err);
             })
-        })
-        //   returned object:
-        // [ RowDataPacket { month: 3, income: 7279.41 },
-        //     RowDataPacket { month: 6, income: 82 } ]          
+        })    
     }
 }
 
