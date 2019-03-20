@@ -23,8 +23,11 @@ class CreatedDataChart extends PureComponent{
         const {currentChartData} = this.state;
         
         return (
+          <div className='bordered'>
+          <h3>{Object.keys(currentChartData[0])[1]}</h3>
+            <button onClick={()=>{this.handleDataChange(0)}}>{Object.keys(this.props.chartsData[0][0])[1]}</button>
+            <button onClick={()=>{this.handleDataChange(1)}}>{Object.keys(this.props.chartsData[1][0])[1]}</button>
            <div style={{ width: '100%', height: 300 }}>
-            
             <ResponsiveContainer>
               <AreaChart
                 width={500}
@@ -34,13 +37,14 @@ class CreatedDataChart extends PureComponent{
                   top: 10, right: 30, left: 0, bottom: 0,
                 }}
               >
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid stroke="#696a72" opacity={0.3} strokeDasharray="3 3" />
                 <XAxis dataKey= {Object.keys(currentChartData[0])[0]}/>
                 <YAxis />
                 <Tooltip />
-                <Area type="monotone" dataKey={Object.keys(currentChartData[0])[1]} stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
+                <Area type="monotone" dataKey={Object.keys(currentChartData[0])[1]} stroke="#18aace" fill="#1d44d1" fillOpacity={0.2} />
               </AreaChart>
             </ResponsiveContainer>
+          </div>
           </div>
         );
       }
