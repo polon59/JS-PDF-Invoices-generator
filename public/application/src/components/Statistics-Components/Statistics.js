@@ -32,6 +32,7 @@ class Statistics extends Component{
         return(
             <div>
                 <CreatedDataChart chartsData={[data[0],data[1]]}/>
+                <CreatedDataChart chartsData={[data[2],data[3]]}/>
             </div>
         )
     }
