@@ -15,18 +15,13 @@ class Statistics extends Component{
     componentWillMount() {
         this.DBAccess.getStatisticsForYear(2019).then((result)=>{
             let parsedData = this.dataParser.parseDataForStatistics(result);
-           
-            console.log(parsedData);
-            
-
+            // console.log(parsedData);
             this.setState({
                 data: parsedData,
             });
         })
     }
     
-
-
     render(){
         const {data} = this.state;
         if (!data) {
@@ -34,10 +29,9 @@ class Statistics extends Component{
                 <div><h3>Loading data...</h3></div>
             )
         }
-
         return(
             <div>
-                <CreatedDataChart/>
+                <CreatedDataChart chartsData={[data[0],data[1]]}/>
             </div>
         )
     }
