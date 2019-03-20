@@ -104,6 +104,46 @@ class StatisticsDAO{
             })
         })    
     }
+
+    getFiveMostLucrativeServicesInYear(year){
+        const sql = 
+        `SELECT description, ROUND(SUM(total),2) as service_income FROM services 
+        JOIN invoices ON invoices.id = services.invoiceID
+        WHERE YEAR(date) = ${year}
+        GROUP BY description
+        ORDER BY service_income DESC
+        LIMIT 5;`;
+        return new Promise((resolve,reject)=>{
+            this.getResultsFromDB(sql)
+            .then((result)=>{
+                resolve({"Service income":result});
+            })
+            .catch(err=>{
+                console.log(err.message);
+                reject(err);
+            })
+        })  
+    }
+
+    getFiveBestCustomersInYear(year){
+        const sql = 
+        `SELECT billTo as Company, ROUND(SUM(total),2) as Profit FROM services 
+        JOIN invoices ON invoices.id = services.invoiceID
+        WHERE YEAR(date) = ${year}
+        GROUP BY Company
+        ORDER BY Profit DESC
+        LIMIT 5;`;
+        return new Promise((resolve,reject)=>{
+            this.getResultsFromDB(sql)
+            .then((result)=>{
+                resolve({"Service income":result});
+            })
+            .catch(err=>{
+                console.log(err.message);
+                reject(err);
+            })
+        })  
+    }
 }
 
 module.exports = StatisticsDAO;
