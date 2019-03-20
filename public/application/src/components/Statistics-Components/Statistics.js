@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CreatedDataChart from './Charts-Components/CreatedDataChart';
+import AreaChartComponent from './Charts-Components/AreaChartComponent';
 import StatisticsDataParser from './data-parser/DataParser';
 
 class Statistics extends Component{
@@ -16,9 +16,10 @@ class Statistics extends Component{
         this.DBAccess.getStatisticsForYear(2019).then((result)=>{
             console.log(result);
             let areaChartsResult = result.slice(0,4);
-            // let sChartResult = result.slice(4,6);
+            let sChartResult = result.slice(4,6);
+            console.log(sChartResult);
 
-            let areaChartsParsedData = this.dataParser.parseDataForStatistics(areaChartsResult);
+            let areaChartsParsedData = this.dataParser.parseDataForLineCharts(areaChartsResult);
             // console.log(areaChartsParsedData);
             this.setState({
                 areaChartsData: areaChartsParsedData,
@@ -35,8 +36,8 @@ class Statistics extends Component{
         }
         return(
             <div>
-                <CreatedDataChart chartsData={[areaChartsData[0],areaChartsData[1]]} areaFillColor={"#0289ff"} areaStrokeColor={"#0734ff"}/>
-                <CreatedDataChart chartsData={[areaChartsData[2],areaChartsData[3]]} areaFillColor={"#01f2ff"} areaStrokeColor={"#0734ff"}/>
+                <AreaChartComponent chartsData={[areaChartsData[0],areaChartsData[1]]} areaFillColor={"#0289ff"} areaStrokeColor={"#0734ff"}/>
+                <AreaChartComponent chartsData={[areaChartsData[2],areaChartsData[3]]} areaFillColor={"#01f2ff"} areaStrokeColor={"#0734ff"}/>
             </div>
         )
     }

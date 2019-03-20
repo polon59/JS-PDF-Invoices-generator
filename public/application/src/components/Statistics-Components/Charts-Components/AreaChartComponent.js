@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from 'recharts';
 import { curveCardinal } from 'd3-shape';
 
-class CreatedDataChart extends PureComponent{
+class AreaChartComponent extends PureComponent{
 
     constructor(props){
         super();
@@ -58,4 +58,4 @@ class CreatedDataChart extends PureComponent{
     
 }
 
-export default CreatedDataChart;
+export default AreaChartComponent;

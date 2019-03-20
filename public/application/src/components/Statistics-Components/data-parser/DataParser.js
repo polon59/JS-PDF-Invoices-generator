@@ -1,7 +1,7 @@
 class StatisticsDataParser{
     // converts JSON recieved from fetch to array of objects readable for AreaChart component
 
-    parseDataForStatistics = (data)=>{
+    parseDataForLineCharts = (data)=>{
         const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
         let parsedData = [];
         data.forEach((dataElement) => {
