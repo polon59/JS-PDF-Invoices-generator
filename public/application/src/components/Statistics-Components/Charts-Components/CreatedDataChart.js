@@ -21,6 +21,7 @@ class CreatedDataChart extends PureComponent{
 
       render() {
         const {currentChartData} = this.state;
+        const {areaStrokeColor, areaFillColor} = this.props
         
         return (
           <div className='bordered'>
@@ -37,11 +38,17 @@ class CreatedDataChart extends PureComponent{
                   top: 10, right: 30, left: 0, bottom: 0,
                 }}
               >
+              <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor={areaFillColor} stopOpacity={0.8}/>
+                <stop offset="95%" stopColor={areaFillColor} stopOpacity={0}/>
+              </linearGradient>
+            </defs>
                 <CartesianGrid stroke="#696a72" opacity={0.3} strokeDasharray="3 3" />
                 <XAxis dataKey= {Object.keys(currentChartData[0])[0]}/>
                 <YAxis />
                 <Tooltip />
-                <Area type="monotone" dataKey={Object.keys(currentChartData[0])[1]} stroke="#18aace" fill="#1d44d1" fillOpacity={0.2} />
+                <Area type="monotone" dataKey={Object.keys(currentChartData[0])[1]} stroke={areaStrokeColor} fill="url(#colorUv)" fillOpacity={1} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
