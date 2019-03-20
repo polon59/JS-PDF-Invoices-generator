@@ -23,7 +23,9 @@ class StatisticsDAO{
             [this.getNumberOfServicesByMonthInYear(year), 
             this.getNumberOfInvoicesByMonthInYear(year),
             this.getIncomeByMonthInYearWithoutTax(year),
-            this.getIncomeByMonthInYearWithTax(year)])
+            this.getIncomeByMonthInYearWithTax(year),
+            this.getFiveMostLucrativeServicesInYear(year),
+            this.getFiveBestCustomersInYear(year)])
             .then((values)=> {
                 resolve(values);
             })
