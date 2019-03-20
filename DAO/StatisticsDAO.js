@@ -43,7 +43,7 @@ class StatisticsDAO{
             this.getResultsFromDB(sql)
             .then((result)=>{
                 console.log(`[SQL INFO] returned statistics from ALL tables for year=${year}`);
-                resolve({"numberOfServices":result});
+                resolve({"Done services":result});
             })
             .catch(err=>{
                 console.log(err.message);
@@ -64,7 +64,7 @@ class StatisticsDAO{
         return new Promise((resolve,reject)=>{
             this.getResultsFromDB(sql)
             .then((result)=>{
-                resolve({"numberOfInvoices":result});
+                resolve({"Created invoices":result});
             })
             .catch(err=>{
                 console.log(err.message);
@@ -85,7 +85,7 @@ class StatisticsDAO{
         return new Promise((resolve,reject)=>{
             this.getResultsFromDB(sql)
             .then((result)=>{
-                resolve({"incomeWithoutTax":result});
+                resolve({"Income net":result});
             })
             .catch(err=>{
                 console.log(err.message);
@@ -106,7 +106,7 @@ class StatisticsDAO{
         return new Promise((resolve,reject)=>{
             this.getResultsFromDB(sql)
             .then((result)=>{
-                resolve({"incomeWithTax":result});
+                resolve({"Income gross":result});
             })
             .catch(err=>{
                 console.log(err.message);
