@@ -47,7 +47,7 @@ class AreaChartComponent extends PureComponent{
                 <XAxis dataKey= {Object.keys(currentChartData[0])[0]}/>
                 <YAxis />
                 <Tooltip />
-                <Area type="monotone" dataKey={Object.keys(currentChartData[0])[1]} stroke={areaStrokeColor} fill={`url(#${linearGradientId})`} fillOpacity={1} />
+                <Area type="monotone" dot={true} dataKey={Object.keys(currentChartData[0])[1]} stroke={areaStrokeColor} fill={`url(#${linearGradientId})`} fillOpacity={1} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
