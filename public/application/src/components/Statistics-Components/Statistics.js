@@ -14,7 +14,8 @@ class Statistics extends Component{
     }
 
     componentWillMount() {
-        this.DBAccess.getStatisticsForYear(2019).then((result)=>{
+        this.DBAccess.getStatisticsForYear(2019)
+        .then((result)=>{
             let areaChartsResult = result.slice(0,4);
             let barChartResult = result.slice(4,6);
             let areaChartsParsedData = this.dataParser.parseDataForLineCharts(areaChartsResult);
@@ -23,14 +24,25 @@ class Statistics extends Component{
                 barChartsData: barChartResult
             });
         })
+        .catch(error=>{
+            this.setState({
+                areaChartsData: [],
+                barChartsData: []
+            });
+        })
     }
     
     render(){
         const {areaChartsData,barChartsData} = this.state;
        
-        if (!areaChartsData) {
+        if (!areaChartsData||!barChartsData) {
             return (
                 <div><h3>Loading data...</h3></div>
+            )
+        }
+        else if (areaChartsData.length === 0 || barChartsData === 0){
+            return (
+                <div><h3>Statistics cannot be displayed.</h3></div>
             )
         }
         let mlServices = barChartsData[0];
