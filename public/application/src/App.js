@@ -24,7 +24,8 @@ class App extends Component {
   }
 
   initializeInvoices = () =>{
-    this.DBAccess.getInvoicesFromDB().then(invoices => this.setState({
+    this.DBAccess.getInvoicesFromDB()
+    .then(invoices => this.setState({
       invoices : invoices
     }));
   }
