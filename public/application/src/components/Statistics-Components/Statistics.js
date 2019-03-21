@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AreaChartComponent from './Charts-Components/AreaChartComponent';
+import BarChartComponent from './Charts-Components/BarChartComponent';
 import StatisticsDataParser from './data-parser/DataParser';
 
 class Statistics extends Component{
@@ -14,30 +15,49 @@ class Statistics extends Component{
 
     componentWillMount() {
         this.DBAccess.getStatisticsForYear(2019).then((result)=>{
-            console.log(result);
+            // console.log(result);
             let areaChartsResult = result.slice(0,4);
-            let sChartResult = result.slice(4,6);
-            console.log(sChartResult);
+            let barChartResult = result.slice(4,6);
+            
+            // console.log(barChartResult);
+            // let barChartsParsedData = this.dataParser.parseDataForBarCharts(barChartResult);
+            // console.log(barChartsParsedData);
 
             let areaChartsParsedData = this.dataParser.parseDataForLineCharts(areaChartsResult);
             // console.log(areaChartsParsedData);
             this.setState({
                 areaChartsData: areaChartsParsedData,
+                barChartsData: barChartResult
             });
         })
     }
     
     render(){
-        const {areaChartsData} = this.state;
+        const {areaChartsData,barChartsData} = this.state;
+       
         if (!areaChartsData) {
             return (
                 <div><h3>Loading data...</h3></div>
             )
         }
+        let mlServices = barChartsData[0];
+        console.log(Object.keys(mlServices)[0])
         return(
             <div>
-                <AreaChartComponent chartsData={[areaChartsData[0],areaChartsData[1]]} areaFillColor={"#0289ff"} areaStrokeColor={"#0734ff"}/>
-                <AreaChartComponent chartsData={[areaChartsData[2],areaChartsData[3]]} areaFillColor={"#01f2ff"} areaStrokeColor={"#0734ff"}/>
+                <AreaChartComponent 
+                    chartsData={[areaChartsData[0],areaChartsData[1]]} 
+                    areaFillColor={"#0734ff"} 
+                    areaStrokeColor={"#0734ff"} 
+                    linearGradientId="firstAreaChart"
+                />
+                <AreaChartComponent 
+                    chartsData={[areaChartsData[2],areaChartsData[3]]} 
+                    areaFillColor={"#0289ff"} 
+                    areaStrokeColor={"#0289ff"} 
+                    linearGradientId="secondAreaChart"
+                />
+                <BarChartComponent chartsData={barChartsData[0]}/>
+                <BarChartComponent chartsData={barChartsData[1]}/>
             </div>
         )
     }
