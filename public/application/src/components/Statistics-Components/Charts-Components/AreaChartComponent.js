@@ -43,11 +43,11 @@ class AreaChartComponent extends PureComponent{
                 <stop offset="95%" stopColor={areaFillColor} stopOpacity={0}/>
               </linearGradient>
             </defs>
-                <CartesianGrid stroke="#696a72" opacity={0.3} strokeDasharray="3 3" />
+                <CartesianGrid horizontal={false} stroke="#696a72" opacity={0.3}  />
                 <XAxis dataKey= {Object.keys(currentChartData[0])[0]}/>
                 <YAxis />
                 <Tooltip />
-                <Area type="monotone" dot={true} dataKey={Object.keys(currentChartData[0])[1]} stroke={areaStrokeColor} fill={`url(#${linearGradientId})`} fillOpacity={1} />
+                <Area type="monotone" dataKey={Object.keys(currentChartData[0])[1]} stroke={areaStrokeColor} fill={`url(#${linearGradientId})`} fillOpacity={1} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
