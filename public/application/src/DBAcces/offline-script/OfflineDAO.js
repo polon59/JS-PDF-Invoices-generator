@@ -14,7 +14,8 @@ class OfflineDAO{
         if (!localStorage.getItem('invoicesGeneratorOfflineData')){
             return {add:[], update:[], delete:[]}
         }
-        return localStorage.getItem('invoicesGeneratorOfflineData');
+
+        return JSON.parse(localStorage.getItem('invoicesGeneratorOfflineData'));
     }
 
     addDataToSave = (data,method)=>{
@@ -29,23 +30,27 @@ class OfflineDAO{
         }
     }
 
+    saveDataInLocalStorage = () =>{
+        localStorage.setItem('invoicesGeneratorOfflineData', JSON.stringify(this.invoicesGeneratorOfflineData));
+    }
+
     addNewInvoice = (invoiceToAdd) =>{
         this.invoicesGeneratorOfflineData['add'].push(invoiceToAdd);
         console.log(this.invoicesGeneratorOfflineData);
+        this.saveDataInLocalStorage();
     }
 
     updateInvoice = (updatedInvoice) =>{
         this.invoicesGeneratorOfflineData['update'].push(updatedInvoice);
         console.log(this.invoicesGeneratorOfflineData);
+        this.saveDataInLocalStorage();
     }
 
     deleteInvoice = (invoiceToDeleteId) =>{
         this.invoicesGeneratorOfflineData['delete'].push(invoiceToDeleteId);
         console.log(this.invoicesGeneratorOfflineData);
+        this.saveDataInLocalStorage();
     }
-
-
-
 }
 
 export default OfflineDAO;
