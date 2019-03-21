@@ -15,16 +15,9 @@ class Statistics extends Component{
 
     componentWillMount() {
         this.DBAccess.getStatisticsForYear(2019).then((result)=>{
-            // console.log(result);
             let areaChartsResult = result.slice(0,4);
             let barChartResult = result.slice(4,6);
-            
-            // console.log(barChartResult);
-            // let barChartsParsedData = this.dataParser.parseDataForBarCharts(barChartResult);
-            // console.log(barChartsParsedData);
-
             let areaChartsParsedData = this.dataParser.parseDataForLineCharts(areaChartsResult);
-            // console.log(areaChartsParsedData);
             this.setState({
                 areaChartsData: areaChartsParsedData,
                 barChartsData: barChartResult
