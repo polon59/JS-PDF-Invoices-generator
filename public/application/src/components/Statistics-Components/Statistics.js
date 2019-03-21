@@ -49,8 +49,8 @@ class Statistics extends Component{
                     areaStrokeColor={"#0289ff"} 
                     linearGradientId="secondAreaChart"
                 />
-                <BarChartComponent chartsData={barChartsData[0]}/>
-                <BarChartComponent chartsData={barChartsData[1]}/>
+                <BarChartComponent chartsData={barChartsData[0]} barStrokeColor={"#ff11fb"}/>
+                <BarChartComponent chartsData={barChartsData[1]} barStrokeColor={"#fff311"}/>
             </div>
         )
     }
