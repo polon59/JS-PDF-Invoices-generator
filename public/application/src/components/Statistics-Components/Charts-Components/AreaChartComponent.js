@@ -6,7 +6,6 @@ class AreaChartComponent extends PureComponent{
 
     constructor(props){
         super();
-        this.DBAccess = props.DBAccess;
         this.cardinal = curveCardinal.tension(0.4);
         this.state = {
           currentChartData : props.chartsData[0]
@@ -21,7 +20,7 @@ class AreaChartComponent extends PureComponent{
 
       render() {
         const {currentChartData} = this.state;
-        const {areaStrokeColor, areaFillColor} = this.props
+        const {areaStrokeColor, areaFillColor, linearGradientId} = this.props
         
         return (
           <div className='bordered'>
@@ -39,7 +38,7 @@ class AreaChartComponent extends PureComponent{
                 }}
               >
               <defs>
-              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id={linearGradientId} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor={areaFillColor} stopOpacity={0.8}/>
                 <stop offset="95%" stopColor={areaFillColor} stopOpacity={0}/>
               </linearGradient>
@@ -48,11 +47,11 @@ class AreaChartComponent extends PureComponent{
                 <XAxis dataKey= {Object.keys(currentChartData[0])[0]}/>
                 <YAxis />
                 <Tooltip />
-                <Area type="monotone" dataKey={Object.keys(currentChartData[0])[1]} stroke={areaStrokeColor} fill="url(#colorUv)" fillOpacity={1} />
+                <Area type="monotone" dataKey={Object.keys(currentChartData[0])[1]} stroke={areaStrokeColor} fill={`url(#${linearGradientId})`} fillOpacity={1} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          </div>
+          </div> 
         );
       }
     
