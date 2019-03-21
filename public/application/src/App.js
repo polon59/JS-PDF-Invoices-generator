@@ -9,13 +9,15 @@ import Statistics from './components/Statistics-Components/Statistics';
 import ViewInvoice from './components/View-Invoice-Components/ViewInvoice';
 import DBAccess from './DBAcces/DBAcces';
 import Invoice from './model/invoice';
+import OfflineDAO from './DBAcces/offline-script/OfflineDAO';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 
 class App extends Component {
   
   constructor(){
     super();
-    this.DBAccess = new DBAccess();
+    this.DBAccess = new DBAccess(this);
+    this.offlineDAO = new OfflineDAO(this.DBAccess);
     this.state = {
       invoices : [],
       invoiceToEdit : "",
@@ -43,6 +45,12 @@ class App extends Component {
       invoiceToAdd.id = lastID;
       invoices.push(invoiceToAdd);
       this.updateLocalInvoicesList(invoices);
+    }).catch((err,temporaryId)=>{
+      let temporaryID = Math.random();
+      invoiceToAdd.id = temporaryID;
+      invoices.push(invoiceToAdd);
+      this.updateLocalInvoicesList(invoices);
+      this.offlineDAO.addDataToSave(invoiceToAdd,'add');
     });
   }
 
@@ -113,7 +121,9 @@ class App extends Component {
 
   saveChanges = () =>{
     const updatedInvoice = this.state.invoiceToEdit;
-    this.DBAccess.updateInvoice(updatedInvoice);
+    this.DBAccess.updateInvoice(updatedInvoice).catch(err =>{
+      this.offlineDAO.addDataToSave(updatedInvoice,'update');
+    });
   }
 
   updateLocalInvoicesList = (updatedList) =>{
@@ -128,7 +138,9 @@ class App extends Component {
       return invoice.id !== invoiceToDeleteId;
     });
     this.updateLocalInvoicesList(updatedInvoices);
-    this.DBAccess.deleteInvoiceFromDB(invoiceToDeleteId);
+    this.DBAccess.deleteInvoiceFromDB(invoiceToDeleteId).catch(err=>{
+      this.offlineDAO.addDataToSave(invoiceToDeleteId,'delete');
+    });
   }
 
   render() {
