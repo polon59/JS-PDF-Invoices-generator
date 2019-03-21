@@ -25,6 +25,12 @@ class App extends Component {
     this.initializeInvoices();
   }
 
+  // initialize(){
+  //   this.offlineDAO.sendSavedDataToDB.then(
+  //     this.DBAccess.getInvoicesFromDB
+  //   )
+  // }
+
   initializeInvoices = () =>{
     this.DBAccess.getInvoicesFromDB()
     .then(invoices => this.setState({

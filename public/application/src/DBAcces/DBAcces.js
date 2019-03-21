@@ -45,6 +45,7 @@ class DBAcces{
   }
 
   updateInvoice = (updatedInvoice) =>{
+    // fix updating temporary invoice after returned connection
     return fetch(`http://localhost:8000/myAccount/invoices/edit/${updatedInvoice.id}`, {
       method: "POST",
       headers: {
