@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AreaChartComponent from './Charts-Components/AreaChartComponent';
 import BarChartComponent from './Charts-Components/BarChartComponent';
 import StatisticsDataParser from './data-parser/DataParser';
+import WrongFetchData from './Wrong-Stats-Data-Components/WrongFetchData';
 
 class Statistics extends Component{
     constructor(props){
@@ -9,44 +10,88 @@ class Statistics extends Component{
         this.dataParser = new StatisticsDataParser();
         this.DBAccess = props.DBAccess;
         this.state = {
-            areaChartsData : null
+            areaChartsData : null,
+            barChartsData : null
         }
+    }
+
+    handleEmptyDataSetFetch = () =>{
+        this.setState({
+            areaChartsData: [],
+            barChartsData: []
+        });
+    }
+
+    handleFetchError = () =>{
+        this.setState({
+            areaChartsData: 'ERR',
+            barChartsData: 'ERR'
+        });
+    }
+
+    setDataFromFetch = (result) =>{
+        let areaChartsResult = result.slice(0,4);
+        let barChartResult = result.slice(4,6);
+        let areaChartsParsedData = this.dataParser.parseDataForLineCharts(areaChartsResult);
+        this.setState({
+            fetchData: result,
+            areaChartsData: areaChartsParsedData,
+            barChartsData: barChartResult
+        });
+    }
+
+    isDataStillLoading = () =>{
+        const {areaChartsData,barChartsData} = this.state;
+        if (!areaChartsData||!barChartsData) {
+            return true
+        }
+        return false
+    }
+
+    hasFetchErrorOcured = () =>{
+        const {areaChartsData,barChartsData} = this.state;
+        if (areaChartsData==='ERR' || barChartsData==='ERR') {
+            return true
+        }
+        return false
+    }
+
+    isFetchDataEmpty = (result) =>{
+        if (result[1]['Created invoices'].length===0 || result[0]['Done services'].length===0) {
+            return true
+        }
+        return false
     }
 
     componentWillMount() {
         this.DBAccess.getStatisticsForYear(2019)
         .then((result)=>{
-            let areaChartsResult = result.slice(0,4);
-            let barChartResult = result.slice(4,6);
-            let areaChartsParsedData = this.dataParser.parseDataForLineCharts(areaChartsResult);
-            this.setState({
-                areaChartsData: areaChartsParsedData,
-                barChartsData: barChartResult
-            });
+            console.log(result);
+            this.setDataFromFetch(result);
         })
         .catch(error=>{
-            this.setState({
-                areaChartsData: [],
-                barChartsData: []
-            });
+            this.handleFetchError();
         })
     }
     
     render(){
-        const {areaChartsData,barChartsData} = this.state;
+        const {areaChartsData,barChartsData,fetchData} = this.state;
        
-        if (!areaChartsData||!barChartsData) {
+        if (this.isDataStillLoading()) {
             return (
-                <div><h3>Loading data...</h3></div>
+                <WrongFetchData reason={'stillLoading'}/>
             )
         }
-        else if (areaChartsData.length === 0 || barChartsData === 0){
+        else if (this.hasFetchErrorOcured()){
             return (
-                <div><h3>Statistics cannot be displayed.</h3></div>
+                <WrongFetchData reason={'fetchError'}/>
             )
         }
-        let mlServices = barChartsData[0];
-        console.log(Object.keys(mlServices)[0])
+        else if (this.isFetchDataEmpty(fetchData)){
+            return (
+                <WrongFetchData reason={'empty'}/>
+            )
+        }
         return(
             <div>
                 <AreaChartComponent 
