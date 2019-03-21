@@ -4,6 +4,7 @@ import BarChartComponent from './Charts-Components/BarChartComponent';
 import StatisticsDataParser from './data-parser/DataParser';
 import WrongFetchData from './Wrong-Stats-Data-Components/WrongFetchData';
 
+// ADD parent component StatisticsSection with year selector which will render this ons
 class Statistics extends Component{
     constructor(props){
         super();
