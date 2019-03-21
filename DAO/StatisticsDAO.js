@@ -109,7 +109,7 @@ class StatisticsDAO{
 
     getFiveMostLucrativeServicesInYear(year){
         const sql = 
-        `SELECT description, ROUND(SUM(total),2) as service_income FROM services 
+        `SELECT description as service_name, ROUND(SUM(total),2) as service_income FROM services 
         JOIN invoices ON invoices.id = services.invoiceID
         WHERE YEAR(date) = ${year}
         GROUP BY description
@@ -118,7 +118,7 @@ class StatisticsDAO{
         return new Promise((resolve,reject)=>{
             this.getResultsFromDB(sql)
             .then((result)=>{
-                resolve({"Service income":result});
+                resolve({"Most lucrative Services":result});
             })
             .catch(err=>{
                 console.log(err.message);
@@ -138,7 +138,7 @@ class StatisticsDAO{
         return new Promise((resolve,reject)=>{
             this.getResultsFromDB(sql)
             .then((result)=>{
-                resolve({"Service income":result});
+                resolve({"Best customers":result});
             })
             .catch(err=>{
                 console.log(err.message);
