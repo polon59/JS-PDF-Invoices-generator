@@ -49,6 +49,12 @@ class OfflineDAO{
     }
 
     deleteInvoice = (invoiceToDeleteId) =>{
+        if (this.isInvoiceWithGivenIDIsInAddList(invoiceToDeleteId)) {
+            console.log(this.invoicesGeneratorOfflineData);
+            return;
+        }
+        console.log("POLAZŁEM DALEJ")
+        this.isInvoiceWithGivenIDIsInEditList(invoiceToDeleteId);
         this.invoicesGeneratorOfflineData['delete'].push(invoiceToDeleteId);
         console.log(this.invoicesGeneratorOfflineData);
         this.saveDataInLocalStorage();
@@ -63,6 +69,35 @@ class OfflineDAO{
         });
         console.log(this.invoicesGeneratorOfflineData);
         this.saveDataInLocalStorage();
+    }
+
+    isInvoiceWithGivenIDIsInEditList(invoiceToDeleteId){
+        let newDataList = this.invoicesGeneratorOfflineData.edit;
+        if (newDataList){
+            this.invoicesGeneratorOfflineData.edit.forEach((savedInvoice,i) => {
+                if (savedInvoice.id === invoiceToDeleteId){
+                    newDataList.splice(i,1);
+                    this.invoicesGeneratorOfflineData.edit = newDataList;
+                }
+            });
+        }
+    }
+
+    isInvoiceWithGivenIDIsInAddList = (invoiceToDeleteId)=>{
+        let newDataList = this.invoicesGeneratorOfflineData.add;
+        let idWasInList = false;
+        if (newDataList) {
+            this.invoicesGeneratorOfflineData.add.forEach((savedInvoice,i) => {
+                if (savedInvoice.id === invoiceToDeleteId){
+                    newDataList.splice(i,1);
+                    this.invoicesGeneratorOfflineData.add = newDataList;
+                    this.saveDataInLocalStorage();
+                    idWasInList = true;
+                }
+            });
+
+        }
+        return idWasInList;
     }
 }
 
