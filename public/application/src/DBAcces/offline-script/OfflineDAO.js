@@ -1,3 +1,5 @@
+const async=require('async');
+
 class OfflineDAO{
     
     constructor(DBAcces){
@@ -11,7 +13,7 @@ class OfflineDAO{
     }
 
     getInvoicesListSavedLocally(){
-        return this.invoicesGeneratorOfflineData.add;
+        return this.invoicesGeneratorOfflineData.add.concat(this.invoicesGeneratorOfflineData.update);
     }
 
     initializeDataToSave = () =>{
@@ -94,9 +96,57 @@ class OfflineDAO{
                     idWasInList = true;
                 }
             });
+        }return idWasInList;
+    }
 
-        }
-        return idWasInList;
+    sendInvoicesToAddToDB(){
+        const addList = this.invoicesGeneratorOfflineData['add']
+        return new Promise((resolve,reject)=>{
+            async.forEachOf(addList,(invoiceToAdd,key,callback)=>{
+                this.DBAcces.addInvoiceToDB(invoiceToAdd).then(()=>{
+                    callback();
+                })
+            },()=>{resolve();});
+        })
+    }
+
+    sendInvoicesToUpdateToDB(){
+        const editList = this.invoicesGeneratorOfflineData['update']
+        return new Promise((resolve,reject)=>{
+            async.forEachOf(editList,(updatedInvoice,key,callback)=>{
+                this.DBAcces.updateInvoice(updatedInvoice).then(()=>{
+                    callback();
+                })
+            },()=>{resolve();});
+        })
+    }
+
+    sendInvoicesToDeleteToDB(){
+        const deleteList = this.invoicesGeneratorOfflineData['delete']
+        return new Promise((resolve,reject)=>{
+            async.forEachOf(deleteList,(invoiceID,key,callback)=>{
+                this.DBAcces.deleteInvoiceFromDB(invoiceID).then(()=>{
+                    callback();
+                })
+            },()=>{resolve();});
+        })
+    }
+
+
+    sendStoredDataToDB(){
+        return new Promise((resolve,reject)=>{
+            Promise.all(
+                [this.sendInvoicesToAddToDB(),
+                this.sendInvoicesToUpdateToDB(),
+                this.sendInvoicesToDeleteToDB()])
+            .then(()=> {
+                localStorage.removeItem("invoicesGeneratorOfflineData");
+                resolve();
+            })
+            .catch(err=>{
+                reject(new Error(err.message));
+            })
+        })
     }
 }
 
