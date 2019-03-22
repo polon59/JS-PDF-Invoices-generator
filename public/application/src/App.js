@@ -32,10 +32,16 @@ class App extends Component {
   // }
 
   initializeInvoices = () =>{
-    this.DBAccess.getInvoicesFromDB()
-    .then(invoices => this.setState({
+    this.DBAccess.getInvoicesFromDB().then(invoices => 
+      this.setState({
       invoices : invoices
-    }));
+    })).catch(err=>{
+      alert("You are in offline mode Invoices loaded from LS");
+      let invoices = this.offlineDAO.getInvoicesListSavedLocally();
+      this.setState({
+        invoices : invoices
+      });
+    })
   }
 
   createNewInvoice = () =>{
@@ -49,17 +55,10 @@ class App extends Component {
     let invoices = this.state.invoices;
     this.DBAccess.addInvoiceToDB(invoiceToAdd).then(lastID => {
       invoiceToAdd.id = lastID;
-      console.log("FIRST THEN");
-      // console.log(invoiceToAdd.id)
-      // invoices.push(invoiceToAdd);
-      // this.updateLocalInvoicesList(invoices);;
     }).catch(err =>{
       this.offlineDAO.addDataToSave(invoiceToAdd,'add');
       invoiceToAdd.isOffline = true;
       console.log("CATCH");
-      // invoices.push(invoiceToAdd);
-      // console.log(invoiceToAdd.id)
-      // this.updateLocalInvoicesList(invoices);
     }).then(()=>{
       console.log("SECOND THEN");
       invoices.push(invoiceToAdd);
