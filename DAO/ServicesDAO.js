@@ -66,16 +66,23 @@ class ServicesDAO{
     }
 
     addNewInvoiceServices(services,assignedID){
-        console.log("[SQL INFO] added New Invoice Services SERVICES:")
-        console.log(services);
         const sql = this.prepareInsertQuery(services,assignedID);
         return new Promise((resolve,reject)=>{
-            this.connection.query(sql, (err)=> {
-                if (err){
-                    reject(new Error(err.message));
-                }else{resolve();}
-            });
+            if (services.length>0){
+                this.connection.query(sql, (err)=> {
+                    if (err){reject(new Error(err.message));}
+                    else{
+                        console.log("[SQL INFO] added New Invoice Services SERVICES:")
+                        console.log(services);
+                        resolve();
+                    }
+                });
+            }else{
+                console.log("[SQL INFO] Invoice has no active services. Rejecting")
+                resolve();
+            }
         });
+        
     }
 }
 
