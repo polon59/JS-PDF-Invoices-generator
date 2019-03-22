@@ -32,16 +32,25 @@ class App extends Component {
   // }
 
   initializeInvoices = () =>{
-    this.DBAccess.getInvoicesFromDB().then(invoices => 
-      this.setState({
-      invoices : invoices
-    })).catch(err=>{
-      alert("You are in offline mode Invoices loaded from LS");
-      let invoices = this.offlineDAO.getInvoicesListSavedLocally();
-      this.setState({
-        invoices : invoices
-      });
-    })
+    // change first to checkConnection()
+        this.DBAccess.getInvoicesFromDB()
+        .then(invoices=>{
+          this.offlineDAO.sendStoredDataToDB()
+          .then(()=>{
+            this.DBAccess.getInvoicesFromDB()
+            .then(invoices=>
+              {this.updateLocalInvoicesList(invoices)})
+          })
+        })
+        .catch(err=>{
+          this.getInvoicesFromLocalStorage();
+        })
+  }
+
+  getInvoicesFromLocalStorage = () =>{
+    alert("You are in offline mode Invoices loaded from LS");
+    let localInvoices = this.offlineDAO.getInvoicesListSavedLocally();
+    this.updateLocalInvoicesList(localInvoices);
   }
 
   createNewInvoice = () =>{
