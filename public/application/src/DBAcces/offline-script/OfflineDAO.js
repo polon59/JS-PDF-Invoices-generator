@@ -35,12 +35,14 @@ class OfflineDAO{
     }
 
     addNewInvoice = (invoiceToAdd) =>{
+        if (invoiceToAdd.isOffline){this.replaceInvoiceToAdd(invoiceToAdd);return}
         this.invoicesGeneratorOfflineData['add'].push(invoiceToAdd);
         console.log(this.invoicesGeneratorOfflineData);
         this.saveDataInLocalStorage();
     }
 
     updateInvoice = (updatedInvoice) =>{
+        if (updatedInvoice.isOffline){this.replaceInvoiceToAdd(updatedInvoice);return}
         this.invoicesGeneratorOfflineData['update'].push(updatedInvoice);
         console.log(this.invoicesGeneratorOfflineData);
         this.saveDataInLocalStorage();
@@ -48,6 +50,17 @@ class OfflineDAO{
 
     deleteInvoice = (invoiceToDeleteId) =>{
         this.invoicesGeneratorOfflineData['delete'].push(invoiceToDeleteId);
+        console.log(this.invoicesGeneratorOfflineData);
+        this.saveDataInLocalStorage();
+    }
+
+    replaceInvoiceToAdd = (newInvoice) =>{
+        console.log("replacing in LS list");
+        this.invoicesGeneratorOfflineData.add.forEach(savedInvoice => {
+            if (savedInvoice.id === newInvoice.id){
+                savedInvoice = newInvoice;
+            }
+        });
         console.log(this.invoicesGeneratorOfflineData);
         this.saveDataInLocalStorage();
     }
