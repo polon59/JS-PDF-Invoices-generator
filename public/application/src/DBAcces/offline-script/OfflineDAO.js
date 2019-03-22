@@ -10,6 +10,10 @@ class OfflineDAO{
         // }
     }
 
+    getInvoicesListSavedLocally(){
+        return this.invoicesGeneratorOfflineData.add;
+    }
+
     initializeDataToSave = () =>{
         if (!localStorage.getItem('invoicesGeneratorOfflineData')){
             return {add:[], update:[], delete:[]}
@@ -49,11 +53,7 @@ class OfflineDAO{
     }
 
     deleteInvoice = (invoiceToDeleteId) =>{
-        if (this.isInvoiceWithGivenIDIsInAddList(invoiceToDeleteId)) {
-            console.log(this.invoicesGeneratorOfflineData);
-            return;
-        }
-        console.log("POLAZŁEM DALEJ")
+        if (this.isInvoiceWithGivenIDIsInAddList(invoiceToDeleteId)) {return;}
         this.isInvoiceWithGivenIDIsInEditList(invoiceToDeleteId);
         this.invoicesGeneratorOfflineData['delete'].push(invoiceToDeleteId);
         console.log(this.invoicesGeneratorOfflineData);
@@ -61,7 +61,6 @@ class OfflineDAO{
     }
 
     replaceInvoiceToAdd = (newInvoice) =>{
-        console.log("replacing in LS list");
         this.invoicesGeneratorOfflineData.add.forEach(savedInvoice => {
             if (savedInvoice.id === newInvoice.id){
                 savedInvoice = newInvoice;

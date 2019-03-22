@@ -15,9 +15,7 @@ class DBAcces{
     .then(response => response.json())
     .then(data => {return data;})
     .catch(error => {
-
-      alert("Warning: You are in offline mode, Your invoices cannot be loaded");
-      return [];
+      throw new Error(error.message);
     });
   }
 
