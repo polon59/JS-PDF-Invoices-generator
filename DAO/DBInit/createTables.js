@@ -40,7 +40,7 @@ function createInvoicesTable(){
         id SERIAL PRIMARY KEY,
         title TEXT,
         invDate DATE,
-        billTo TEXT,
+        billTo CHARACTER SET UTF8 COLLATE UTF8_UNICODE_CI,
         billFrom TEXT,
         subTotal FLOAT,
         salesTax FLOAT,
