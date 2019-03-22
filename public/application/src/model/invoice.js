@@ -1,6 +1,7 @@
 class Invoice{
 
     constructor(){
+        this.isOffline = false;
         this.id = Math.random();
         this.title = "";
         this.date = "2017-01-01";
