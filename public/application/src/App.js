@@ -49,14 +49,21 @@ class App extends Component {
     let invoices = this.state.invoices;
     this.DBAccess.addInvoiceToDB(invoiceToAdd).then(lastID => {
       invoiceToAdd.id = lastID;
-      invoices.push(invoiceToAdd);
-      this.updateLocalInvoicesList(invoices);
-    }).catch((err,temporaryId)=>{
-      let temporaryID = Math.random();
-      invoiceToAdd.id = temporaryID;
-      invoices.push(invoiceToAdd);
-      this.updateLocalInvoicesList(invoices);
+      console.log("FIRST THEN");
+      // console.log(invoiceToAdd.id)
+      // invoices.push(invoiceToAdd);
+      // this.updateLocalInvoicesList(invoices);;
+    }).catch(err =>{
       this.offlineDAO.addDataToSave(invoiceToAdd,'add');
+      invoiceToAdd.isOffline = true;
+      console.log("CATCH");
+      // invoices.push(invoiceToAdd);
+      // console.log(invoiceToAdd.id)
+      // this.updateLocalInvoicesList(invoices);
+    }).then(()=>{
+      console.log("SECOND THEN");
+      invoices.push(invoiceToAdd);
+      this.updateLocalInvoicesList(invoices);
     });
   }
 
