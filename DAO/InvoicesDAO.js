@@ -8,23 +8,16 @@ class InvoicesDAO{
     }
 
     deleteInvoice(id){
-        const sql = `DELETE FROM invoices WHERE id = ${id}`;
-        this.connection.query(sql, (err, result)=>{                                                
-            if(err){
-                throw err;
-                return;
-            }
+        this.connection.query(`DELETE FROM invoices WHERE id = ${id}`, (err, result)=>{                                               
+            if(err){throw err;}
             console.log(`[SQL INFO] deleted record from INVOICES table (ID:${id})`);
         });
     }
 
     getRecordsFromInvoices(){
         return new Promise((resolve,reject)=>{
-            this.connection.query("SELECT * FROM invoices", (err, result)=>{                                                
-                if(err){
-                    reject(new Error(err.message));
-                    return;
-                }
+            this.connection.query("SELECT * FROM invoices", (err, result)=>{                                            
+                if(err){reject(err);}
                 resolve(result);
                 console.log("[SQL INFO] returned all records from INVOICES table");
             });
@@ -33,7 +26,8 @@ class InvoicesDAO{
 
     getAllInvoices(){
         return new Promise((resolve, reject)=>{
-            this.getRecordsFromInvoices().then((invoices)=>{
+            this.getRecordsFromInvoices()
+            .then((invoices)=>{
                 this.servicesDAO.assignServicesToInvoices(invoices)
                 .then((invoices)=>{
                     resolve(invoices);
@@ -46,41 +40,41 @@ class InvoicesDAO{
         });
     }
 
-    prepareInsertQuery(request){
-        const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,totalDue} = request.body;
-        return `INSERT INTO invoices (title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
-            VALUES ("${title}", '${date}', "${billTo}", "${billFrom}", ${subTotal}, ${salesTax}, ${salesTaxVal}, ${totalDue});`;
-    }
-
     addNewInvoice(request){
-        const insertSQL = this.prepareInsertQuery(request);
         return new Promise((resolve,reject)=>{
+            const insertSQL = this.prepareInsertQuery(request);
             this.connection.query(insertSQL, (err,result)=> {
-                if (err){reject(new Error(err.message));return;}
-                const assignedId = result.insertId;
-                const {services} = request.body;
-                if (services.length > 0) {
-                    this.servicesDAO.addNewInvoiceServices(services,assignedId).then(() =>{
-                        resolve(assignedId);
-                    })
-                } else {resolve(assignedId);}
-                console.log(`[SQL INFO] inserted new record to INVOICES table (NEW ID:${assignedId})`);
+                if (err){reject(err);}
+                else{
+                    const {services} = request.body;
+                    this.servicesDAO.addNewInvoiceServices(services,result.insertId)
+                    .then(() =>{
+                        resolve(result.insertId);
+                    }) 
+                }
+                console.log(`[SQL INFO] inserted new record to INVOICES table (NEW ID:${result.insertId})`);
             });
         });
     }
 
     updateInvoice(request){
         const {id,services} = request.body;
-        this.servicesDAO.deleteAllInvoiceServices(id).then(()=>{
-            this.servicesDAO.addNewInvoiceServices(services,id).then(()=>{
-                this.updateExistingInvoice(request).then(()=>{
+        this.servicesDAO.deleteAllInvoiceServices(id)
+        .then(()=>{
+            this.servicesDAO.addNewInvoiceServices(services,id)
+            .then(()=>{
+                this.updateExistingInvoice(request)
+                .then(()=>{
                     console.log(`[SQL INFO] updated properties of invoice (ID:${id})`);
                 });
             })
-            .catch(err =>{
-                console.log(err.message);
-            })
         })
+    }
+
+    prepareInsertQuery(request){
+        const {id,title,date,billFrom,billTo,subTotal,salesTax,salesTaxVal,totalDue} = request.body;
+        return `INSERT INTO invoices (title, date, billTo, billFrom, subTotal, salesTax, salesTaxVal, totalDue)
+        VALUES ("${title}", '${date}', "${billTo}", "${billFrom}", ${subTotal}, ${salesTax}, ${salesTaxVal}, ${totalDue});`;
     }
 
     prepareUpdateQuery(request){
@@ -94,7 +88,7 @@ class InvoicesDAO{
         return new Promise((resolve,reject)=>{
             this.connection.query(updateSQL, (err)=> {
                 if (err){
-                    reject(new Error(err.message));
+                    reject(err);
                     return;
                 }
                 resolve();
