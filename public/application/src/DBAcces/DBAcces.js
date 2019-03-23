@@ -64,7 +64,7 @@ class DBAcces{
   }
 
   getStatisticsForYear = (year) =>{
-    return fetch(`http://localhost:8000/myAccount/statistics/${year}`,{
+    return fetch(`http://localhost:8000/myAccount/statistics/getFor/${year}`,{
       method: "GET",
       headers: {
         'Accept': 'application/json',
