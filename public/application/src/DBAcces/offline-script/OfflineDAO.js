@@ -5,14 +5,9 @@ class OfflineDAO{
     constructor(DBAcces){
         this.DBAcces = DBAcces;
         this.invoicesGeneratorOfflineData = this.initializeDataToSave();
-        // this.invoicesGeneratorOfflineData = {
-        //     add:[],
-        //     update:[],
-        //     delete:[]
-        // }
     }
 
-    getInvoicesListSavedLocally(){
+    getInvoicesListSavedLocally = () =>{
         return this.invoicesGeneratorOfflineData.add.concat(this.invoicesGeneratorOfflineData.update);
     }
 
@@ -20,20 +15,7 @@ class OfflineDAO{
         if (!localStorage.getItem('invoicesGeneratorOfflineData')){
             return {add:[], update:[], delete:[]}
         }
-
         return JSON.parse(localStorage.getItem('invoicesGeneratorOfflineData'));
-    }
-
-    addDataToSave = (data,method)=>{
-        if (method === 'add') {
-            this.addNewInvoice(data);
-        } 
-        else if (method === 'update') {
-            this.updateInvoice(data);
-        }
-        else{
-            this.deleteInvoice(data);
-        }
     }
 
     saveDataInLocalStorage = () =>{
@@ -43,14 +25,12 @@ class OfflineDAO{
     addNewInvoice = (invoiceToAdd) =>{
         if (invoiceToAdd.isOffline){this.replaceInvoiceToAdd(invoiceToAdd);return}
         this.invoicesGeneratorOfflineData['add'].push(invoiceToAdd);
-        console.log(this.invoicesGeneratorOfflineData);
         this.saveDataInLocalStorage();
     }
 
     updateInvoice = (updatedInvoice) =>{
         if (updatedInvoice.isOffline){this.replaceInvoiceToAdd(updatedInvoice);return}
         this.invoicesGeneratorOfflineData['update'].push(updatedInvoice);
-        console.log(this.invoicesGeneratorOfflineData);
         this.saveDataInLocalStorage();
     }
 
@@ -58,7 +38,6 @@ class OfflineDAO{
         if (this.isInvoiceWithGivenIDIsInAddList(invoiceToDeleteId)) {return;}
         this.isInvoiceWithGivenIDIsInEditList(invoiceToDeleteId);
         this.invoicesGeneratorOfflineData['delete'].push(invoiceToDeleteId);
-        console.log(this.invoicesGeneratorOfflineData);
         this.saveDataInLocalStorage();
     }
 
@@ -68,11 +47,10 @@ class OfflineDAO{
                 savedInvoice = newInvoice;
             }
         });
-        console.log(this.invoicesGeneratorOfflineData);
         this.saveDataInLocalStorage();
     }
 
-    isInvoiceWithGivenIDIsInEditList(invoiceToDeleteId){
+    isInvoiceWithGivenIDIsInEditList = (invoiceToDeleteId) => {
         let newDataList = this.invoicesGeneratorOfflineData.edit;
         if (newDataList){
             this.invoicesGeneratorOfflineData.edit.forEach((savedInvoice,i) => {
@@ -84,7 +62,7 @@ class OfflineDAO{
         }
     }
 
-    isInvoiceWithGivenIDIsInAddList = (invoiceToDeleteId)=>{
+    isInvoiceWithGivenIDIsInAddList = (invoiceToDeleteId) =>{
         let newDataList = this.invoicesGeneratorOfflineData.add;
         let idWasInList = false;
         if (newDataList) {
@@ -99,7 +77,7 @@ class OfflineDAO{
         }return idWasInList;
     }
 
-    sendInvoicesToAddToDB(){
+    sendInvoicesToAddToDB = () =>{
         const addList = this.invoicesGeneratorOfflineData['add']
         return new Promise((resolve,reject)=>{
             async.forEachOf(addList,(invoiceToAdd,key,callback)=>{
@@ -110,7 +88,7 @@ class OfflineDAO{
         })
     }
 
-    sendInvoicesToUpdateToDB(){
+    sendInvoicesToUpdateToDB = () =>{
         const editList = this.invoicesGeneratorOfflineData['update']
         return new Promise((resolve,reject)=>{
             async.forEachOf(editList,(updatedInvoice,key,callback)=>{
@@ -121,7 +99,7 @@ class OfflineDAO{
         })
     }
 
-    sendInvoicesToDeleteToDB(){
+    sendInvoicesToDeleteToDB = () =>{
         const deleteList = this.invoicesGeneratorOfflineData['delete']
         return new Promise((resolve,reject)=>{
             async.forEachOf(deleteList,(invoiceID,key,callback)=>{
@@ -133,7 +111,7 @@ class OfflineDAO{
     }
 
 
-    sendStoredDataToDB(){
+    sendStoredDataToDB = () =>{
         return new Promise((resolve,reject)=>{
             Promise.all(
                 [this.sendInvoicesToAddToDB(),
@@ -148,6 +126,19 @@ class OfflineDAO{
             })
         })
     }
+
+    addDataToSave = (data,method)=>{
+        if (method === 'add') {
+            this.addNewInvoice(data);
+        } 
+        else if (method === 'update') {
+            this.updateInvoice(data);
+        }
+        else{
+            this.deleteInvoice(data);
+        }
+    }
+
 }
 
 export default OfflineDAO;
