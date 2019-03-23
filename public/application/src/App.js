@@ -5,7 +5,7 @@ import InvoicesList from './components/Invoices-List-Components/InvoicesList';
 import AddInvoice from './components/Add-Invoice-Components/AddInvoice';
 import EditInvoice from './components/Edit-Invoice-Components/EditInvoice';
 import MyAccount from './components/My-Account-Components/MyAccount';
-import Statistics from './components/Statistics-Components/Statistics';
+import StatisticsPanel from './components/Statistics-Components/StatisticsPanel';
 import ViewInvoice from './components/View-Invoice-Components/ViewInvoice';
 import DBAccess from './DBAcces/DBAcces';
 import Invoice from './model/invoice';
@@ -158,7 +158,7 @@ class App extends Component {
           <Route 
             path="/statistics"
             render={(props) => 
-              <Statistics 
+              <StatisticsPanel 
                 DBAccess={this.DBAccess} 
               />}
           />
