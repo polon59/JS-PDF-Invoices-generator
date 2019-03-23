@@ -16,9 +16,9 @@ class ServicesDAO{
 
     deleteAllInvoiceServices(invoiceID){
         return new Promise((resolve,reject)=>{
-            this.connection.query(`DELETE FROM services WHERE invoiceID=${invoiceID};`, (err)=> {
-                if (err)reject(new Error(err.message));
-                else{resolve();}
+        this.connection.query(`DELETE FROM services WHERE invoiceID=${invoiceID};`, (err)=> {
+            if (err)reject(err);
+            else{resolve();}
             });
         });
     }
@@ -53,23 +53,18 @@ class ServicesDAO{
     }
 
     addNewInvoiceServices(services,assignedID){
-        const sql = this.prepareInsertQuery(services,assignedID);
         return new Promise((resolve,reject)=>{
-            if (services.length>0){
-                this.connection.query(sql, (err)=> {
-                    if (err){reject(new Error(err.message));}
-                    else{
-                        console.log("[SQL INFO] added New Invoice Services SERVICES:")
-                        console.log(services);
-                        resolve();
-                    }
-                });
-            }else{
-                console.log("[SQL INFO] Invoice has no active services. Rejecting")
-                resolve();
-            }
-        });
-        
+        if (services.length > 0){
+            const sql = this.prepareInsertQuery(services,assignedID);
+            this.connection.query(sql, (err)=> {
+                if (err){reject(err);}
+                else{
+                    console.log(services);
+                    resolve();
+                }
+            });
+        }else{resolve()}
+        });  
     }
 }
 
