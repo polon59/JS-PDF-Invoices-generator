@@ -17,6 +17,16 @@ class StatisticsDAO{
         })
     }
 
+    getAvailableStatisticsYears(){
+        return new Promise((resolve,reject)=>{
+            const sql =`SELECT DISTINCT YEAR(date) as year FROM invoices ORDER BY year DESC;`;
+            this.getResultsFromDB(sql).then(result=>{
+                resolve(result)
+            }).catch(err=>{reject(err)})
+        })
+        
+    }
+
     getAllStatistics(year){
         return new Promise((resolve,reject)=>{
             Promise.all(
