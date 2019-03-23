@@ -6,6 +6,7 @@ import WrongFetchData from './Wrong-Stats-Data-Components/WrongFetchData';
 
 // ADD parent component StatisticsSection with year selector which will render this ons
 class Statistics extends Component{
+    
     constructor(props){
         super();
         this.dataParser = new StatisticsDataParser();
@@ -31,9 +32,8 @@ class Statistics extends Component{
     }
 
     setDataFromFetch = (result) =>{
-        let areaChartsResult = result.slice(0,4);
         let barChartResult = result.slice(4,6);
-        let areaChartsParsedData = this.dataParser.parseDataForLineCharts(areaChartsResult);
+        let areaChartsResult = this.dataParser.parseDataForLineCharts(result.slice(0,4));
         this.setState({
             fetchData: result,
             areaChartsData: areaChartsParsedData,
@@ -43,18 +43,14 @@ class Statistics extends Component{
 
     isDataStillLoading = () =>{
         const {areaChartsData,barChartsData} = this.state;
-        if (!areaChartsData||!barChartsData) {
-            return true
-        }
-        return false
+        if (!areaChartsData || !barChartsData) {return true}
+        return false;
     }
 
     hasFetchErrorOcured = () =>{
         const {areaChartsData,barChartsData} = this.state;
-        if (areaChartsData==='ERR' || barChartsData==='ERR') {
-            return true
-        }
-        return false
+        if (areaChartsData === 'ERR' || barChartsData === 'ERR') {return true;}
+        return false;
     }
 
     isFetchDataEmpty = (result) =>{
@@ -66,13 +62,8 @@ class Statistics extends Component{
 
     componentWillMount() {
         this.DBAccess.getStatisticsForYear(2019)
-        .then((result)=>{
-            console.log(result);
-            this.setDataFromFetch(result);
-        })
-        .catch(error=>{
-            this.handleFetchError();
-        })
+        .then((result)=>{this.setDataFromFetch(result);})
+        .catch(error=>{this.handleFetchError();})
     }
     
     render(){
