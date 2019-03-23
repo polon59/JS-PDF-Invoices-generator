@@ -13,7 +13,8 @@ class Statistics extends Component{
         this.DBAccess = props.DBAccess;
         this.state = {
             areaChartsData : null,
-            barChartsData : null
+            barChartsData : null,
+            year : props.year
         }
     }
 
@@ -37,7 +38,7 @@ class Statistics extends Component{
         this.setState({
             fetchData: result,
             areaChartsData: areaChartsResult,
-            barChartsData: barChartResult
+            barChartsData: barChartResult,
         });
     }
 
@@ -61,14 +62,16 @@ class Statistics extends Component{
     }
 
     componentWillMount() {
-        this.DBAccess.getStatisticsForYear(2019)
+        const {year} = this.state;
+        this.DBAccess.getStatisticsForYear(year)
         .then((result)=>{this.setDataFromFetch(result);})
         .catch(error=>{this.handleFetchError();})
     }
+
     
     render(){
         const {areaChartsData,barChartsData,fetchData} = this.state;
-       
+
         if (this.isDataStillLoading()) {
             return (
                 <WrongFetchData reason={'stillLoading'}/>
