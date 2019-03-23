@@ -10,6 +10,7 @@ import ViewInvoice from './components/View-Invoice-Components/ViewInvoice';
 import DBAccess from './DBAcces/DBAcces';
 import Invoice from './model/invoice';
 import OfflineDAO from './DBAcces/offline-script/OfflineDAO';
+import InvoiceCalculations from './model/invoiceCalculations';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 
 class App extends Component {
@@ -18,18 +19,13 @@ class App extends Component {
     super();
     this.DBAccess = new DBAccess(this);
     this.offlineDAO = new OfflineDAO(this.DBAccess);
+    this.invoiceCalculator = new InvoiceCalculations();
     this.state = {
       invoices : [],
       invoiceToEdit : "",
     }
     this.initializeInvoices();
   }
-
-  // initialize(){
-  //   this.offlineDAO.sendSavedDataToDB.then(
-  //     this.DBAccess.getInvoicesFromDB
-  //   )
-  // }
 
   initializeInvoices = () =>{
     // change first to checkConnection()
@@ -67,9 +63,7 @@ class App extends Component {
     }).catch(err =>{
       this.offlineDAO.addDataToSave(invoiceToAdd,'add');
       invoiceToAdd.isOffline = true;
-      console.log("CATCH");
     }).then(()=>{
-      console.log("SECOND THEN");
       invoices.push(invoiceToAdd);
       this.updateLocalInvoicesList(invoices);
     });
@@ -93,15 +87,8 @@ class App extends Component {
 
   calculateSubTotal = () =>{
     let invoiceToEdit = this.state.invoiceToEdit;
-    let subTotal = 0;
-    invoiceToEdit.services.forEach(service =>{
-      subTotal += service.unitPrice * service.quantity;
-    });
-    const salesTaxVal = subTotal*invoiceToEdit.salesTax/100;
-    invoiceToEdit.subTotal = subTotal;
-    invoiceToEdit.salesTaxVal = salesTaxVal;
-    invoiceToEdit.totalDue = salesTaxVal + subTotal;
-    this.saveEditedInvoice(invoiceToEdit);
+    let updatedInvoiceToEdit = this.invoiceCalculator.calculateSubTotal(invoiceToEdit)
+    this.saveEditedInvoice(updatedInvoiceToEdit);
   }
 
   changeInvoiceToEdit = (e) =>{
@@ -117,11 +104,8 @@ class App extends Component {
 
   handleSalesTaxChange = (newSalesTax) =>{
     let invoiceToEdit = this.state.invoiceToEdit;
-    const {subTotal} = invoiceToEdit;
-    const newSalesTaxVal = subTotal*newSalesTax/100;
-    invoiceToEdit.salesTaxVal = newSalesTaxVal;
-    invoiceToEdit.totalDue = subTotal + newSalesTaxVal;
-    this.saveEditedInvoice(invoiceToEdit);
+    let updatedInvoiceToEdit = this.invoiceCalculator.calculateChangedTax(invoiceToEdit,newSalesTax)
+    this.saveEditedInvoice(updatedInvoiceToEdit);
   }
 
   saveEditedInvoice = (editedInvoice) =>{
