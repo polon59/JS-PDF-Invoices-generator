@@ -7,27 +7,16 @@ class ServicesDAO{
     }
     
     prepareInsertQuery(services,invoiceID){
-        const servicesNumber = services.length;
-        const queryBegin = "INSERT INTO services (invoiceID, description, quantity, unitPrice, total) VALUES";
-        const queryValues = this.prepareQueryInsertValues(services,invoiceID,servicesNumber);
-        const fullQuery = queryBegin + queryValues;
-        return fullQuery;
-    }
-
-    prepareQueryInsertValues(services,invoiceID,servicesNumber){
         const queryValues = services.map((service,i) =>{
             const {id,description,quantity,unitPrice,total} = service;
-            let queryValue = `(${invoiceID}, '${description}', ${quantity}, ${unitPrice}, ${total})`;
-            if (servicesNumber === i + 1) queryValue += ";";
-            return queryValue;
+            return `(${invoiceID}, '${description}', ${quantity}, ${unitPrice}, ${total})`;
         });
-        return queryValues;
+        return `INSERT INTO services (invoiceID, description, quantity, unitPrice, total) VALUES ${queryValues};`;
     }
 
     deleteAllInvoiceServices(invoiceID){
         return new Promise((resolve,reject)=>{
-            const sql = `DELETE FROM services WHERE invoiceID=${invoiceID};`;
-            this.connection.query(sql, (err)=> {
+            this.connection.query(`DELETE FROM services WHERE invoiceID=${invoiceID};`, (err)=> {
                 if (err)reject(new Error(err.message));
                 else{resolve();}
             });
@@ -40,8 +29,7 @@ class ServicesDAO{
         let month = date.getMonth()+1;
         if (month <10){month = `0${month}`;}
         let year = date.getFullYear();
-        let adjustedDate = `${year}-${month}-${day}`;
-        return adjustedDate;
+        return`${year}-${month}-${day}`;
     }
 
     assignServicesToInvoices(invoices){
@@ -53,11 +41,10 @@ class ServicesDAO{
     }
 
     assignServicesToInvoice(invoice, callback){
-        const sql = `SELECT * FROM services WHERE invoiceID=${invoice.id}`;
-        this.connection.query(sql, (err,result)=> {
-            if (err){reject(new Error(err.message));}
+        this.connection.query(`SELECT * FROM services WHERE invoiceID=${invoice.id}`, (err,result)=> {
+            if (err){throw err;}
             else{
-                invoice["services"] = result;
+                invoice.services = result;
                 let date = invoice.date;
                 invoice.date = this.adjustDate(date);
             }

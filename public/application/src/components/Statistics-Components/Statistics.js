@@ -6,7 +6,7 @@ import WrongFetchData from './Wrong-Stats-Data-Components/WrongFetchData';
 
 // ADD parent component StatisticsSection with year selector which will render this ons
 class Statistics extends Component{
-    
+
     constructor(props){
         super();
         this.dataParser = new StatisticsDataParser();
@@ -36,7 +36,7 @@ class Statistics extends Component{
         let areaChartsResult = this.dataParser.parseDataForLineCharts(result.slice(0,4));
         this.setState({
             fetchData: result,
-            areaChartsData: areaChartsParsedData,
+            areaChartsData: areaChartsResult,
             barChartsData: barChartResult
         });
     }
