@@ -61,11 +61,30 @@ class Statistics extends Component{
         return false
     }
 
-    componentWillMount() {
-        const {year} = this.state;
+    fetchStatisticsData = (year) =>{
         this.DBAccess.getStatisticsForYear(year)
         .then((result)=>{this.setDataFromFetch(result);})
         .catch(error=>{this.handleFetchError();})
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.year !== this.state.year) {
+          this.setState({
+            year: nextProps.year,
+          });
+          this.fetchStatisticsData(nextProps.year);
+        //   this.DBAccess.getStatisticsForYear(nextProps.year)
+        //   .then((result)=>{this.setDataFromFetch(result);})
+        //   .catch(error=>{this.handleFetchError();})
+        }
+        }
+
+    componentWillMount() {
+        const {year} = this.props;
+        this.fetchStatisticsData(year);
+        // this.DBAccess.getStatisticsForYear(year)
+        // .then((result)=>{this.setDataFromFetch(result);})
+        // .catch(error=>{this.handleFetchError();})
     }
 
     
@@ -89,14 +108,16 @@ class Statistics extends Component{
         }
         return(
             <div>
-                <h3>{this.state.year}</h3>
+                <h3>{this.props.year}</h3>
                 <AreaChartComponent 
+                    year={this.props.year}
                     chartsData={[areaChartsData[0],areaChartsData[1]]} 
                     areaFillColor={"#0734ff"} 
                     areaStrokeColor={"#0734ff"} 
                     linearGradientId="firstAreaChart"
                 />
                 <AreaChartComponent 
+                    year={this.props.year}
                     chartsData={[areaChartsData[2],areaChartsData[3]]} 
                     areaFillColor={"#0289ff"} 
                     areaStrokeColor={"#0289ff"} 
