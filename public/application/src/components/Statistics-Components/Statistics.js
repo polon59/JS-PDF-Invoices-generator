@@ -95,14 +95,14 @@ class Statistics extends Component{
         }
         else if (this.isFetchDataEmpty(fetchData)){
             return (
-                <WrongFetchData reason={'empty'}/>
+                <WrongFetchData reason={'noServices'}/>
             )
         }
         return(
             <div>
-                <h3>{this.props.year}</h3>
                 <AreaChartComponent 
                     year={this.props.year}
+                    chartTitle="Performance in"
                     chartsData={[areaChartsData[0],areaChartsData[1]]} 
                     areaFillColor={"#0734ff"} 
                     areaStrokeColor={"#0734ff"} 
@@ -110,13 +110,22 @@ class Statistics extends Component{
                 />
                 <AreaChartComponent 
                     year={this.props.year}
+                    chartTitle="Income in"
                     chartsData={[areaChartsData[2],areaChartsData[3]]} 
                     areaFillColor={"#0289ff"} 
                     areaStrokeColor={"#0289ff"} 
                     linearGradientId="secondAreaChart"
                 />
-                <BarChartComponent chartsData={barChartsData[0]} barStrokeColor={"#ff11fb"}/>
-                <BarChartComponent chartsData={barChartsData[1]} barStrokeColor={"#fff311"}/>
+                <BarChartComponent 
+                    chartTitle={`Most lucrative services in ${this.props.year}`}
+                    chartsData={barChartsData[0]} 
+                    barStrokeColor={"#ff11fb"}
+                />
+                <BarChartComponent 
+                    chartTitle={`Best customers in ${this.props.year}`}
+                    chartsData={barChartsData[1]} 
+                    barStrokeColor={"#fff311"}
+                />
             </div>
         )
     }
