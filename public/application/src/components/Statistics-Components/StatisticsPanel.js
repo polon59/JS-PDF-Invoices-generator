@@ -60,7 +60,6 @@ class StatisticsPanel extends Component{
             }
             return(
                 <div>
-                    <h3>HEADER FROM PANEL</h3>
                     <h3>Selected year {this.state.year}</h3>
                     <DialogSelect 
                         options={this.prepareYearsList()} 

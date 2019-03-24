@@ -4,7 +4,6 @@ import BarChartComponent from './Charts-Components/BarChartComponent';
 import StatisticsDataParser from './data-parser/DataParser';
 import WrongFetchData from './Wrong-Stats-Data-Components/WrongFetchData';
 
-// ADD parent component StatisticsSection with year selector which will render this ons
 class Statistics extends Component{
 
     constructor(props){
@@ -73,21 +72,14 @@ class Statistics extends Component{
             year: nextProps.year,
           });
           this.fetchStatisticsData(nextProps.year);
-        //   this.DBAccess.getStatisticsForYear(nextProps.year)
-        //   .then((result)=>{this.setDataFromFetch(result);})
-        //   .catch(error=>{this.handleFetchError();})
         }
-        }
+    }
 
     componentWillMount() {
         const {year} = this.props;
         this.fetchStatisticsData(year);
-        // this.DBAccess.getStatisticsForYear(year)
-        // .then((result)=>{this.setDataFromFetch(result);})
-        // .catch(error=>{this.handleFetchError();})
     }
 
-    
     render(){
         const {areaChartsData,barChartsData,fetchData} = this.state;
 
