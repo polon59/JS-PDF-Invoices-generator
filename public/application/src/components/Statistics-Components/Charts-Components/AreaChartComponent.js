@@ -8,25 +8,46 @@ class AreaChartComponent extends PureComponent{
         super();
         this.cardinal = curveCardinal.tension(0.4);
         this.state = {
-          currentChartData : props.chartsData[0]
+          year : "a",
+          chartsData : props.chartsData,
+          currentChartData : props.chartsData[0],
+          areaStrokeColor : props.areaStrokeColor,
+          areaFillColor : props.areaFillColor,
+          linearGradientId : props.linearGradientId
+
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.chartsData !== this.state.chartsData) {
+        console.log(nextProps.chartsData)
+        this.setState({
+          year: nextProps.year,
+          chartsData: nextProps.chartsData, 
+          currentChartData : nextProps.chartsData[0],
+          areaStrokeColor : nextProps.areaStrokeColor,
+          areaFillColor : nextProps.areaFillColor,
+          linearGradientId : nextProps.linearGradientId
+        });
+      }
+      }
+
     handleDataChange =(dataSet) =>{
       this.setState({
-        currentChartData : this.props.chartsData[dataSet]
+        currentChartData : this.state.chartsData[dataSet]
       });
     }
 
       render() {
-        const {currentChartData} = this.state;
-        const {areaStrokeColor, areaFillColor, linearGradientId} = this.props
+        const {currentChartData,year,chartsData, areaStrokeColor, areaFillColor, linearGradientId} = this.state;
+        // const {areaStrokeColor, areaFillColor, linearGradientId} = this.props
         
         return (
           <div className='bordered'>
+            <h4>{year}</h4>
           <h3>{Object.keys(currentChartData[0])[1]}</h3>
-            <button onClick={()=>{this.handleDataChange(0)}}>{Object.keys(this.props.chartsData[0][0])[1]}</button>
-            <button onClick={()=>{this.handleDataChange(1)}}>{Object.keys(this.props.chartsData[1][0])[1]}</button>
+            <button onClick={()=>{this.handleDataChange(0)}}>{Object.keys(chartsData[0][0])[1]}</button>
+            <button onClick={()=>{this.handleDataChange(1)}}>{Object.keys(chartsData[1][0])[1]}</button>
            <div style={{ width: '100%', height: 300 }}>
             <ResponsiveContainer>
               <AreaChart
