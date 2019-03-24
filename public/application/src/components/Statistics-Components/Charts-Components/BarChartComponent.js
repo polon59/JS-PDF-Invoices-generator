@@ -10,6 +10,14 @@ class BarChartComponent extends PureComponent {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.chartsData !== this.state.chartsData) {
+          this.setState({
+            chartsData: nextProps.chartsData[this.dataDescription]
+          });
+        }
+        }
+
     formatXAxisTicks = (tick) =>{
         return `${tick.slice(0,4)}...`;
     }
