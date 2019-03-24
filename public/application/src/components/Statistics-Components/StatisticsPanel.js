@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Statistics from './Statistics';
 import WrongFetchData from './Wrong-Stats-Data-Components/WrongFetchData';
-import Button from '@material-ui/core/Button';
 import DialogSelect from '../common/DialogSelect';
 
 class StatisticsPanel extends Component{
