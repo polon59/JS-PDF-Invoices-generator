@@ -8,7 +8,8 @@ class AreaChartComponent extends PureComponent{
         super();
         this.cardinal = curveCardinal.tension(0.4);
         this.state = {
-          year : "a",
+          chartTitle : props.chartTitle,
+          year : props.year,
           chartsData : props.chartsData,
           currentChartData : props.chartsData[0],
           areaStrokeColor : props.areaStrokeColor,
@@ -22,6 +23,7 @@ class AreaChartComponent extends PureComponent{
       if (nextProps.chartsData !== this.state.chartsData) {
         console.log(nextProps.chartsData)
         this.setState({
+          chartTitle : nextProps.chartTitle,
           year: nextProps.year,
           chartsData: nextProps.chartsData, 
           currentChartData : nextProps.chartsData[0],
@@ -39,13 +41,13 @@ class AreaChartComponent extends PureComponent{
     }
 
       render() {
-        const {currentChartData,year,chartsData, areaStrokeColor, areaFillColor, linearGradientId} = this.state;
+        const {currentChartData,year,chartTitle,chartsData, areaStrokeColor, areaFillColor, linearGradientId} = this.state;
         // const {areaStrokeColor, areaFillColor, linearGradientId} = this.props
         
         return (
           <div className='bordered'>
-            <h4>{year}</h4>
-          <h3>{Object.keys(currentChartData[0])[1]}</h3>
+            <h3>{chartTitle} {year}</h3>
+          <h4>{Object.keys(currentChartData[0])[1]}</h4>
             <button onClick={()=>{this.handleDataChange(0)}}>{Object.keys(chartsData[0][0])[1]}</button>
             <button onClick={()=>{this.handleDataChange(1)}}>{Object.keys(chartsData[1][0])[1]}</button>
            <div style={{ width: '100%', height: 300 }}>

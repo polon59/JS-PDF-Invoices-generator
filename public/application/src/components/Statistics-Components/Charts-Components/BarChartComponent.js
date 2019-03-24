@@ -24,10 +24,11 @@ class BarChartComponent extends PureComponent {
 
   render() {
       const {chartsData} = this.state;
-      const {barStrokeColor} = this.props;
+      const {barStrokeColor,chartTitle} = this.props;
 
     return (
     <div className='bordered'>
+        <h3>{chartTitle}</h3>
         <div style={{ width: '100%', height: 300 }}>
             <ResponsiveContainer>
                 <BarChart
