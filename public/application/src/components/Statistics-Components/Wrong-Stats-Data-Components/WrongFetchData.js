@@ -15,7 +15,18 @@ const WrongFetchData = (props) =>{
     } else if (reason === 'fetchError') {
         return(
             <div>
-                <h3>Error: You are offline. Cannot get statistics data from server.</h3>
+                <h3>
+                    Error: You are offline. Cannot get statistics data from server.
+                </h3>
+            </div>
+        );
+    } else if (reason === 'noServices') {
+        return(
+            <div>
+                <h3>
+                    Statistics data is empty. Create at least one service in one of invoices 
+                    from this year to display statistics
+                </h3>
             </div>
         );
     }
