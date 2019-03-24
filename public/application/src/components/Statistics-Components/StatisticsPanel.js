@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Statistics from './Statistics';
+import WrongFetchData from './Wrong-Stats-Data-Components/WrongFetchData';
 
 class StatisticsPanel extends Component{
     
@@ -7,27 +8,40 @@ class StatisticsPanel extends Component{
             super();
             this.DBAccess = props.DBAccess;
             this.state = {
-                year : undefined
+                year : undefined,
+                years : undefined
             }
         }
     
         componentWillMount() {
-
+            this.DBAccess.getAvailableYears()
+            .then((result)=>{
+                this.setState({
+                    years: result
+                });
+            })
+            .catch(error=>{this.handleFetchError();})
         }
 
         changeYear = () =>{
             this.setState({
-                year: 2019
+                year: this.state.years[0].year
             });
         }
 
         render(){
-            const {year} = this.state;
-
+            const {year,years} = this.state;
+            if(!years){
+                return(<WrongFetchData reason={'stillLoading'}/>)
+            }
+            if(years.length<1){
+                return(<WrongFetchData reason={'empty'}/>)
+            }
             if (!year){
                 return(
                     <div>
                         <h3>No year selected</h3>
+                        <p>{JSON.stringify(years)}</p>
                         <button onClick={()=>{this.changeYear()}}>set year = 2019</button>
                     </div>
                 )
