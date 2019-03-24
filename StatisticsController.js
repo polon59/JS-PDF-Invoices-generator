@@ -16,6 +16,7 @@ class StatisticsController{
         this.app.get('/myAccount/statistics/years', (req,res) =>{
             this.statisticsDAO.getAvailableStatisticsYears()
             .then( result=>{
+                console.log("[SQL INFO] return years for stats")
                 res.send(JSON.stringify(result));
             })
             .catch(error => {res.send(`ERROR`)});
