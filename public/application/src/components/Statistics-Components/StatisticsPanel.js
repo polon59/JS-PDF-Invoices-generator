@@ -13,6 +13,12 @@ class StatisticsPanel extends Component{
                 years : undefined
             }
         }
+
+        handleFetchError = () =>{
+            this.setState({
+                years: "ERR"
+            });
+        }
     
         componentWillMount() {
             this.DBAccess.getAvailableYears()
@@ -41,6 +47,9 @@ class StatisticsPanel extends Component{
             const {year,years} = this.state;
             if(!years){
                 return(<WrongFetchData reason={'stillLoading'}/>)
+            }
+            else if(years==="ERR"){
+                return(<WrongFetchData reason={'fetchError'}/>)
             }
             else if(years.length<1){
                 return(<WrongFetchData reason={'empty'}/>)
