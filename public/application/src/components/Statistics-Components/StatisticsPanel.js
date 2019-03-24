@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Statistics from './Statistics';
 import WrongFetchData from './Wrong-Stats-Data-Components/WrongFetchData';
+import Button from '@material-ui/core/Button';
+import DialogSelect from '../common/DialogSelect';
 
 class StatisticsPanel extends Component{
     
@@ -23,10 +25,17 @@ class StatisticsPanel extends Component{
             .catch(error=>{this.handleFetchError();})
         }
 
-        changeYear = () =>{
+        changeYear = (selection) =>{
             this.setState({
-                year: this.state.years[0].year
+                year: selection
             });
+        }
+
+        prepareYearsList = () =>{
+            const {years} = this.state;
+            return years.map(element =>{
+                return element.year;
+            })
         }
 
         render(){
@@ -34,24 +43,31 @@ class StatisticsPanel extends Component{
             if(!years){
                 return(<WrongFetchData reason={'stillLoading'}/>)
             }
-            if(years.length<1){
+            else if(years.length<1){
                 return(<WrongFetchData reason={'empty'}/>)
             }
-            if (!year){
+            else if (!year){
                 return(
                     <div>
                         <h3>No year selected</h3>
-                        <p>{JSON.stringify(years)}</p>
-                        <button onClick={()=>{this.changeYear()}}>set year = 2019</button>
+                        <DialogSelect 
+                            options={this.prepareYearsList()} 
+                            title="Select year" 
+                            handleSubmit={this.changeYear}
+                        />
                     </div>
                 )
             }
             return(
                 <div>
                     <h3>HEADER FROM PANEL</h3>
-                    <h3>{this.state.year}</h3>
-                    <button onClick={()=>{this.changeYear()}}>set year = 2019</button>
-                    <Statistics DBAccess={this.DBAccess} year={year}/>
+                    <h3>Selected year {this.state.year}</h3>
+                    <DialogSelect 
+                        options={this.prepareYearsList()} 
+                        title="Select year" 
+                        handleSubmit={this.changeYear}
+                    />
+                    <Statistics DBAccess={this.DBAccess} year={this.state.year}/>
                 </div>
             )
         }

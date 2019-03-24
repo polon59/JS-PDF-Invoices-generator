@@ -89,6 +89,7 @@ class Statistics extends Component{
         }
         return(
             <div>
+                <h3>{this.state.year}</h3>
                 <AreaChartComponent 
                     chartsData={[areaChartsData[0],areaChartsData[1]]} 
                     areaFillColor={"#0734ff"} 
