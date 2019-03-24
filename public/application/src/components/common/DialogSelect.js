@@ -58,7 +58,7 @@ class DialogSelect extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>Open select dialog</Button>
+        <Button onClick={this.handleClickOpen}>{title}</Button>
         <Dialog
           disableBackdropClick
           disableEscapeKeyDown
