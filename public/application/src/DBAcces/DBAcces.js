@@ -79,6 +79,22 @@ class DBAcces{
     });
   }
 
+  getAvailableYears = () =>{
+    return fetch(`http://localhost:8000/myAccount/statistics/years`,{
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    .then(data => {return data;})
+    .catch(error => {
+      console.log(error.message);
+      throw new Error(error.message)
+    });
+  }
+
   deleteInvoiceFromDB = (invoiceToDeleteId) =>{
     return fetch(`http://localhost:8000/myAccount/invoices/${invoiceToDeleteId}`, {
       method: "DELETE",
