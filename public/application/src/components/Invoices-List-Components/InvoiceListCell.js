@@ -1,10 +1,11 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 
 const InvoiceListCell = (props) =>{
 
     let location = "online"
-    if (invoice.isOffline) {location = "offline"}
     const {changeCurrentInvoice,deleteInvoice,invoice,index} = props;
+    if (invoice.isOffline) {location = "offline"}
 
     return (
         <tr key={invoice.id}>
