@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 import InvoiceListCell from './InvoiceListCell';
 
 class InvoicesList extends Component{
@@ -9,6 +8,7 @@ class InvoicesList extends Component{
         return invoices.map((invoice,index) =>{
             return (
                 <InvoiceListCell 
+                    key={index}
                     changeCurrentInvoice={changeCurrentInvoice}
                     deleteInvoice={deleteInvoice}
                     invoice={invoice}
