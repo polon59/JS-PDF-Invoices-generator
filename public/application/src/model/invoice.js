@@ -4,7 +4,7 @@ class Invoice{
         this.isOffline = false;
         this.id = Math.random();
         this.title = "";
-        this.date = "2017-01-01";
+        this.date = "2019-01-01";
         this.billTo = "";
         this.billFrom = "";
         this.subTotal = 0;
