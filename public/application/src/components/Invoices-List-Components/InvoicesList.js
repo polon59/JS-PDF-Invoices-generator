@@ -6,9 +6,14 @@ class InvoicesList extends Component{
     renderInvoicesList(){
         const {deleteInvoice,changeCurrentInvoice,invoices} = this.props;
         const invoicesList = invoices.map((invoice,index) =>{
+            let loc = "online"
+            if (invoice.isOffline) {
+                loc = "offline"
+            }
             return (
                 <tr key={invoice.id}>
                     <td>{index+1}</td>
+                    <td>{loc}</td>
                     <td>{invoice.id}</td>
                     <td>{invoice.title}</td>
                     <td>{invoice.billTo}</td>
@@ -42,6 +47,7 @@ class InvoicesList extends Component{
                         <thead>
                             <tr>
                                 <th>no.</th>
+                                <th>LOCATION</th>
                                 <th>ID in DB</th>
                                 <th>TITLE</th>
                                 <th>BILL TO</th>

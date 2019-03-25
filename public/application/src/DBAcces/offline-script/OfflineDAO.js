@@ -140,5 +140,4 @@ class OfflineDAO{
     }
 
 }
-
 export default OfflineDAO;

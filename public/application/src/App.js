@@ -59,6 +59,7 @@ class App extends Component {
     let invoiceToAdd = this.state.invoiceToEdit;
     let invoices = this.state.invoices;
     this.DBAccess.addInvoiceToDB(invoiceToAdd).then(lastID => {
+      invoiceToAdd.isOffline = false;
       invoiceToAdd.id = lastID;
     }).catch(err =>{
       this.offlineDAO.addDataToSave(invoiceToAdd,'add');
@@ -126,8 +127,12 @@ class App extends Component {
 
   saveChanges = () =>{
     const updatedInvoice = this.state.invoiceToEdit;
-    this.DBAccess.updateInvoice(updatedInvoice).catch(err =>{
+    this.DBAccess.updateInvoice(updatedInvoice).then(()=>{
+      updatedInvoice.isOffline = false;
+    })
+    .catch(err =>{
       this.offlineDAO.addDataToSave(updatedInvoice,'update');
+      updatedInvoice.isOffline = true;
     });
   }
 
