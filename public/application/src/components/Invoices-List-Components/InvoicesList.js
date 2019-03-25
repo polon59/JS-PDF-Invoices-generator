@@ -1,45 +1,27 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import InvoiceListCell from './InvoiceListCell';
 
 class InvoicesList extends Component{
 
-    renderInvoicesList(){
+    renderTableBody(){
         const {deleteInvoice,changeCurrentInvoice,invoices} = this.props;
-        const invoicesList = invoices.map((invoice,index) =>{
-            let loc = "online"
-            if (invoice.isOffline) {
-                loc = "offline"
-            }
+        return invoices.map((invoice,index) =>{
             return (
-                <tr key={invoice.id}>
-                    <td>{index+1}</td>
-                    <td>{loc}</td>
-                    <td>{invoice.id}</td>
-                    <td>{invoice.title}</td>
-                    <td>{invoice.billTo}</td>
-                    <td>
-                        <Link to={`/myInvoices/editInvoice/${invoice.id}`}>
-                            <button onClick={()=>{changeCurrentInvoice(invoice.id)}}>EDIT</button>
-                        </Link>
-                    </td>
-                    <td>
-                        <Link to={`/myInvoices/viewInvoice/${invoice.id}`}>
-                            <button onClick={()=>{changeCurrentInvoice(invoice.id)}}>VIEW</button>
-                        </Link>
-                    </td>
-                    <td>
-                        <button onClick={()=>{deleteInvoice(invoice.id)}}>X</button>
-                    </td>
-                </tr>
+                <InvoiceListCell 
+                    changeCurrentInvoice={changeCurrentInvoice}
+                    deleteInvoice={deleteInvoice}
+                    invoice={invoice}
+                    index={index}
+                />
             );
         });
-        return invoicesList;
     }
     
 
     render(){
         const { invoices } = this.props;
-        const invoicesList = this.renderInvoicesList();
+        const tableBody = this.renderTableBody();
         if (invoices.length > 0){
             return(
                 <div className="bordered">
@@ -54,7 +36,7 @@ class InvoicesList extends Component{
                             </tr>
                         </thead>
                         <tbody>
-                        {invoicesList}
+                        {tableBody}
                         </tbody>
                     </table>
                     
