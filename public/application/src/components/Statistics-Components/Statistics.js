@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import AreaChartComponent from './Charts-Components/AreaChartComponent';
 import BarChartComponent from './Charts-Components/BarChartComponent';
 import StatisticsDataParser from './data-parser/DataParser';
-import WrongFetchData from './Wrong-Stats-Data-Components/WrongFetchData';
+import StillLoading from './Wrong-Stats-Data-Components/StillLoading';
+import EmptyDataMessage from './Wrong-Stats-Data-Components/EmptyDataMessage';
+import FetchErrorMessage from './Wrong-Stats-Data-Components/FetchErrorMessage';
 
 class Statistics extends Component{
 
@@ -85,17 +87,17 @@ class Statistics extends Component{
 
         if (this.isDataStillLoading()) {
             return (
-                <WrongFetchData reason={'stillLoading'}/>
+                <StillLoading/>
             )
         }
         else if (this.hasFetchErrorOcured()){
             return (
-                <WrongFetchData reason={'fetchError'}/>
+                <FetchErrorMessage/>
             )
         }
         else if (this.isFetchDataEmpty(fetchData)){
             return (
-                <WrongFetchData reason={'noServices'}/>
+                <EmptyDataMessage reason='noServices'/>
             )
         }
         return(
