@@ -18,10 +18,8 @@ html{
 
 /* 595 x 842 a4 size */
 .bordered{
-  width: 650px;
-  margin: 10px;
+  width: 100%;
   border: 0.5px solid black;
-  padding: 10px;
 }
 
 .clickable:hover{
