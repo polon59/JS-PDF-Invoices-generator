@@ -58,7 +58,6 @@ class DialogSelect extends React.Component {
 
   render() {
     const { classes,title,handleSubmit } = this.props;
-    const ITEM_HEIGHT = 48;
 
     return (
       <div>
