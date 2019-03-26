@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Info from '@material-ui/icons/Info';
-import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
   root: {

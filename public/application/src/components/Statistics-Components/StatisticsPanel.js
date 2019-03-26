@@ -4,7 +4,6 @@ import NoYearSelectedMessage from './Wrong-Stats-Data-Components/NoYearSelectedM
 import StillLoading from './Wrong-Stats-Data-Components/StillLoading';
 import EmptyDataMessage from './Wrong-Stats-Data-Components/EmptyDataMessage';
 import FetchErrorMessage from './Wrong-Stats-Data-Components/FetchErrorMessage';
-import DialogSelect from '../common/DialogSelect';
 import StatisticsAppBar from './StatisticsAppBar';
 
 class StatisticsPanel extends Component{
