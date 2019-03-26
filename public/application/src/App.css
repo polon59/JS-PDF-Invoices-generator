@@ -12,6 +12,10 @@ html{
   margin-top:70px;
 }
 
+.navIcon{
+  padding-left: 5px; 
+}
+
 /* 595 x 842 a4 size */
 .bordered{
   width: 650px;

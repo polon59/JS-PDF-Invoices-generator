@@ -137,16 +137,20 @@ class Navbar extends React.Component {
                 <div className={classes.sectionDesktop}>
 
                 <MenuItem className={classes.item} color="inherit" component={Link} to={'/'}>
-                    Home<Home/>
+                    Home
+                    <Home className='navIcon'/>
                 </MenuItem>
                 <MenuItem className={classes.item} color="inherit" component={Link} to={'/myInvoices'}>
-                    My invoices<ListAlt/>
+                    My invoices
+                    <ListAlt className='navIcon'/>
                 </MenuItem>
                 <MenuItem className={classes.item} color="inherit" component={Link} to={'/addInvoice'}>
-                    Create invoice<AddBox/>
+                    Create invoice
+                    <AddBox className='navIcon'/>
                 </MenuItem>
                 <MenuItem className={classes.item} color="inherit" component={Link} to={'/statistics'}>
-                    Statistics<InsertChart/>
+                    Statistics
+                    <InsertChart className='navIcon'/>
                 </MenuItem>
                 <IconButton color="inherit">
                     <Badge badgeContent={2} color="secondary">
