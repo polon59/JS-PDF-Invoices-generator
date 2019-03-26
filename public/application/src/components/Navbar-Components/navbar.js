@@ -17,7 +17,7 @@ import {Link} from 'react-router-dom';
 
 const styles = theme => ({
   root: {
-    backgroundColor:'rgb(0, 184, 230)',
+    backgroundColor:'rgb(52, 109, 245)',
     width: '100%',
   },
   item:{
@@ -118,12 +118,13 @@ class Navbar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar className={classes.root} position="static">
+        <AppBar className={classes.root} position="fixed">
           <Toolbar>
-            <div className={classes.sectionMobile}>
-                <h3>Invoice generator</h3>
-            </div>
-            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+            <Typography className={classes.sectionMobile} variant="h6" color="inherit" noWrap>
+              Invoice Generator
+            </Typography>
+
+            <Typography className={classes.sectionDesktop} variant="h6" color="inherit" noWrap>
               Invoice Generator
             </Typography>
             <div className={classes.grow} />

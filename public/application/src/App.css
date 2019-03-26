@@ -2,6 +2,16 @@
   color: red;
 }
 
+html{
+  background-color:rgb(30, 30, 45);
+  color: rgba(255, 255, 255, 0.822);
+}
+
+.container{
+  margin: 30px;
+  margin-top:70px;
+}
+
 /* 595 x 842 a4 size */
 .bordered{
   width: 650px;
