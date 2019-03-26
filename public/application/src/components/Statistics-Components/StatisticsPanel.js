@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import Statistics from './Statistics';
-import WrongFetchData from './Wrong-Stats-Data-Components/WrongFetchData';
+import NoYearSelectedMessage from './Wrong-Stats-Data-Components/NoYearSelectedMessage';
+import StillLoading from './Wrong-Stats-Data-Components/StillLoading';
+import EmptyDataMessage from './Wrong-Stats-Data-Components/EmptyDataMessage';
+import FetchErrorMessage from './Wrong-Stats-Data-Components/FetchErrorMessage';
 import DialogSelect from '../common/DialogSelect';
+import StatisticsAppBar from './StatisticsAppBar';
 
 class StatisticsPanel extends Component{
     
@@ -43,38 +47,49 @@ class StatisticsPanel extends Component{
             })
         }
 
-        render(){
+        renderPanelContent(){
             const {year,years} = this.state;
             if(!years){
-                return(<WrongFetchData reason={'stillLoading'}/>)
+                return(<StillLoading/>)
             }
             else if(years==="ERR"){
-                return(<WrongFetchData reason={'fetchError'}/>)
+                return(<FetchErrorMessage/>)
             }
             else if(years.length<1){
-                return(<WrongFetchData reason={'empty'}/>)
+                return(<EmptyDataMessage reason='noInvoices'/>)
             }
             else if (!year){
                 return(
                     <div>
-                        <h3>No year selected</h3>
-                        <DialogSelect 
-                            options={this.prepareYearsList()} 
-                            title="Select year" 
-                            handleSubmit={this.changeYear}
+                        <StatisticsAppBar 
+                            title="No year selected"
+                            dialogSelectTitle="Select year"
+                            changeYear={this.changeYear}
+                            prepareYearsList={this.prepareYearsList}
                         />
+                        <NoYearSelectedMessage/>
                     </div>
                 )
             }
             return(
                 <div>
-                    <h3>Selected year {this.state.year}</h3>
-                    <DialogSelect 
-                        options={this.prepareYearsList()} 
-                        title="Select year" 
-                        handleSubmit={this.changeYear}
+                    <StatisticsAppBar 
+                        title={`Selected year: ${this.state.year}`}
+                        dialogSelectTitle="Change year"
+                        changeYear={this.changeYear}
+                        prepareYearsList={this.prepareYearsList}
                     />
                     <Statistics DBAccess={this.DBAccess} year={this.state.year}/>
+                </div>
+            )
+        }
+
+        render(){
+            return(
+                <div className="bordered">
+                    <h3>Statistics</h3>
+                    <p>image here and other stuff</p>
+                    {this.renderPanelContent()}
                 </div>
             )
         }
