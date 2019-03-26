@@ -1,14 +1,14 @@
-.red{
-  color: red;
+#PDF-Content{
+  background-color: rgb(0, 0, 0);
 }
 
 html{
   background-color:rgb(30, 30, 45);
-  color: rgba(255, 255, 255, 0.822);
+  color: rgb(170, 170, 170);
 }
 
 .container{
-  margin: 30px;
+  margin: 2vw;
   margin-top:70px;
 }
 

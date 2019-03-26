@@ -21,6 +21,8 @@ const styles = theme => ({
     width: '100%',
   },
   item:{
+      marginLeft: 30,
+      marginRight: 30,
       color: 'rgb(255, 255, 255)'
   },
   grow: {
