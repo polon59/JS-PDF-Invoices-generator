@@ -17,6 +17,9 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
+  button:{
+    color: 'rgb(255, 255, 255)'
+  },
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120,
@@ -59,7 +62,7 @@ class DialogSelect extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>{title}</Button>
+        <Button variant="outlined" color='inherit' onClick={this.handleClickOpen}>{title}</Button>
         <Dialog
           disableBackdropClick
           disableEscapeKeyDown
