@@ -14,6 +14,7 @@ function StillLoading(props) {
   return (
     <div>
       <CircularProgress className={classes.progress} />
+      <h3>Loading data...</h3>
       <CircularProgress className={classes.progress} color="secondary" />
     </div>
   );
