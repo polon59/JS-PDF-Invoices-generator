@@ -1,16 +1,13 @@
 import React from 'react'
+import StillLoading from './StillLoading';
+import EmptyDataMessage from './EmptyDataMessage';
 
 const WrongFetchData = (props) =>{
     const {reason} = props;
 
     if (reason === 'empty') {
         return (
-            <div>
-                <h3>
-                    Statistics data is empty. Charts cannot be displayed. Create at least one invoice with at
-                    least one service ==> LINK WITH ICON HERE
-                </h3>
-            </div>
+            <EmptyDataMessage/>
         );
     } else if (reason === 'fetchError') {
         return(
@@ -22,17 +19,13 @@ const WrongFetchData = (props) =>{
         );
     } else if (reason === 'noServices') {
         return(
-            <div>
-                <h3>
-                    Statistics data is empty. Create at least one service in one of invoices 
-                    from this year to display statistics
-                </h3>
-            </div>
+            <EmptyDataMessage/>
         );
     }
     return(
         <div>
             <h3>Loading data...</h3>
+            <StillLoading/>
         </div>
     )
 
