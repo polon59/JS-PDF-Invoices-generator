@@ -13,6 +13,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import AddBox from '@material-ui/icons/AddBox'
+import InsertChart from '@material-ui/icons/InsertChart'
+import ListAlt from '@material-ui/icons/ListAlt'
+import Home from '@material-ui/icons/Home'
 import {Link} from 'react-router-dom';
 
 const styles = theme => ({
@@ -21,8 +25,8 @@ const styles = theme => ({
     width: '100%',
   },
   item:{
-      marginLeft: 30,
-      marginRight: 30,
+      marginLeft: 20,
+      marginRight: 20,
       color: 'rgb(255, 255, 255)'
   },
   grow: {
@@ -133,16 +137,16 @@ class Navbar extends React.Component {
                 <div className={classes.sectionDesktop}>
 
                 <MenuItem className={classes.item} color="inherit" component={Link} to={'/'}>
-                    Home
+                    Home<Home/>
                 </MenuItem>
                 <MenuItem className={classes.item} color="inherit" component={Link} to={'/myInvoices'}>
-                    My invoices
+                    My invoices<ListAlt/>
                 </MenuItem>
                 <MenuItem className={classes.item} color="inherit" component={Link} to={'/addInvoice'}>
-                    Create invoice
+                    Create invoice<AddBox/>
                 </MenuItem>
                 <MenuItem className={classes.item} color="inherit" component={Link} to={'/statistics'}>
-                    Statistics
+                    Statistics<InsertChart/>
                 </MenuItem>
                 <IconButton color="inherit">
                     <Badge badgeContent={2} color="secondary">
