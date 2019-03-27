@@ -11,7 +11,8 @@ const styles ={
     flexGrow: 1,
   },
   container:{
-    marginTop:40
+    marginTop:40,
+    height:'100%'
   },
   item:{
     height:'100%'

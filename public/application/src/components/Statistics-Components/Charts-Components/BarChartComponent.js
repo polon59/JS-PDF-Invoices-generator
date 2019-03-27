@@ -1,5 +1,25 @@
 import React, { PureComponent } from 'react';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from 'recharts';
+import Paper from '@material-ui/core/Paper';
+
+const styles ={
+    root: {
+      flexGrow: 1,
+    },
+    container:{
+      marginTop:40
+    },
+    item:{
+      height:'100%'
+    },
+    paper: {
+      textAlign: 'center',
+      backgroundColor: 'rgb(24, 24, 35)',
+      padding: 10,
+      color: 'inherit',
+      height: '100%'
+    },
+  };
 
 class BarChartComponent extends PureComponent {
     constructor(props){
@@ -27,7 +47,7 @@ class BarChartComponent extends PureComponent {
       const {barStrokeColor,chartTitle} = this.props;
 
     return (
-    <div className='bordered'>
+    <Paper style={styles.paper}>
         <h3>{chartTitle}</h3>
         <div style={{ width: '100%', height: 300 }}>
             <ResponsiveContainer>
@@ -47,7 +67,7 @@ class BarChartComponent extends PureComponent {
                 </BarChart>
             </ResponsiveContainer>
         </div>
-    </div>
+    </Paper>
     );
   }
 }

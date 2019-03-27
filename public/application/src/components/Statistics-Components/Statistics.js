@@ -5,6 +5,8 @@ import StatisticsDataParser from './data-parser/DataParser';
 import StillLoading from './Wrong-Stats-Data-Components/StillLoading';
 import EmptyDataMessage from './Wrong-Stats-Data-Components/EmptyDataMessage';
 import FetchErrorMessage from './Wrong-Stats-Data-Components/FetchErrorMessage';
+import Grid from '@material-ui/core/Grid';
+
 
 class Statistics extends Component{
 
@@ -118,16 +120,25 @@ class Statistics extends Component{
                     areaStrokeColor={"#0289ff"} 
                     linearGradientId="secondAreaChart"
                 />
-                <BarChartComponent 
-                    chartTitle={`Most lucrative services in ${this.props.year}`}
-                    chartsData={barChartsData[0]} 
-                    barStrokeColor={"#ff11fb"}
-                />
-                <BarChartComponent 
-                    chartTitle={`Best customers in ${this.props.year}`}
-                    chartsData={barChartsData[1]} 
-                    barStrokeColor={"#fff311"}
-                />
+
+                <Grid container spacing={24}>
+                    <Grid item sm={6} xs={12}>
+                        <BarChartComponent 
+                          chartTitle={`Most lucrative services in ${this.props.year}`}
+                          chartsData={barChartsData[0]} 
+                          barStrokeColor={"#ff11fb"}
+                        />
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                        <BarChartComponent 
+                          chartTitle={`Best customers in ${this.props.year}`}
+                          chartsData={barChartsData[1]} 
+                          barStrokeColor={"#fff311"}
+                        />
+                    </Grid>
+                </Grid>
+                
+                
             </div>
         )
     }
