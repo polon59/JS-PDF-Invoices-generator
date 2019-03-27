@@ -6,8 +6,7 @@ runQuery();
 // SELECT MONTH(date) as month, COUNT(*) as doneServices
 function runQuery() {
     const year = 2019;
-    const sql =`SELECT DISTINCT YEAR(date) as year FROM invoices
-    ORDER BY year DESC;`;
+    const sql =`SELECT * FROM invoices;`;
 
 
     connection.query(sql, function (err, result, fields) {
