@@ -33,6 +33,7 @@ html{
 .invoicesTableHead{
   padding: 15px;
   background-color: rgb(52, 109, 245);
+  color: rgb(212, 221, 240)
 }
 
 .invoicesTableRow{
