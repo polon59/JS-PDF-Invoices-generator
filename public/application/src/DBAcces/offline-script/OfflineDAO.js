@@ -23,7 +23,7 @@ class OfflineDAO{
     }
 
     addNewInvoice = (invoiceToAdd) =>{
-        if (invoiceToAdd.isOffline){this.replaceInvoiceToAdd(invoiceToAdd);return}
+        // if (invoiceToAdd.isOffline){this.replaceInvoiceToAdd(invoiceToAdd);return}
         this.invoicesGeneratorOfflineData['add'].push(invoiceToAdd);
         this.saveDataInLocalStorage();
     }
@@ -119,6 +119,7 @@ class OfflineDAO{
                 this.sendInvoicesToDeleteToDB()])
             .then(()=> {
                 localStorage.removeItem("invoicesGeneratorOfflineData");
+                this.initializeDataToSave();
                 resolve();
             })
             .catch(err=>{
@@ -138,6 +139,6 @@ class OfflineDAO{
             this.deleteInvoice(data);
         }
     }
-
 }
+
 export default OfflineDAO;
