@@ -3,6 +3,7 @@ import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContain
 import { curveCardinal } from 'd3-shape';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
 
 const styles ={
@@ -28,7 +29,7 @@ class AreaChartComponent extends PureComponent{
 
     constructor(props){
         super();
-        this.cardinal = curveCardinal.tension(0.4);
+        this.cardinal = curveCardinal.tension(0.3);
         this.state = {
           chartTitle : props.chartTitle,
           year : props.year,
@@ -63,11 +64,9 @@ class AreaChartComponent extends PureComponent{
 
       render() {
         const {currentChartData,year,chartTitle,chartsData, areaStrokeColor, areaFillColor, linearGradientId} = this.state;
-
         const firstTitle = Object.keys(chartsData[0][0])[1];
         const secondTitle = Object.keys(chartsData[1][0])[1];
 
-        
         return (
             <Grid style={styles.container} container spacing={24}>
 
@@ -75,13 +74,25 @@ class AreaChartComponent extends PureComponent{
                   <Paper style={styles.paper}>
                     <h3>{chartTitle} {year}</h3>
                     <h4>{Object.keys(currentChartData[0])[1]}</h4>
-                    <button onClick={()=>{this.handleDataChange(0)}}>{firstTitle}</button>
-                    <button onClick={()=>{this.handleDataChange(1)}}>{secondTitle}</button>
+                    <Button 
+                      style={{color: 'rgb(52, 109, 245)', borderColor:'rgb(52, 109, 245)',textTransform: 'none'}}
+                      variant="outlined" 
+                      onClick={()=>{this.handleDataChange(0)}}
+                    >
+                      {firstTitle}
+                    </Button>
+                    <Button 
+                      style={{color: 'rgb(52, 109, 245)',borderColor:'rgb(52, 109, 245)',textTransform: 'none'}}
+                      variant="outlined"
+                      onClick={()=>{this.handleDataChange(1)}}
+                    >
+                      {secondTitle}
+                    </Button>
                   </Paper>
                 </Grid>
 
                 <Grid style={styles.item} item sm={8} xs={12}>
-                      <div style={{ width: '100%', height: 300 }}>
+                      <div style={{ width: '100%', height: '40vh' }}>
                         <ResponsiveContainer>
                           <AreaChart
                             width={500}
