@@ -17,6 +17,35 @@ html{
   padding-left: 5px; 
 }
 
+.invoicesPaper{
+  background-color: rgb(24, 24, 35);
+  width: 100%;
+  overflow-x: auto;
+  color: inherit
+}
+
+.invoicesTable{
+  width: 100%;
+  color: inherit;
+  border-spacing: 0;
+}
+
+.invoicesTableHead{
+  padding: 15px;
+  background-color: rgb(52, 109, 245);
+}
+
+.invoicesTableRow{
+  border-bottom: 1px solid rgb(0, 0, 0);
+  padding: 10px;
+}
+
+.invoicesTableCell{
+  text-align: center;
+  border-bottom: 1px solid rgb(136, 136, 136);
+  padding: 10px;
+}
+
 /* 595 x 842 a4 size */
 .bordered{
   width: 100%;

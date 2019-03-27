@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import InvoiceListCell from './InvoiceListCell';
+import Paper from '@material-ui/core/Paper';
+
+const styles ={
+    paper: {
+      backgroundColor: 'rgb(24, 24, 35)',
+      padding: 20,
+      color: 'inherit',
+    },
+  };
 
 class InvoicesList extends Component{
 
@@ -24,23 +33,25 @@ class InvoicesList extends Component{
         const tableBody = this.renderTableBody();
         if (invoices.length > 0){
             return(
-                <div className="bordered">
-                    <table>
+                <Paper style={styles.paper}>
+                    <table className='invoicesTable'>
                         <thead>
-                            <tr>
+                            <tr className='invoicesTableHead'>
                                 <th>no.</th>
                                 <th>LOCATION</th>
                                 <th>ID in DB</th>
                                 <th>TITLE</th>
                                 <th>BILL TO</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                         {tableBody}
                         </tbody>
                     </table>
-                    
-                </div>
+                </Paper>
             );
         }
         else{
