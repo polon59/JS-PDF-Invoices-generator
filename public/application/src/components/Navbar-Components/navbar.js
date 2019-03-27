@@ -82,6 +82,7 @@ class Navbar extends React.Component {
     const { classes } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const pageTitle = 'Oryginalne logo'
 
     const renderMobileMenu = (
       <Menu
@@ -125,11 +126,11 @@ class Navbar extends React.Component {
         <AppBar className={classes.root} position="fixed">
           <Toolbar>
             <Typography className={classes.sectionMobile} variant="h6" color="inherit" noWrap>
-              Invoice Generator
+              {pageTitle}
             </Typography>
 
             <Typography className={classes.sectionDesktop} variant="h6" color="inherit" noWrap>
-              Invoice Generator
+              {pageTitle}
             </Typography>
             <div className={classes.grow} />
                 <div className={classes.sectionDesktop}>
