@@ -62,10 +62,8 @@ class App extends Component {
       invoiceToAdd.isOffline = false;
       invoiceToAdd.id = lastID;
     }).catch(err =>{
-      alert("saving in LS")
       this.offlineDAO.addDataToSave(invoiceToAdd,'add');
       invoiceToAdd.isOffline = true;
-      console.log(invoiceToAdd);
     }).then(()=>{
       invoices.push(invoiceToAdd);
       this.updateLocalInvoicesList(invoices);
