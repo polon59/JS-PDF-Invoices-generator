@@ -68,7 +68,7 @@ class DialogSelect extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <DialogTitle>Fill the form</DialogTitle>
+
           <DialogContent>
             <form className={classes.container}>
               <FormControl className={classes.formControl}>
