@@ -6,6 +6,8 @@ const styles ={
     paper: {
       backgroundColor: 'rgb(24, 24, 35)',
       padding: 20,
+      maxWidth: '100%',
+      overflow: 'auto',
       color: 'inherit',
     },
   };
@@ -33,6 +35,7 @@ class InvoicesList extends Component{
         const tableBody = this.renderTableBody();
         if (invoices.length > 0){
             return(
+                <div className='tableWrapper'>
                 <Paper style={styles.paper}>
                     <table className='invoicesTable'>
                         <thead>
@@ -53,6 +56,7 @@ class InvoicesList extends Component{
                         </tbody>
                     </table>
                 </Paper>
+                </div>
             );
         }
         else{

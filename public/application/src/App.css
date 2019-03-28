@@ -17,9 +17,13 @@ html{
   padding-left: 5px; 
 }
 
+.tableWrapper{
+  position: relative
+}
+
 .invoicesPaper{
   background-color: rgb(24, 24, 35);
-  width: 100%;
+  max-width: 100%;
   overflow-x: auto;
   color: inherit
 }
@@ -27,6 +31,7 @@ html{
 .invoicesTable{
   width: 100%;
   color: inherit;
+  overflow-x: auto;
   border-spacing: 0;
 }
 
@@ -56,6 +61,7 @@ html{
   color: rgb(212, 138, 0);
   font-size: inherit
 }
+
 
 
 
