@@ -1,30 +1,32 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
+import MemoryLocation from '../common/MemoryLocation';
 
 const InvoiceListCell = (props) =>{
 
-    let location = "online"
+    // let location = "online"
     const {changeCurrentInvoice,deleteInvoice,invoice,index} = props;
-    if (invoice.isOffline) {location = "offline"}
+    // if (invoice.isOffline) {location = "offline"}
 
     return (
         <tr key={invoice.id}>
-            <td className='invoicesTableCell'>{index+1}</td>
-            <td className='invoicesTableCell'>{location}</td>
-            <td className='invoicesTableCell'>{invoice.id}</td>
-            <td className='invoicesTableCell'>{invoice.title}</td>
-            <td className='invoicesTableCell'>{invoice.billTo}</td>
-            <td className='invoicesTableCell'>
+            <td>{index+1}</td>
+            <td><MemoryLocation isOffline={invoice.isOffline}/></td>
+            <td>{invoice.id}</td>
+            <td>{invoice.date}</td>
+            <td>{invoice.title}</td>
+            <td>{invoice.billTo}</td>
+            <td>
                 <Link to={`/myInvoices/editInvoice/${invoice.id}`}>
                     <button onClick={()=>{changeCurrentInvoice(invoice.id)}}>EDIT</button>
                 </Link>
             </td>
-            <td className='invoicesTableCell'>
+            <td>
                 <Link to={`/myInvoices/viewInvoice/${invoice.id}`}>
                     <button onClick={()=>{changeCurrentInvoice(invoice.id)}}>VIEW</button>
                 </Link>
             </td>
-            <td className='invoicesTableCell'>
+            <td>
                 <button onClick={()=>{deleteInvoice(invoice.id)}}>X</button>
             </td>
         </tr>

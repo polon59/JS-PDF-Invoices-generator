@@ -40,6 +40,7 @@ class InvoicesList extends Component{
                                 <th>no.</th>
                                 <th>LOCATION</th>
                                 <th>ID in DB</th>
+                                <th>DATE</th>
                                 <th>TITLE</th>
                                 <th>BILL TO</th>
                                 <th></th>
