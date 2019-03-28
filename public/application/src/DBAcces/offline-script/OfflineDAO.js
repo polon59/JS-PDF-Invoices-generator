@@ -34,7 +34,11 @@ class OfflineDAO{
     }
 
     updateInvoice = (updatedInvoice) =>{
-        if (updatedInvoice.isOffline){this.replaceInvoiceToAdd(updatedInvoice);return}
+        if (updatedInvoice.isOffline){
+            this.replaceInvoiceToAdd(updatedInvoice);
+            return;
+        }
+        updatedInvoice.isOffline = true;
         this.invoicesGeneratorOfflineData['update'].push(updatedInvoice);
         this.saveDataInLocalStorage();
     }

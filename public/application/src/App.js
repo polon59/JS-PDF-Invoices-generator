@@ -30,7 +30,7 @@ class App extends Component {
   initializeInvoices = () =>{
     // change first to checkConnection()
         this.DBAccess.getInvoicesFromDB()
-        .then(invoices=>{
+        .then(()=>{
           this.offlineDAO.sendStoredDataToDB()
           .then(()=>{
             this.DBAccess.getInvoicesFromDB()
