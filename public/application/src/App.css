@@ -52,15 +52,20 @@ html{
   padding: 10px;
 }
 
+.invoicesTable .editInvoiceButton{
+  background-color: rgb(131, 7, 7);
+}
+
 .invoicesTable .onlineIcon{
   color: rgb(1, 167, 1);
-  font-size: inherit
+  font-size: inherit;
 }
 
 .invoicesTable .offlineIcon{
   color: rgb(212, 138, 0);
   font-size: inherit
 }
+
 
 
 
@@ -74,7 +79,7 @@ html{
 
 .clickable:hover{
   cursor: pointer;
-  color: rgb(48, 48, 70);
+  color: rgb(14, 42, 107);
 }
 
 .invoice-section{

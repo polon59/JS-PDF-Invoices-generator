@@ -6,7 +6,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 
 
-
 const MemoryLocation = (props) =>{
 
     const {isOffline} = props;
@@ -20,7 +19,7 @@ const MemoryLocation = (props) =>{
     }
     const desc ='Successfully saved in database.';
     return (
-      <Tooltip className={'tooltip'} TransitionComponent={Zoom} title={desc}>
+      <Tooltip TransitionComponent={Zoom} title={desc}>
         <CheckCircle className='onlineIcon'/>
       </Tooltip>
     )

@@ -41,7 +41,7 @@ class InvoicesList extends Component{
                         <thead>
                             <tr className='invoicesTableHead'>
                                 <th>no.</th>
-                                <th>LOCATION</th>
+                                <th></th>
                                 <th>ID in DB</th>
                                 <th>DATE</th>
                                 <th>TITLE</th>
