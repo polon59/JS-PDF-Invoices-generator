@@ -11,15 +11,12 @@ const styles = {
     editButton: {
       backgroundColor: 'rgb(33, 41, 56)',
       borderRadius: 3,
-      color: 'rgb(52, 109, 245)',
+      color: 'gray',
     },
   };
 
 const InvoiceListCell = (props) =>{
-
-    // let location = "online"
     const {classes,changeCurrentInvoice,deleteInvoice,invoice,index} = props;
-    // if (invoice.isOffline) {location = "offline"}
 
     return (
         <tr key={invoice.id}>
@@ -30,32 +27,28 @@ const InvoiceListCell = (props) =>{
             <td>{invoice.title}</td>
             <td>{invoice.billTo}</td>
             <td>
-                <Tooltip TransitionComponent={Zoom} title='Edit this invoice'>
-                    <Button 
-                        style={styles.editButton}
-                        component={Link} to={`/myInvoices/editInvoice/${invoice.id}`}
-                        variant="contained"
-                        size="small"
-                        color='inherit' 
-                        onClick={()=>{changeCurrentInvoice(invoice.id)}}
-                    >
-                        EDIT
-                    </Button>
-                </Tooltip>
+                <Button 
+                    style={styles.editButton}
+                    component={Link} to={`/myInvoices/editInvoice/${invoice.id}`}
+                    variant="contained"
+                    size="small"
+                    color='inherit' 
+                    onClick={()=>{changeCurrentInvoice(invoice.id)}}
+                >
+                    EDIT
+                </Button>
             </td>
             <td>
-                <Tooltip TransitionComponent={Zoom} title='View this invoice'>
-                    <Button 
-                        style={styles.editButton}
-                        component={Link} to={`/myInvoices/viewInvoice/${invoice.id}`}
-                        variant="contained"
-                        size="small"
-                        color='inherit' 
-                        onClick={()=>{changeCurrentInvoice(invoice.id)}}
-                    >
-                        VIEW
-                    </Button>
-                </Tooltip>
+                <Button 
+                    style={styles.editButton}
+                    component={Link} to={`/myInvoices/viewInvoice/${invoice.id}`}
+                    variant="contained"
+                    size="small"
+                    color='inherit' 
+                    onClick={()=>{changeCurrentInvoice(invoice.id)}}
+                >
+                    VIEW
+                </Button>
             </td>
             <td>
                 <Tooltip TransitionComponent={Zoom} title='Delete this invoice'>
