@@ -4,7 +4,8 @@ class OfflineDAO{
     
     constructor(DBAcces){
         this.DBAcces = DBAcces;
-        this.invoicesGeneratorOfflineData = this.initializeDataToSave();
+        this.invoicesGeneratorOfflineData = undefined;
+        this.initializeDataToSave();
     }
 
     getInvoicesListSavedLocally = () =>{
@@ -12,10 +13,14 @@ class OfflineDAO{
     }
 
     initializeDataToSave = () =>{
-        if (!localStorage.getItem('invoicesGeneratorOfflineData')){
-            return {add:[], update:[], delete:[]}
+        let localList = localStorage.getItem('invoicesGeneratorOfflineData');
+        if (!localList){
+            this.invoicesGeneratorOfflineData = {add:[], update:[], delete:[]};
+            this.saveDataInLocalStorage();
         }
-        return JSON.parse(localStorage.getItem('invoicesGeneratorOfflineData'));
+        else{
+        this.invoicesGeneratorOfflineData = JSON.parse(localStorage.getItem('invoicesGeneratorOfflineData'));
+        }
     }
 
     saveDataInLocalStorage = () =>{
