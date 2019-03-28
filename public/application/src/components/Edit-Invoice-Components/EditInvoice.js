@@ -20,6 +20,11 @@ const styles ={
       height:'100%'
     },
     paper: {
+      display: 'inline-block',
+      width: 850,
+      maxWidth: '100%',
+      minHeight:1000,
+      boxSizing: 'border-box',
       backgroundColor: 'white',
       padding: 10,
       color: 'black',
@@ -88,6 +93,7 @@ class EditInvoice extends Component{
             )
         }
         return(
+            <div className="editInvoice-wrapper">
             <Paper style={styles.paper}>
                 <form onSubmit={this.handleSubmit}>
                     <Paper style={styles.invoiceHeader}>
@@ -169,6 +175,7 @@ class EditInvoice extends Component{
                     <input type="submit" value="Save invoice"/>
                 </form>
             </Paper>
+            </div>
 
 
 
