@@ -47,6 +47,15 @@ const styles ={
     billFrom:{
         width:'80%'
     },
+    billTo:{
+        width:'80%'
+    },
+    title:{
+        width:'80%'
+    },
+    date:{
+        width:'80%'
+    }
   };
 
 
@@ -105,12 +114,12 @@ class EditInvoice extends Component{
                 <form onSubmit={this.handleSubmit}>
                     <Paper style={styles.invoiceHeader}>
                         <Grid style={styles.headerContainer} container spacing={24}>
-                            <Grid item sm={4} xs={12}>
+                            <Grid item sm={5} xs={12}>
                                 <Fingerprint style={styles.invoiceLogo}/>
                                 <h3 style={styles.logoDesc}>Your logo</h3>
                             </Grid>
 
-                            <Grid  item sm={8} xs={12}>
+                            <Grid  item sm={7} xs={12}>
                             <TextField
                                 style={styles.billFrom}
                                 id="billFrom"
@@ -129,8 +138,39 @@ class EditInvoice extends Component{
                     </Paper>
 
                     <Grid style={styles.container} container spacing={24}>
-                        <Grid item sm={6} xs={12}>
+                        <Grid item sm={5} xs={12}>
                             <TextField
+                                style={styles.title}
+                                id="title"
+                                label="Invoice title"
+                                placeholder="Select invoice title or ID"
+                                multiline
+                                rowsMax="2"
+                                value={title}
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="filled"
+                            />
+                            <br/>
+                            <TextField
+                                variant="filled"
+                                style={styles.date}
+                                id="date"
+                                label="Date"
+                                type="date"
+                                value={date} 
+                                onChange={this.handleChange} 
+                                InputLabelProps={{
+                                shrink: true,
+                                }}
+                                required
+                            />
+                            
+                        </Grid>
+
+                        <Grid item sm={7} xs={12}>
+                            <TextField
+                                style={styles.billTo}
                                 id="billTo"
                                 label="Bill to"
                                 placeholder="Who is this bill to?"
@@ -144,31 +184,6 @@ class EditInvoice extends Component{
                             />
                         </Grid>
 
-                        <Grid item sm={6} xs={12}>
-                            <TextField
-                                id="date"
-                                label="Date"
-                                type="date"
-                                value={date} 
-                                onChange={this.handleChange} 
-                                InputLabelProps={{
-                                shrink: true,
-                                }}
-                                required
-                            />
-                            <TextField
-                                id="title"
-                                label="Invoice title"
-                                placeholder="Select invoice title or ID"
-                                multiline
-                                rowsMax="2"
-                                value={title}
-                                onChange={this.handleChange}
-                                margin="normal"
-                                variant="filled"
-                            />
-
-                        </Grid>
                     </Grid>
                     <Services 
                         handleServiceDelete={this.handleServiceDelete} 
