@@ -1,4 +1,17 @@
 import React, { Component } from 'react';
+import Delete from '@material-ui/icons/Delete';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
+import Button from '@material-ui/core/Button';
+
+
+const styles = {
+    deleteButton: {
+      backgroundColor: 'white',
+      borderRadius: 3,
+      color: 'gray',
+    },
+  };
 
 class ServiceComponent extends Component{
     state = {
@@ -27,29 +40,37 @@ class ServiceComponent extends Component{
     render(){
         const { id,description,quantity,unitPrice,total } = this.state.service;
         return (
-            <tr>
-                <td>
-                    {this.props.index+1}
-                </td>
-                <td>
-                    {id}
-                </td>
-                <td>
-                    <input type="text" id="description" value={description} onChange={this.handleChange}/>
-                </td>
-                <td>
-                    <input type="number" id="quantity" value={quantity} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
-                </td>
-                <td>
-                    <input type="number" step="0.01" id="unitPrice" value={unitPrice} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
-                </td>
-                <td>
-                    {total.toFixed(2)}
-                </td>
-                <td className="clickable" onClick={()=>{this.props.handleDelete(id)}}>
-                    remove
-                </td>
-            </tr>
+
+        <tr>
+            <td>{this.props.index+1}</td>
+            <td> 
+                <input type="text" id="description" value={description} onChange={this.handleChange}/>
+            </td>
+            <td>
+                <input type="number" id="quantity" value={quantity} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
+            </td>
+            <td>
+                <input type="number" step="0.01" id="unitPrice" value={unitPrice} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
+            </td>
+            <td>
+                {total.toFixed(2)}
+            </td>
+            <td>
+                <Tooltip TransitionComponent={Zoom} title='Delete this service'>
+                    <Button 
+                        style={styles.deleteButton}
+                        variant="contained"
+                        size="small"
+                        color='inherit' 
+                        onClick={()=>{this.props.handleDelete(id)}}
+                    >
+                        <Delete/>
+                    </Button>
+                </Tooltip>
+            </td>
+        </tr>
+
+          
         );
     }
 }

@@ -19,22 +19,24 @@ class Services extends Component{
             });
             return(
                 <div className="invoice-services">
-                <h5 className="clickable" onClick={this.addService}>ADD SERVICE</h5>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>no.</th>
-                                <th>ID in DB</th>
-                                <th>DESCRIPTION</th>
-                                <th>QUANTITY</th>
-                                <th>UNIT PRICE</th>
-                                <th>COST</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {servicesList}
-                        </tbody>
-                    </table>
+                    <h5 className="clickable" onClick={this.addService}>ADD SERVICE</h5>
+                    <div className='servicesTable-wrapper'>
+                        <table className='servicesTable'>
+                            <thead>
+                                <tr className='servicesTableHead'>
+                                    <th></th>
+                                    <th>DESCRIPTION</th>
+                                    <th>QUANTITY</th>
+                                    <th>UNIT PRICE</th>
+                                    <th>AMMOUNT</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {servicesList}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             );
         }

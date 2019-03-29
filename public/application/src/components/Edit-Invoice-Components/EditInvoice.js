@@ -118,7 +118,6 @@ class EditInvoice extends Component{
                                 <Fingerprint style={styles.invoiceLogo}/>
                                 <h3 style={styles.logoDesc}>Your logo</h3>
                             </Grid>
-
                             <Grid  item sm={7} xs={12}>
                             <TextField
                                 style={styles.billFrom}
@@ -136,7 +135,6 @@ class EditInvoice extends Component{
                             </Grid>
                         </Grid>
                     </Paper>
-
                     <Grid style={styles.container} container spacing={24}>
                         <Grid item sm={5} xs={12}>
                             <TextField
@@ -165,9 +163,7 @@ class EditInvoice extends Component{
                                 }}
                                 required
                             />
-                            
                         </Grid>
-
                         <Grid item sm={7} xs={12}>
                             <TextField
                                 style={styles.billTo}
@@ -183,8 +179,8 @@ class EditInvoice extends Component{
                                 required
                             />
                         </Grid>
-
                     </Grid>
+                    
                     <Services 
                         handleServiceDelete={this.handleServiceDelete} 
                         calculateSubTotal={calculateSubTotal} 
