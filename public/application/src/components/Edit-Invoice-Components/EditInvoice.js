@@ -21,10 +21,10 @@ const styles ={
     },
     paper: {
       display: 'inline-block',
+      boxSizing: 'border-box',
       width: 850,
       maxWidth: '100%',
       minHeight:1000,
-      boxSizing: 'border-box',
       backgroundColor: 'white',
       padding: 10,
       color: 'black',
@@ -39,6 +39,9 @@ const styles ={
     invoiceLogo:{
         color:'white',
         fontSize:150,
+    },
+    billFrom:{
+
     },
   };
 
@@ -102,8 +105,9 @@ class EditInvoice extends Component{
                                 <TrendingUp/>
                             </Grid>
 
-                            <Grid item sm={8} xs={12}>
+                            <Grid  item sm={8} xs={12}>
                             <TextField
+                                style={styles.billFrom}
                                 id="billFrom"
                                 label="Bill from"
                                 placeholder="Who is this bill from?"
