@@ -77,6 +77,39 @@ html{
  text-align: center;
 }
 
+.servicesTable-wrapper{
+  overflow-x: auto;
+}
+
+.servicesTable{
+  border: none;
+  width: 100%;
+  color: inherit;
+  overflow-x: auto;
+  border-spacing: 0;
+}
+
+.servicesTableHead{
+  padding: 5px;
+  background-color: rgb(52, 109, 245);
+  color: rgb(212, 221, 240)
+}
+
+.servicesTableRow{
+  border-bottom: 1px solid rgb(0, 0, 0);
+  padding: 10px;
+}
+
+.servicesTable td{
+  text-align: center;
+  border-bottom: 1px solid rgb(136, 136, 136);
+  padding: 10px;
+}
+
+.servicesTable .editInvoiceButton{
+  background-color: rgb(131, 7, 7);
+}
+
 
 
 /* 595 x 842 a4 size */
@@ -110,24 +143,3 @@ html{
   margin: 10px;
 }
 
-.invoice-services table{
-  width: 100%;
-  border: 1px solid rgb(83, 83, 83);
-}
-
-.invoice-services input{
-  border: none;
-  width: 100%;
-}
-
-.invoice-services td{
-  border: 1px solid rgb(151, 151, 151);
-}
-
-.right{
-  float: right;
-}
-
-.optionBox{
-  background-color: rgb(179, 179, 255);
-}
