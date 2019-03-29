@@ -3,6 +3,8 @@ import Delete from '@material-ui/icons/Delete';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 
 
 const styles = {
@@ -11,6 +13,9 @@ const styles = {
       borderRadius: 3,
       color: 'gray',
     },
+    textField:{
+        width:'95%'
+    }
   };
 
 class ServiceComponent extends Component{
@@ -44,13 +49,35 @@ class ServiceComponent extends Component{
         <tr>
             <td>{this.props.index+1}</td>
             <td> 
-                <input type="text" id="description" value={description} onChange={this.handleChange}/>
+                <TextField
+                id="description"
+                styles={styles.textField}
+                value={description}
+                onChange={this.handleChange}
+                margin="none"
+                />
             </td>
             <td>
-                <input type="number" id="quantity" value={quantity} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
+                <TextField
+                id="quantity"
+                styles={styles.textField}
+                value={quantity}
+                onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}
+                margin="none"
+                type="number"
+                required
+                />
             </td>
             <td>
-                <input type="number" step="0.01" id="unitPrice" value={unitPrice} min='0' onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}/>
+                <TextField
+                id="unitPrice"
+                styles={styles.textField}
+                value={unitPrice}
+                onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}
+                margin="none"
+                type="number" step="0.01"
+                required
+                />
             </td>
             <td>
                 {total.toFixed(2)}
