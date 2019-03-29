@@ -3,7 +3,7 @@ import Services from './Services';
 import InvoiceSummary from './InvoiceSummary';
 import {withRouter} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
-import TrendingUp from '@material-ui/icons/TrendingUp';
+import Fingerprint from '@material-ui/icons/Fingerprint';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
@@ -34,14 +34,18 @@ const styles ={
         backgroundColor:'rgb(52, 109, 245)',
     },
     headerContainer:{
-        margin:0
+        marginTop:5
     },
     invoiceLogo:{
         color:'white',
-        fontSize:150,
+        fontSize:70,
+    },
+    logoDesc:{
+        color:'white',
+        margin:0
     },
     billFrom:{
-
+        width:'80%'
     },
   };
 
@@ -101,8 +105,9 @@ class EditInvoice extends Component{
                 <form onSubmit={this.handleSubmit}>
                     <Paper style={styles.invoiceHeader}>
                         <Grid style={styles.headerContainer} container spacing={24}>
-                            <Grid style={styles.invoiceLogo} item sm={4} xs={12}>
-                                <TrendingUp/>
+                            <Grid item sm={4} xs={12}>
+                                <Fingerprint style={styles.invoiceLogo}/>
+                                <h3 style={styles.logoDesc}>Your logo</h3>
                             </Grid>
 
                             <Grid  item sm={8} xs={12}>
@@ -116,7 +121,6 @@ class EditInvoice extends Component{
                                 value={billFrom}
                                 onChange={(e)=>{this.handleChange(e);this.resize(e.target)}} 
                                 margin="normal"
-                                helperText="helper"
                                 variant="filled"
                                 required
                             />
@@ -135,7 +139,6 @@ class EditInvoice extends Component{
                                 value={billTo}
                                 onChange={(e)=>{this.handleChange(e);this.resize(e.target)}} 
                                 margin="normal"
-                                helperText="helper"
                                 variant="filled"
                                 required
                             />
@@ -162,7 +165,6 @@ class EditInvoice extends Component{
                                 value={title}
                                 onChange={this.handleChange}
                                 margin="normal"
-                                helperText="hello"
                                 variant="filled"
                             />
 
