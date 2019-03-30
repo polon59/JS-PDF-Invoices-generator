@@ -111,6 +111,16 @@ html{
 }
 
 
+.invoice-summary{
+  text-align: left;
+  padding: 10px;
+  margin: 10px;
+}
+
+.invoice-summary td{
+  padding: 4px;
+}
+
 
 /* 595 x 842 a4 size */
 .bordered{
@@ -138,8 +148,5 @@ html{
   margin: 10px;
 }
 
-.invoice-summary{
-  padding: 10px;
-  margin: 10px;
-}
+
 

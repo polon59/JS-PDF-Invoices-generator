@@ -4,6 +4,7 @@ const InvoiceSummary = (props) =>{
     const {subTotal,salesTax,salesTaxVal,totalDue} = props.invoiceToEdit;
     return (
         <div className="invoice-summary">
+            <div>
         <table>
             <tbody>
                 <tr>
@@ -24,6 +25,7 @@ const InvoiceSummary = (props) =>{
                 </tr>
             </tbody>
         </table>
+        </div>
         </div>
     );
 }
