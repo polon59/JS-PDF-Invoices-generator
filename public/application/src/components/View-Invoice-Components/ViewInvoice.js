@@ -21,7 +21,7 @@ const styles ={
     paper: {
       display: 'inline-block',
       boxSizing: 'border-box',
-      width: 850,
+      width: 795,
       maxWidth: '100%',
       minHeight:1000,
       backgroundColor: 'white',
