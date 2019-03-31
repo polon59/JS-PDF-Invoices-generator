@@ -65,6 +65,7 @@ class ServiceComponent extends Component{
                 onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}
                 margin="none"
                 type="number"
+                InputProps={{ inputProps: { min: 0} }}
                 required
                 />
             </td>
@@ -76,6 +77,7 @@ class ServiceComponent extends Component{
                 onChange={(e)=>{this.handleChange(e); this.props.calculateSubTotal()}}
                 margin="none"
                 type="number" step="0.01"
+                InputProps={{ inputProps: { min: 0} }}
                 required
                 />
             </td>

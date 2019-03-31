@@ -140,8 +140,8 @@ class EditInvoice extends Component{
                             <TextField
                                 style={styles.title}
                                 id="title"
-                                label="Invoice title"
-                                placeholder="Select invoice title or ID"
+                                label="Title"
+                                placeholder="Invoice title"
                                 multiline
                                 rowsMax="2"
                                 value={title}
@@ -180,7 +180,7 @@ class EditInvoice extends Component{
                             />
                         </Grid>
                     </Grid>
-                    
+
                     <Services 
                         handleServiceDelete={this.handleServiceDelete} 
                         calculateSubTotal={calculateSubTotal} 

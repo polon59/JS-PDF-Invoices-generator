@@ -1,4 +1,6 @@
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
+
 
 const InvoiceSummary = (props) =>{
     const {subTotal,salesTax,salesTaxVal,totalDue} = props.invoiceToEdit;
@@ -13,13 +15,23 @@ const InvoiceSummary = (props) =>{
                 </tr>
                 <tr>
                     <td>SALES TAX %:</td>
-                    <td><input type="number" step="0.01" min="0" max="100" id="salesTax" value={salesTax} onChange={props.handleChange}/></td>
+                    <td>
+                        <TextField
+                        id="salesTax"
+                        value={salesTax}
+                        onChange={props.handleChange}
+                        margin="none"
+                        type="number"
+                        InputProps={{ inputProps: { min: 0} }}
+                        required
+                        />
+                    </td>
                 </tr>
                 <tr>
                     <td>SALES TAX:</td>
                     <td>{salesTaxVal.toFixed(2)}</td>
                 </tr>
-                <tr>
+                <tr className='totalDueCell'>
                     <td><h4>TOTAL DUE:</h4></td>
                     <td><h4>{totalDue.toFixed(2)}</h4></td>
                 </tr>

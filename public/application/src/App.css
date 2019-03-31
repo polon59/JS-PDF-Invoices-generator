@@ -112,13 +112,29 @@ html{
 
 
 .invoice-summary{
-  text-align: left;
   padding: 10px;
   margin: 10px;
 }
 
+.invoice-summary table{
+  border-spacing: 0;
+  min-width: 40%;
+  text-align: left;
+  margin-right: 0px;
+  margin-left: auto;
+}
+
 .invoice-summary td{
   padding: 4px;
+}
+
+.invoice-summary .totalDueCell{
+  background-color: #346df5;
+  color: white;
+}
+
+.invoice-summary .totalDueCell h4{
+  margin: 2px;
 }
 
 
