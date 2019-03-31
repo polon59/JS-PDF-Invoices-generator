@@ -13,9 +13,11 @@ import OfflineDAO from './DBAcces/offline-script/OfflineDAO';
 import InvoiceCalculations from './model/invoiceCalculations';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 
+import { withSnackbar } from 'notistack';
+
 class App extends Component {
   
-  constructor(){
+  constructor(props){
     super();
     this.DBAccess = new DBAccess(this);
     this.offlineDAO = new OfflineDAO(this.DBAccess);
@@ -44,7 +46,7 @@ class App extends Component {
   }
 
   getInvoicesFromLocalStorage = () =>{
-    alert("You are in offline mode Invoices loaded from LS");
+    this.props.enqueueSnackbar('You are in offline mode. Invoices are loaded from Local Storage.',{ variant: 'error' })
     let localInvoices = this.offlineDAO.getInvoicesListSavedLocally();
     this.updateLocalInvoicesList(localInvoices);
   }
@@ -59,9 +61,11 @@ class App extends Component {
     let invoiceToAdd = this.state.invoiceToEdit;
     let invoices = this.state.invoices;
     this.DBAccess.addInvoiceToDB(invoiceToAdd).then(lastID => {
+      this.props.enqueueSnackbar('Invoice saved successfully.',{ variant: 'success' })            
       invoiceToAdd.isOffline = false;
       invoiceToAdd.id = lastID;
     }).catch(err =>{
+      this.props.enqueueSnackbar('You are in offline mode, new invoice will be saved locally',{ variant: 'warning' })
       this.offlineDAO.addDataToSave(invoiceToAdd,'add');
       invoiceToAdd.isOffline = true;
     }).then(()=>{
@@ -129,8 +133,10 @@ class App extends Component {
     const updatedInvoice = this.state.invoiceToEdit;
     this.DBAccess.updateInvoice(updatedInvoice).then(()=>{
       updatedInvoice.isOffline = false;
+      this.props.enqueueSnackbar('Changes saved successfully.',{ variant: 'success' })      
     })
     .catch(err =>{
+      this.props.enqueueSnackbar('Warning: You are in offline mode, changed invoice will be saved locally',{ variant: 'warning' })      
       this.offlineDAO.addDataToSave(updatedInvoice,'update');
       updatedInvoice.isOffline = true;
     });
@@ -148,8 +154,12 @@ class App extends Component {
       return invoice.id !== invoiceToDeleteId;
     });
     this.updateLocalInvoicesList(updatedInvoices);
-    this.DBAccess.deleteInvoiceFromDB(invoiceToDeleteId).catch(err=>{
+    this.DBAccess.deleteInvoiceFromDB(invoiceToDeleteId).then(()=>{
+      this.props.enqueueSnackbar('Invoice deleted.',{ variant: 'success' })      
+    })
+    .catch(err=>{
       this.offlineDAO.addDataToSave(invoiceToDeleteId,'delete');
+      this.props.enqueueSnackbar('Warning: You are in offline mode, this change will be saved locally',{ variant: 'warning' })      
     });
   }
 
@@ -157,6 +167,7 @@ class App extends Component {
     const {invoiceToEdit,invoices} = this.state;
     return (
         <Router>
+        
         <div className="container">
           <Navbar/>
           <Route exact path="/" component={MyAccount}/>
@@ -210,9 +221,10 @@ class App extends Component {
                 invoiceToEdit={invoiceToEdit}/>}
           />
         </div>
+        
       </Router>
     );
   }
 }
 
-export default App;
+export default withSnackbar(App);
