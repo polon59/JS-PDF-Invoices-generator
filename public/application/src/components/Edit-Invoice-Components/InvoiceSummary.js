@@ -22,7 +22,7 @@ const InvoiceSummary = (props) =>{
                         onChange={props.handleChange}
                         margin="none"
                         type="number"
-                        InputProps={{ inputProps: { min: 0} }}
+                        InputProps={{ inputProps: { min: 0, step:0.01} }}
                         required
                         />
                     </td>
