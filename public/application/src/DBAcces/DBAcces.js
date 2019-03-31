@@ -35,7 +35,6 @@ class DBAcces{
       return assignedID;
     })
     .catch(error => {
-      alert("Warning: You are in offline mode, new invoice will be saved locally");
       console.log(error.message);
       throw new Error(error.message)
       
@@ -56,7 +55,6 @@ class DBAcces{
       console.log(`Successfully updated invoice with ID = ${updatedInvoice.id}`);
     })
     .catch(error => {
-      alert("Warning: You are in offline mode, changes will be saved locally.");
       console.log(error.message);
       throw new Error(error.message)
       //add invoice to delete to list in LStorage
@@ -108,7 +106,6 @@ class DBAcces{
       console.log(`Deleted invoice with id = ${invoiceToDeleteId} from database`);  
     })
     .catch(error => {
-      alert("Warning: You are in offline mode, Changes will be saved locally");
       throw new Error(error.message);
       //add invoice to delete to list in LStorage
     })
