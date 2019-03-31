@@ -48,6 +48,9 @@ const styles ={
         color:'white',
         margin:0
     },
+    bills:{
+        whiteSpace: 'pre-line',
+    },
     billFrom:{
         width:'80%'
     },
@@ -90,7 +93,7 @@ class ViewInvoice extends Component{
                                 <h3 style={styles.logoDesc}>Your logo</h3>
                             </Grid>
                             <Grid  item sm={7} xs={12}>
-                                <h4>{billFrom}</h4>
+                                <h4 style={styles.bills}>{billFrom}</h4>
                             </Grid>
                         </Grid>
                     </Paper>
@@ -101,7 +104,7 @@ class ViewInvoice extends Component{
                             <h4>{date}</h4>
                         </Grid>
                         <Grid item sm={7} xs={12}>
-                            <h4>{billTo}</h4>
+                            <h4 style={styles.bills}>{billTo}</h4>
                         </Grid>
                     </Grid>
 
