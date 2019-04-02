@@ -10,14 +10,8 @@ import Grid from '@material-ui/core/Grid';
 
 
 const styles ={
-    root: {
-      flexGrow: 1,
-    },
     container:{
       marginTop:40,
-      height:'100%'
-    },
-    item:{
       height:'100%'
     },
     paper: {
@@ -45,16 +39,7 @@ const styles ={
         color:'white',
         margin:0
     },
-    billFrom:{
-        width:'80%'
-    },
-    billTo:{
-        width:'80%'
-    },
-    title:{
-        width:'80%'
-    },
-    date:{
+    textField:{
         width:'80%'
     }
   };
@@ -121,7 +106,7 @@ class EditInvoice extends Component{
                             </Grid>
                             <Grid  item sm={7} xs={12}>
                             <TextField
-                                style={styles.billFrom}
+                                style={styles.textField}
                                 id="billFrom"
                                 label="Bill from"
                                 placeholder="Who is this bill from?"
@@ -139,7 +124,7 @@ class EditInvoice extends Component{
                     <Grid style={styles.container} container spacing={24}>
                         <Grid item sm={5} xs={12}>
                             <TextField
-                                style={styles.title}
+                                style={styles.textField}
                                 id="title"
                                 label="Title"
                                 placeholder="Invoice title"
@@ -153,7 +138,7 @@ class EditInvoice extends Component{
                             <br/>
                             <TextField
                                 variant="filled"
-                                style={styles.date}
+                                style={styles.textField}
                                 id="date"
                                 label="Date"
                                 type="date"
@@ -167,7 +152,7 @@ class EditInvoice extends Component{
                         </Grid>
                         <Grid item sm={7} xs={12}>
                             <TextField
-                                style={styles.billTo}
+                                style={styles.textField}
                                 id="billTo"
                                 label="Bill to"
                                 placeholder="Who is this bill to?"
