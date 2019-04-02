@@ -10,13 +10,25 @@ class Services extends Component{
         this.props.addService(newService);
     }
 
+    renderServicesList = () =>{
+        const {services,calculateSubTotal,handleServiceDelete,handleChange} = this.props;
+        return services.map((service,index) =>{
+            return (
+                <ServiceComponent 
+                  key={service.id} 
+                  index={index} 
+                  calculateSubTotal={calculateSubTotal} 
+                  service={service} 
+                  handleDelete={handleServiceDelete} 
+                  handleChange={handleChange}
+                />
+            );
+        });
+    }
+
     render(){
         if (this.props.services.length > 0){
-            const servicesList = this.props.services.map((service,index) =>{
-                return (
-                    <ServiceComponent key={service.id} index={index} calculateSubTotal={this.props.calculateSubTotal} service={service} handleDelete={this.props.handleServiceDelete} handleChange={this.props.handleChange}/>
-                );
-            });
+            const servicesList = this.renderServicesList();
             return(
                 <div className="invoice-services">
                     <h5 className="clickable" onClick={this.addService}>ADD SERVICE</h5>
@@ -40,14 +52,12 @@ class Services extends Component{
                 </div>
             );
         }
-        else{
-            return (
-                <div className="invoice-services">
-                    <h3>You have no active services</h3>
-                    <h5 className="clickable" onClick={this.addService}>ADD SERVICE</h5>
-                </div>
-            )
-        }
+        return (
+            <div className="invoice-services">
+                <h3>You have no active services</h3>
+                <h5 className="clickable" onClick={this.addService}>ADD SERVICE</h5>
+            </div>
+        )
     }
 }
 
