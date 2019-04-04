@@ -16,7 +16,7 @@ const styles = {
   };
 
 const InvoiceListCell = (props) =>{
-    const {classes,changeCurrentInvoice,deleteInvoice,invoice,index} = props;
+    const {changeCurrentInvoice,deleteInvoice,invoice,index} = props;
 
     return (
         <tr key={invoice.id}>
