@@ -85,7 +85,8 @@ class ViewInvoice extends Component{
             return(
 
             <div className="editInvoice-wrapper">
-            <Paper id="PDF-Content" style={styles.paper}>
+            <Paper style={styles.paper}>
+                <div id="PDF-Content">
                     <Paper style={styles.invoiceHeader}>
                         <Grid style={styles.headerContainer} container spacing={24}>
                             <Grid item sm={5} xs={12}>
@@ -113,6 +114,7 @@ class ViewInvoice extends Component{
                 </div>
                 <div className="invoice-summary">
                     <ViewInvoiceSummary invoiceToEdit={invoiceToEdit}/>
+                </div>
                 </div>
                 <button id="cmd" onClick={this.generatePDFFromInvoice}>generate PDF</button>
                 <Link to={`/myInvoices/editInvoice/${id}`}>
