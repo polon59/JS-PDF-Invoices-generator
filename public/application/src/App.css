@@ -133,6 +133,9 @@ html{
   margin: 2px;
 }
 
+.accountOption:hover{
+  filter:opacity(70%);
+}
 
 /* 595 x 842 a4 size */
 .bordered{

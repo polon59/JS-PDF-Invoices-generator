@@ -21,6 +21,7 @@ const styles ={
         textAlign: 'center',
         backgroundColor:'rgb(52, 109, 245)',
         color: 'white',
+        transition:'0.3s ease'
     },
     link:{
         textDecoration:'none'
@@ -37,7 +38,7 @@ const AccountOptions = (props) =>{
 
                 <Grid  item sm={4} xs={12}>
                     <Link to='/myInvoices' style={styles.link}>
-                        <Paper style={styles.accountOption}>
+                        <Paper style={styles.accountOption} className='accountOption'>
                             <PlaylistAdd style={styles.optIcon}/>
                             <h4>View current invoices</h4>
                         </Paper>
@@ -46,7 +47,7 @@ const AccountOptions = (props) =>{
 
                 <Grid  item sm={4} xs={12}>
                     <Link to='/addInvoice' style={styles.link}>
-                        <Paper style={styles.accountOption}>
+                        <Paper style={styles.accountOption} className='accountOption'>
                             <ViewList style={styles.optIcon}/>
                             <h4>Create new invoice</h4>
                         </Paper>
@@ -55,7 +56,7 @@ const AccountOptions = (props) =>{
 
                 <Grid  item sm={4} xs={12}>
                     <Link to='/statistics' style={styles.link}>
-                        <Paper style={styles.accountOption}>
+                        <Paper style={styles.accountOption} className='accountOption'>
                             <Assessment style={styles.optIcon}/>
                             <h4>View statistics</h4>
                         </Paper>
