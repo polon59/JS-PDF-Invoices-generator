@@ -19,7 +19,7 @@ const styles ={
     },
     avatar:{
         margin:'auto',
-        backgroundColor: 'purple',
+        backgroundColor: 'gray',
         color:'white'
     },
   };
@@ -30,9 +30,6 @@ class MyAccount extends Component{
 
         return(
         <div style={styles.root}>
-
-            <AccountOptions/>
-
             <Paper style={styles.paper}>
                 <Grid container justify="center" alignItems="center" spacing={24}>
                     <Grid item sm={2} xs={3}>
@@ -42,7 +39,7 @@ class MyAccount extends Component{
                         <p>Mariusz Pudzianowski</p>
                     </Grid>
                     <Grid item sm={7} xs={12}>
-                        <h4>Welcome!</h4>
+                        <h3>Welcome!</h3>
                         <p>
                             This is some text added to look like it is nessesary, but honestly i added it to 
                             fill this empty space.
@@ -51,6 +48,8 @@ class MyAccount extends Component{
                 </Grid>
             </Paper>
 
+            <AccountOptions/>
+            
             <ModeInfo props={this.props}/>
             
         </div>
