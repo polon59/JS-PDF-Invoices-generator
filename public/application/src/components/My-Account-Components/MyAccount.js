@@ -4,7 +4,6 @@ import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import AccountOptions from './AccountOptions';
 
-
 const styles ={
     paper: {
       margin:10,
@@ -19,44 +18,32 @@ const styles ={
         backgroundColor: 'purple',
         color:'white'
     },
-    accountBox:{
-        backgroundColor:'black',
-        height:'100%'
-    }
   };
 
 class MyAccount extends Component{
 
     render(){
         return(
-
-    <div>
-        <Paper style={styles.paper}>
-            <Grid container justify="center" alignItems="center" spacing={24}>
-
-                <Grid item sm={2} xs={3}>
-                    <Avatar style={styles.avatar}>MP</Avatar>
+        <div>
+            <Paper style={styles.paper}>
+                <Grid container justify="center" alignItems="center" spacing={24}>
+                    <Grid item sm={2} xs={3}>
+                        <Avatar style={styles.avatar}>MP</Avatar>
+                    </Grid>
+                    <Grid item sm={3} xs={9}>
+                        <p>Mariusz Pudzianowski</p>
+                    </Grid>
+                    <Grid item sm={7} xs={12}>
+                        <p>
+                            Welcome! this is some text added to look like it is nessesary, but honestly i added it to 
+                            fill this empty space
+                        </p>
+                    </Grid>
                 </Grid>
-
-                <Grid item sm={3} xs={9}>
-                    <p>Mariusz Pudzianowski</p>
-                </Grid>
-
-                <Grid item sm={7} xs={12}>
-                    <p>
-                        Welcome! this is some text added to look like it is nessesary, but honestly i added it to 
-                        fill this empty space
-                    </p>
-                </Grid>
-            </Grid>
-        </Paper>
-
-        <AccountOptions/>
-
-    </div>
-
+            </Paper>
+            <AccountOptions/>
+        </div>
         );
     }
 }
-
 export default MyAccount;
