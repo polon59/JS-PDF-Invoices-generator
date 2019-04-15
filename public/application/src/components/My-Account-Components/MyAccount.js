@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Avatar from '@material-ui/core/Avatar';
 
 
 const styles ={
@@ -13,6 +14,15 @@ const styles ={
       overflow: 'auto',
       color: 'inherit',
     },
+    avatar:{
+        margin:'auto',
+        backgroundColor: 'purple',
+        color:'white'
+    },
+    accountBox:{
+        backgroundColor:'black',
+        height:'100%'
+    }
   };
 
 class MyAccount extends Component{
@@ -22,16 +32,17 @@ class MyAccount extends Component{
 
     <div>
         <Paper style={styles.paper}>
-            <Grid container alignContent='center' spacing={24}>
-                <Grid item  sm={3} xs={12}>
-                    <p>logo</p>
+            <Grid container justify="center" alignItems="center" spacing={24}>
+
+                <Grid item sm={2} xs={3}>
+                    <Avatar style={styles.avatar}>MP</Avatar>
                 </Grid>
 
-                <Grid item sm={9} xs={12}>
-                    <p>name of user</p>
+                <Grid item sm={3} xs={9}>
+                    <p>Mariusz Pudzianowski</p>
                 </Grid>
 
-                <Grid item sm={12} xs={12}>
+                <Grid item sm={7} xs={12}>
                     <p>
                         Welcome! this is some text added to look like it is nessesary, but honestly i added it to 
                         fill this empty space
@@ -41,7 +52,7 @@ class MyAccount extends Component{
         </Paper>
 
         <Paper style={styles.paper}>
-            <Grid container alignContent='center' spacing={24}>
+            <Grid container spacing={24}>
                 <Grid  item sm={4} xs={12}>
                     <Link to='/myInvoices'>
                         <div className="optionBox bordered"><h4>View current invoices</h4></div>
