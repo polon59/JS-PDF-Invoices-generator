@@ -25,10 +25,12 @@ const styles ={
        textAlign:'center',
     },
     offlineIcon:{
+        color: 'rgb(212, 138, 0)',
         fontSize:45,
         margin:'auto',
     },
     onlineIcon:{
+        color: 'rgb(1, 167, 1)',
         fontSize:45,
         margin:'auto',
     }
