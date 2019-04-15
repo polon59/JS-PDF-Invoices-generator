@@ -4,7 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Assessment from '@material-ui/icons/Assessment';
-import OfflineBolt from '@material-ui/icons/OfflineBolt';
+import ViewList from '@material-ui/icons/ViewList';
+import PlaylistAdd from '@material-ui/icons/PlaylistAdd';
 
 const styles ={
     paper: {
@@ -20,21 +21,24 @@ const styles ={
         textAlign: 'center',
         backgroundColor:'rgb(52, 109, 245)',
         color: 'white',
-        
     },
     link:{
         textDecoration:'none'
+    },
+    optIcon:{
+        fontSize:70,
     }
   };
 
 const AccountOptions = (props) =>{
     return (
         <Paper style={styles.paper}>
-            <Grid container spacing={24}>
+            <Grid container spacing={40}>
 
                 <Grid  item sm={4} xs={12}>
                     <Link to='/myInvoices' style={styles.link}>
                         <Paper style={styles.accountOption}>
+                            <PlaylistAdd style={styles.optIcon}/>
                             <h4>View current invoices</h4>
                         </Paper>
                     </Link>
@@ -43,6 +47,7 @@ const AccountOptions = (props) =>{
                 <Grid  item sm={4} xs={12}>
                     <Link to='/addInvoice' style={styles.link}>
                         <Paper style={styles.accountOption}>
+                            <ViewList style={styles.optIcon}/>
                             <h4>Create new invoice</h4>
                         </Paper>
                     </Link>
@@ -51,6 +56,7 @@ const AccountOptions = (props) =>{
                 <Grid  item sm={4} xs={12}>
                     <Link to='/statistics' style={styles.link}>
                         <Paper style={styles.accountOption}>
+                            <Assessment style={styles.optIcon}/>
                             <h4>View statistics</h4>
                         </Paper>
                     </Link>
