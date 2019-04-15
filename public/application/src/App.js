@@ -25,6 +25,7 @@ class App extends Component {
     this.state = {
       invoices : [],
       invoiceToEdit : "",
+      inOfflineMode : false
     }
     this.initializeInvoices();
   }
@@ -41,8 +42,15 @@ class App extends Component {
           })
         })
         .catch(err=>{
+          this.turnOfflineMode();
           this.getInvoicesFromLocalStorage();
         })
+  }
+
+  turnOfflineMode = () =>{
+    this.setState({
+      inOfflineMode : true
+    });
   }
 
   getInvoicesFromLocalStorage = () =>{
@@ -67,6 +75,7 @@ class App extends Component {
     }).catch(err =>{
       this.props.enqueueSnackbar('You are in offline mode, new invoice will be saved locally',{ variant: 'warning' })
       this.offlineDAO.addDataToSave(invoiceToAdd,'add');
+      this.turnOfflineMode();
       invoiceToAdd.isOffline = true;
     }).then(()=>{
       invoices.push(invoiceToAdd);
@@ -137,6 +146,7 @@ class App extends Component {
     })
     .catch(err =>{
       this.props.enqueueSnackbar('Warning: You are in offline mode, changed invoice will be saved locally',{ variant: 'warning' })      
+      this.turnOfflineMode();
       this.offlineDAO.addDataToSave(updatedInvoice,'update');
       updatedInvoice.isOffline = true;
     });
@@ -160,17 +170,25 @@ class App extends Component {
     .catch(err=>{
       this.offlineDAO.addDataToSave(invoiceToDeleteId,'delete');
       this.props.enqueueSnackbar('Warning: You are in offline mode, this change will be saved locally',{ variant: 'warning' })      
+      this.turnOfflineMode();
     });
   }
 
   render() {
-    const {invoiceToEdit,invoices} = this.state;
+    const {invoiceToEdit,invoices,inOfflineMode} = this.state;
     return (
         <Router>
         
         <div className="container">
           <Navbar/>
-          <Route exact path="/" component={MyAccount}/>
+          <Route 
+            exact path="/" 
+            render={(props) => 
+              <MyAccount 
+                invoices={invoices} 
+                inOfflineMode={inOfflineMode}
+              />}
+          />
           <Route 
             path="/statistics"
             render={(props) => 
