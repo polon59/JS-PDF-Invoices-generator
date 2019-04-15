@@ -41,8 +41,11 @@ class MyAccount extends Component{
                     <Grid item sm={7} xs={12}>
                         <h3>Welcome!</h3>
                         <p>
-                            This is some text added to look like it is nessesary, but honestly i added it to 
-                            fill this empty space.
+                            Select one of options listed below, so You can create new invoice,
+                            download it as PDF, display existing invoices or display statistics charts about
+                            income, best customers, most lucrative services and more. 
+                            Application can also work in offline mode - then all changes are temporarly saved 
+                            in Local Storage and automatically sent to server after connection is recovered.
                         </p>
                     </Grid>
                 </Grid>

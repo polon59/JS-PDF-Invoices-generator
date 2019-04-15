@@ -25,8 +25,11 @@ const styles ={
       maxWidth: '100%',
       minHeight:1000,
       backgroundColor: 'white',
-      padding: 10,
+      padding: 0,
       color: 'black',
+    },
+    pdfContent:{
+        padding:10
     },
     invoiceHeader:{
         margin:0,
@@ -86,7 +89,7 @@ class ViewInvoice extends Component{
 
             <div className="editInvoice-wrapper">
             <Paper style={styles.paper}>
-                <div id="PDF-Content">
+                <div style={styles.pdfContent} id="PDF-Content">
                     <Paper style={styles.invoiceHeader}>
                         <Grid style={styles.headerContainer} container spacing={24}>
                             <Grid item sm={5} xs={12}>

@@ -9,7 +9,7 @@ class PDFGenerator{
         html2canvas(invoice).then(canvas => {
             const img = canvas.toDataURL("image/png");
             let doc = new JsPDF();
-            doc.addImage(img, 'JPEG',0,0);
+            doc.addImage(img, 'png',0,0);
             doc.save('document.pdf');
         });
     }
