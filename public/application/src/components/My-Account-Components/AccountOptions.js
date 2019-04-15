@@ -12,10 +12,6 @@ const styles ={
       overflow: 'auto',
       color: 'inherit',
     },
-    accountBox:{
-        backgroundColor:'black',
-        height:'100%'
-    }
   };
 
 const AccountOptions = (props) =>{
