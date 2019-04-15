@@ -1,4 +1,22 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
+const styles ={
+    paper: {
+      margin:10,
+      backgroundColor: 'rgb(24, 24, 35)',
+      padding: 20,
+      maxWidth: '100%',
+      overflow: 'auto',
+      color: 'inherit',
+    },
+    accountBox:{
+        backgroundColor:'black',
+        height:'100%'
+    }
+  };
 
 const AccountOptions = (props) =>{
     return (
