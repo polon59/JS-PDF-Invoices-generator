@@ -5,6 +5,7 @@ import PDFGenerator from './PDF-generators/PDFGenerator';
 import {Link} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Fingerprint from '@material-ui/icons/Fingerprint';
+import logo from '../../resources/images/logo.png';
 import Grid from '@material-ui/core/Grid';
 
 const styles ={
@@ -44,8 +45,8 @@ const styles ={
         color:'white'
     },
     invoiceLogo:{
-        color:'white',
-        fontSize:70,
+        width:70,
+        height:70
     },
     logoDesc:{
         color:'white',
@@ -93,7 +94,7 @@ class ViewInvoice extends Component{
                     <Paper style={styles.invoiceHeader}>
                         <Grid style={styles.headerContainer} container spacing={24}>
                             <Grid item sm={5} xs={12}>
-                                <Fingerprint style={styles.invoiceLogo}/>
+                                <img style={styles.invoiceLogo} src={logo} alt="Your logo"/>
                                 <h3 style={styles.logoDesc}>Your logo</h3>
                             </Grid>
                             <Grid  item sm={7} xs={12}>
