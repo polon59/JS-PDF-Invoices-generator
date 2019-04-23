@@ -12,7 +12,7 @@ class DbConn{
         password: "mysQLpassword",
         database: "mydb"
       });
-      console.log("Succesfully connected to database");
+      console.log("-- DBConn: successfully connected to database");
       return connection;
     }
   
