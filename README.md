@@ -1,5 +1,5 @@
 # JS-PDF-Invoices-generator
-Application for creating and downloading invoices (React+Material-UI, NodeJS + ExpressJS + MySQL)
+Application for creating and downloading invoices (Used technologies : React+Material-UI, NodeJS + ExpressJS + MySQL)
 
 It's an application where user can create invoices which are stored in database, 
 download them in PDF and display statistics charts about income, best customers, most lucrative services and more.
