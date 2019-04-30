@@ -5,7 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Assessment from '@material-ui/icons/Assessment';
 import ViewList from '@material-ui/icons/ViewList';
-import PlaylistAdd from '@material-ui/icons/PlaylistAdd';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import OfflineBolt from '@material-ui/icons/OfflineBolt';
 
