@@ -7,6 +7,8 @@ import Paper from '@material-ui/core/Paper';
 import logo from '../../resources/images/logo.png';
 import Grid from '@material-ui/core/Grid';
 import ButtonMenu from './ButtonMenu';
+import NoInvoiceChosenMessage from '../common/NoInvoiceChosenMessage';
+
 
 const styles ={
     root: {
@@ -80,9 +82,7 @@ class ViewInvoice extends Component{
         const {invoiceToEdit,changeCurrentInvoice} = this.props;
         if (invoiceToEdit === "") {
             return (
-                <div className="bordered">
-                    <h3>No invoice to view chosen</h3>
-                </div>
+               <NoInvoiceChosenMessage/>
             )
         } else {
             const {id,title,date,billFrom,billTo,services} = invoiceToEdit;
