@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import ServiceComponent from './Service';
 import Service from './../../model/service';
+import Button from '@material-ui/core/Button';
+
+const styles ={
+    button: {
+      margin:20,
+    }
+  };
 
 
 class Services extends Component{
@@ -31,7 +38,9 @@ class Services extends Component{
             const servicesList = this.renderServicesList();
             return(
                 <div className="invoice-services">
-                    <h5 className="clickable" onClick={this.addService}>ADD SERVICE</h5>
+                    <Button style={styles.button} variant="outlined" onClick={this.addService}>
+                        ADD SERVICE
+                    </Button>
                     <div className='servicesTable-wrapper'>
                         <table className='servicesTable'>
                             <thead>
@@ -54,8 +63,10 @@ class Services extends Component{
         }
         return (
             <div className="invoice-services">
-                <h3>You have no active services</h3>
-                <h5 className="clickable" onClick={this.addService}>ADD SERVICE</h5>
+                <Button style={styles.button} variant="outlined" onClick={this.addService}>
+                    ADD SERVICE
+                </Button>
+                <h4> You have no active services</h4>
             </div>
         )
     }
