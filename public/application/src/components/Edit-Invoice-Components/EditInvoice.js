@@ -7,6 +7,7 @@ import Fingerprint from '@material-ui/icons/Fingerprint';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import NoInvoiceChosenMessage from '../common/NoInvoiceChosenMessage';
 
 
 
@@ -90,9 +91,7 @@ class EditInvoice extends Component{
         const {title,date,billTo,billFrom,services} = invoiceToEdit;
         if(invoiceToEdit === "" || invoiceToEdit === undefined){
             return(
-                <div className="bordered">
-                    <h3>No invoice to edit chosen</h3>
-                </div>
+                <NoInvoiceChosenMessage/>
             )
         }
         return(
@@ -167,7 +166,6 @@ class EditInvoice extends Component{
                             />
                         </Grid>
                     </Grid>
-
                     <Services 
                         handleServiceDelete={this.handleServiceDelete} 
                         calculateSubTotal={calculateSubTotal} 
@@ -182,15 +180,7 @@ class EditInvoice extends Component{
                 </form>
             </Paper>
             </div>
-
-
-
-
-
-
-
         )
     }
 }
-
 export default withRouter(EditInvoice);
