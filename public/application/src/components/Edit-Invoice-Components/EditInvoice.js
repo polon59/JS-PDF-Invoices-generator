@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Fingerprint from '@material-ui/icons/Fingerprint';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -174,8 +175,10 @@ class EditInvoice extends Component{
                         addService={addService} 
                         services={services}
                     />
-                    <InvoiceSummary invoiceToEdit={invoiceToEdit} handleChange={this.handleChange}/>               
-                    <input type="submit" value="Save invoice"/>
+                    <InvoiceSummary invoiceToEdit={invoiceToEdit} handleChange={this.handleChange}/>     
+                    <Button variant="outlined" type='submit' size='medium'>
+                        Save invoice
+                    </Button>          
                 </form>
             </Paper>
             </div>
