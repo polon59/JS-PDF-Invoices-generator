@@ -84,11 +84,12 @@ class ViewInvoice extends Component{
             return (
                <NoInvoiceChosenMessage/>
             )
-        } else {
-            const {id,title,date,billFrom,billTo,services} = invoiceToEdit;
-            return(
+        }
 
-            <div className="editInvoice-wrapper">
+        const {id,title,date,billFrom,billTo,services} = invoiceToEdit;
+        
+        return(
+        <div className="editInvoice-wrapper">
             <Paper style={styles.paper}>
                 <div style={styles.pdfContent} id="PDF-Content">
                     <Paper style={styles.invoiceHeader}>
@@ -120,20 +121,14 @@ class ViewInvoice extends Component{
                     <ViewInvoiceSummary invoiceToEdit={invoiceToEdit}/>
                 </div>
                 </div>
-
                 <ButtonMenu 
                     generatePDFFromInvoice={this.generatePDFFromInvoice}
                     id={id}
                     changeCurrentInvoice={changeCurrentInvoice}
                 />
-
             </Paper>
-            </div>
-
-
-
-            )
-        }
+        </div>
+        )
     }
 }
 
