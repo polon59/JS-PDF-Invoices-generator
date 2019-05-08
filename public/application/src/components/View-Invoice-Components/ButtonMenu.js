@@ -13,7 +13,7 @@ class ButtonMenu extends React.Component{
         return(
             <div>
                 <Button variant="outlined" onClick={generatePDFFromInvoice}>
-                    Download invoice in PDF
+                    Download in PDF
                 </Button>
                 <Button 
                     component={Link} 
@@ -27,3 +27,4 @@ class ButtonMenu extends React.Component{
         )
     }
 }
+export default ButtonMenu;
