@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import OfflineBolt from '@material-ui/icons/OfflineBolt';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Info from '@material-ui/icons/Info';
 
 const styles = theme => ({
   root: {
+    marginTop: 100,
     flexGrow: 1,
   },
   warningIcon:{
-    color: 'rgb(204, 0, 0)',
+    color: 'rgb(232, 193, 20)',
     height:'100%',
     fontSize: 40
   },
@@ -47,7 +48,7 @@ function NoInvoiceChosenMessage(props) {
           <Paper className={classes.paper}>
             <Grid container spacing={24}>
                 <Grid item sm={2} xs={12}>
-                        <OfflineBolt className={classes.warningIcon}/>
+                        <VisibilityOff className={classes.warningIcon}/>
                 </Grid>
                 <Grid item sm={10} xs={12}>
                     <h3>Error: No invoice chosen.</h3>
