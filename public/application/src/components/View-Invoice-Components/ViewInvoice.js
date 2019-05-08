@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import logo from '../../resources/images/logo.png';
 import Grid from '@material-ui/core/Grid';
+import ButtonMenu from './ButtonMenu';
 
 const styles ={
     root: {
@@ -119,10 +120,13 @@ class ViewInvoice extends Component{
                     <ViewInvoiceSummary invoiceToEdit={invoiceToEdit}/>
                 </div>
                 </div>
-                <button id="cmd" onClick={this.generatePDFFromInvoice}>generate PDF</button>
-                <Link to={`/myInvoices/editInvoice/${id}`}>
-                    <button onClick={()=>{changeCurrentInvoice(id)}}>EDIT</button>
-                </Link>
+
+                <ButtonMenu 
+                    generatePDFFromInvoice={this.generatePDFFromInvoice}
+                    id={id}
+                    changeCurrentInvoice={changeCurrentInvoice}
+                />
+
             </Paper>
             </div>
 
