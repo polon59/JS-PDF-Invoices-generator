@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 class ButtonMenu extends React.Component{
-
-    constructor(){
-        super();
-    }
 
     render(){
         const {generatePDFFromInvoice, changeCurrentInvoice, id} = this.props;
