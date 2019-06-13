@@ -16,7 +16,7 @@ dataBaseConn.createDBConnection().then((connection)=>{
    if (connection == null) {
        process.exit();
    }
-   var invoicesController = new InvoicesController(app,connection);
+   var invoicesController = new InvoicesController(app,connection,messageLog);
    var accountController = new AccountController(app);
    var statisticsController = new StatisticsController(app,connection);
    invoicesController.setRoutes();

@@ -2,7 +2,8 @@ const ServicesDAO = require('./ServicesDAO');
 
 class InvoicesDAO{
 
-    constructor(connection){
+    constructor(connection,messageLog){
+        this.messageLog = messageLog;
         this.connection = connection;
         this.servicesDAO = new ServicesDAO(connection);
     }
@@ -10,7 +11,7 @@ class InvoicesDAO{
     deleteInvoice(id){
         this.connection.query(`DELETE FROM invoices WHERE id = ${id}`, (err, result)=>{                                               
             if(err){throw err;}
-            console.log(`[SQL INFO] deleted record from INVOICES table (ID:${id})`);
+            this.messageLog.logInvoicesInfo('ok',"DELETE",id);
         });
     }
 
