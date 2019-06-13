@@ -22,14 +22,14 @@ class DbConn{
       return null;
     }
 
-    
+
     isConnectionSuccessful(connection){
       try {
         connection.createConnection();
       } catch (error) {
-        console.log(`[DB Connection]: ERROR connecting to database. 
+        console.log(`[DB Connection]: \x1b[41m ERROR \x1b[0m connecting to database. 
         Authentication failed or database does not exist.
-        Check host, user, password and DB data in ./DAO/DBConn.js file`);
+        Check host, user, password and DB data in \x1b[4m ./DAO/DBConn.js \x1b[0m file`);
         return false;
       }
 
