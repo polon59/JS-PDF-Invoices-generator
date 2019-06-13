@@ -1,8 +1,9 @@
 class DbConn{
   
-    constructor(){
+    constructor(messageLog){
+      this.messageLog = messageLog;
       this.mysql = require('mysql');
-      this.host = "localhostr";
+      this.host = "localhost";
       this.user = "root";
       this.password = "mysQLpassword";
       this.database = "mydb";
@@ -10,31 +11,28 @@ class DbConn{
   
     createDBConnection(){
       const {host,user,password,database} = this;
-      const connection = this.mysql.createConnection({
+      let connection = this.mysql.createConnection({
         host: host,
         user: user,
         password: password,
         database: database
       });
-      if (this.isConnectionSuccessful(connection)){
-        return connection;
-      }
-      return null;
+      return this.isConnectionSuccessful(connection);
     }
 
 
     isConnectionSuccessful(connection){
-      try {
-        connection.createConnection();
-      } catch (error) {
-        console.log(`[DB Connection]: \x1b[41m ERROR \x1b[0m connecting to database. 
-        Authentication failed or database does not exist.
-        Check host, user, password and DB data in \x1b[4m ./DAO/DBConn.js \x1b[0m file`);
-        return false;
-      }
-
-      console.log("[DB Connection]: successfuly connected to database");
-      return true;
+      return new Promise((resolve,reject)=>{
+        connection.connect((error)=>{
+          if (error){
+            this.messageLog.displayDBConnInfo(error);
+            resolve(null);
+          }else{
+            this.messageLog.displayDBConnInfo('success');
+            resolve(connection);
+          }
+        })
+      })
     }
   
   }
