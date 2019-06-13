@@ -30,6 +30,11 @@ class MessageDisplay{
     }
 
 
+    displayServerListeningInfo(port){
+        console.log(`\n ${this.colors.blue}*** Server successfuly started listening on port ${port} *** ${this.reset}`)
+    }
+
+
 
 }
 

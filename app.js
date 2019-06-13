@@ -23,6 +23,6 @@ dataBaseConn.createDBConnection().then((connection)=>{
    accountController.setRoutes();
    statisticsController.setRoutes();
    
-   app.listen(port, () => {console.log(`*** server listening on port ${port} ***`)});
+   app.listen(port, () => messageLog.displayServerListeningInfo(port));
 });
 
