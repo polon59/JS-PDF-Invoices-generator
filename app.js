@@ -10,7 +10,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
 const dataBaseConn = new DbCon();
-const connection = dataBaseConn.connection;
+const connection = dataBaseConn.createDBConnection();
+
+if (connection == null) {
+    process.exit();
+}
 
 var invoicesController = new InvoicesController(app,connection);
 var accountController = new AccountController(app);
