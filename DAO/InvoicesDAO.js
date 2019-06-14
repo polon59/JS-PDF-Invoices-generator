@@ -73,14 +73,20 @@ class InvoicesDAO{
 
     updateInvoice(request){
         const {id,services} = request.body;
-        this.servicesDAO.deleteAllInvoiceServices(id)
-        .then(()=>{
-            this.servicesDAO.addNewInvoiceServices(services,id)
+        return new Promise((resolve,reject)=>{
+            this.servicesDAO.deleteAllInvoiceServices(id)
             .then(()=>{
-                this.updateExistingInvoice(request)
+                this.servicesDAO.addNewInvoiceServices(services,id)
                 .then(()=>{
-                    console.log(`[SQL INFO] updated properties of invoice (ID:${id})`);
-                });
+                    this.updateExistingInvoice(request)
+                    .then(()=>{
+                        this.messageLog.logInvoicesInfo('ok',"UPDATE INVOICE",id);
+                        resolve();
+                    });
+                })
+            }).catch(err=>{
+                this.messageLog.logInvoicesInfo(err,"ADD NEW INVOICE",id);
+                reject(err);
             })
         })
     }

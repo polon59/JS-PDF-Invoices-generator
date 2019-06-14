@@ -56,8 +56,14 @@ class InvoicesController{
 
     setRoutePostEditingInvoice(){
         this.app.post('/myAccount/invoices/edit/:invoiceId' , (req,res) =>{
-            this.invoicesDAO.updateInvoice(req);
-            res.send(`INVOICE SAVED`);
+            this.invoicesDAO.updateInvoice(req)
+            .then(()=>{
+                res.send('ok');
+            })
+            .catch(err=>{
+                res.send('error');
+            });
+            
         })
     }
 }
