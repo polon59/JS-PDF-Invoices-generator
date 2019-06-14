@@ -28,7 +28,6 @@ class InvoicesDAO{
                 if(err){
                     return reject(err);
                 }
-                this.messageLog.logInvoicesInfo('ok',"RETURN ALL",'*');
                 resolve(result);
             });
         });
@@ -40,6 +39,7 @@ class InvoicesDAO{
             .then((invoices)=>{
                 this.servicesDAO.assignServicesToInvoices(invoices)
                 .then((invoices)=>{
+                    this.messageLog.logInvoicesInfo('ok',"RETURN ALL",'*');
                     resolve(invoices);
                 })
                 .catch(err=>{
@@ -66,7 +66,10 @@ class InvoicesDAO{
                 .then(() =>{
                     this.messageLog.logInvoicesInfo('ok',"ADD NEW INVOICE",result.insertId);
                     resolve(result.insertId);
-                }) 
+                })
+                .catch(err=>{
+                    this.messageLog.logInvoicesInfo(err,"ADD NEW INVOICE (services)",result.insertId);
+                })
             });
         });
     }
@@ -82,10 +85,16 @@ class InvoicesDAO{
                     .then(()=>{
                         this.messageLog.logInvoicesInfo('ok',"UPDATE INVOICE",id);
                         resolve();
+                    })
+                    .catch(err=>{
+                        this.messageLog.logInvoicesInfo(err,"UPDATE INVOICE - update invoice data",id);
                     });
                 })
+                .catch(err =>{
+                    this.messageLog.logInvoicesInfo(err,"UPDATE INVOICE - update services",id);
+                })
             }).catch(err=>{
-                this.messageLog.logInvoicesInfo(err,"ADD NEW INVOICE",id);
+                this.messageLog.logInvoicesInfo(err,"UPDATE INVOICE - delete old services",id);
                 reject(err);
             })
         })
