@@ -8,9 +8,11 @@ class InvoicesDAO{
         this.servicesDAO = new ServicesDAO(connection);
     }
 
+    // http://localhost:8000/myAccount/invoices/1 OR 1=1
+
     deleteInvoice(id){
         return new Promise((resolve, reject)=>{
-            this.connection.query(`DELETE FROM invoices WHERE id =  ${id}`, (err, result)=>{                                               
+            this.connection.query(`DELETE FROM invoices WHERE id = ?`,[id], (err, result)=>{                                               
                 if(err){
                     this.messageLog.logInvoicesInfo(err,"DELETE", id);
                     return reject(err);
