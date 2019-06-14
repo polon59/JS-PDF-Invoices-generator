@@ -33,15 +33,22 @@ class InvoicesController{
             .then((invoices)=>{
                 res.send(invoices);
             })
-            .catch(error => {console.log(error.message)});
+            .catch(err=>{
+                res.send('error');
+            });
         });
     }
 
     setRouteDeleteInvoice(){
         this.app.delete('/myAccount/invoices/:invoiceId' , (req,res) =>{
             const id = req.params.invoiceId;
-            this.invoicesDAO.deleteInvoice(id);
-            res.send(`INVOICE DELETED`);
+            this.invoicesDAO.deleteInvoice(id)
+            .then(()=>{
+                res.send("ok");
+            }).catch(err=>{
+                res.send("error");
+            });
+            
         });
     }
 
