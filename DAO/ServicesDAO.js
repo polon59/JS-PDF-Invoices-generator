@@ -16,7 +16,7 @@ class ServicesDAO{
 
     deleteAllInvoiceServices(invoiceID){
         return new Promise((resolve,reject)=>{
-        this.connection.query(`DELETE FROM services WHERE invoiceID=${invoiceID};`, (err)=> {
+        this.connection.query(`DELETE FROM services WHERE invoiceID= ?;`,[invoiceID], (err)=> {
             if (err)reject(err);
             else{resolve();}
             });
@@ -41,7 +41,7 @@ class ServicesDAO{
     }
 
     assignServicesToInvoice(invoice, callback){
-        this.connection.query(`SELECT * FROM services WHERE invoiceID=${invoice.id}`, (err,result)=> {
+        this.connection.query(`SELECT * FROM services WHERE invoiceID= ?`,[invoice.id], (err,result)=> {
             if (err){throw err;}
             else{
                 invoice.services = result;
