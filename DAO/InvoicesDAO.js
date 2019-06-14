@@ -18,9 +18,12 @@ class InvoicesDAO{
     getRecordsFromInvoices(){
         return new Promise((resolve,reject)=>{
             this.connection.query("SELECT * FROM invoices", (err, result)=>{                                            
-                if(err){reject(err);}
+                if(err){
+                    this.messageLog.logInvoicesInfo(err,"RETURN ALL",'*');
+                    reject(err);
+                }
+                this.messageLog.logInvoicesInfo('ok',"RETURN ALL",'*');
                 resolve(result);
-                console.log("[SQL INFO] returned all records from INVOICES table");
             });
         });
     }
