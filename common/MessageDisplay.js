@@ -31,9 +31,13 @@ class MessageDisplay{
 
     logInvoicesInfo(status,action,invoiceID){
         if (status == 'ok') {
-            console.log(`${this.colors.green}[SQL INFO]${this.reset} succesful action : ${action} on invoice with (ID:${invoiceID})`);
-            return;
+            console.log(`${this.colors.green}[SQL INFO]${this.reset} succesful action : '${action}'' on invoice with (ID:${invoiceID})`);
+        } else{
+            console.log(`${this.colors.red} [SQL INFO] ${this.reset}: Database query ${this.backgrounds.red} ERROR ${this.reset}. 
+            Occured on action '${action}' on invoice with (ID:${invoiceID}).
+            System message: ${this.colors.red} ${status.message} ${this.reset}`);
         }
+
     }
 
 
