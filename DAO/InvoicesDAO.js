@@ -57,15 +57,16 @@ class InvoicesDAO{
         return new Promise((resolve,reject)=>{
             const insertSQL = this.prepareInsertQuery(request);
             this.connection.query(insertSQL, (err,result)=> {
-                if (err){reject(err);}
-                else{
-                    const {services} = request.body;
-                    this.servicesDAO.addNewInvoiceServices(services,result.insertId)
-                    .then(() =>{
-                        resolve(result.insertId);
-                    }) 
+                if (err){
+                    this.messageLog.logInvoicesInfo(err,"ADD NEW INVOICE",'-');
+                    return reject(err);
                 }
-                console.log(`[SQL INFO] inserted new record to INVOICES table (NEW ID:${result.insertId})`);
+                const {services} = request.body;
+                this.servicesDAO.addNewInvoiceServices(services,result.insertId)
+                .then(() =>{
+                    this.messageLog.logInvoicesInfo('ok',"ADD NEW INVOICE",result.insertId);
+                    resolve(result.insertId);
+                }) 
             });
         });
     }

@@ -23,7 +23,9 @@ class InvoicesController{
             .then((assignedID)=>{
                 res.send({"idValue":assignedID});
             })
-            .catch(error => {console.log(error.message)});
+            .catch(error => {
+                res.send('error');
+            });
         });
     }
 
