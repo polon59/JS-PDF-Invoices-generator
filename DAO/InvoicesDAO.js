@@ -10,15 +10,13 @@ class InvoicesDAO{
 
     deleteInvoice(id){
         return new Promise((resolve, reject)=>{
-            console.log(`DELETE FROM invoices WHERE id =  ${id}`);
             this.connection.query(`DELETE FROM invoices WHERE id =  ${id}`, (err, result)=>{                                               
                 if(err){
                     this.messageLog.logInvoicesInfo(err,"DELETE", id);
-                    reject(err);
-                    return;
+                    return reject(err);
                 }
                 this.messageLog.logInvoicesInfo('ok',"DELETE",id);
-                resolve(true);
+                resolve();
             });
         })
         
@@ -26,11 +24,9 @@ class InvoicesDAO{
 
     getRecordsFromInvoices(){
         return new Promise((resolve,reject)=>{
-            this.connection.query("SELECT * FROM invoices", (err, result)=>{                                            
+            this.connection.query("SELECT * FROM invoices", (err, result)=>{  
                 if(err){
-                    this.messageLog.logInvoicesInfo(err,"RETURN ALL",'*');
-                    reject(err);
-                    return;
+                    return reject(err);
                 }
                 this.messageLog.logInvoicesInfo('ok',"RETURN ALL",'*');
                 resolve(result);
@@ -47,9 +43,12 @@ class InvoicesDAO{
                     resolve(invoices);
                 })
                 .catch(err=>{
-                    console.log(err.message);
                     reject(err);
                 })
+            })
+            .catch(err=>{
+                this.messageLog.logInvoicesInfo(err,"RETURN ALL",'*');
+                reject(err)
             });
         });
     }
