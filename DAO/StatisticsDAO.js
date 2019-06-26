@@ -40,7 +40,7 @@ class StatisticsDAO{
                 resolve(values);
             })
             .catch(err=>{
-                reject(new Error(err.message));
+                reject(err.message);
             })
         })
     }
