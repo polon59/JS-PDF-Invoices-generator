@@ -19,6 +19,7 @@ dataBaseConn.createDBConnection().then((connection)=>{
    var invoicesController = new InvoicesController(app,connection,messageLog);
    var accountController = new AccountController(app);
    var statisticsController = new StatisticsController(app,connection);
+   allowCORS(app);
    invoicesController.setRoutes();
    accountController.setRoutes();
    statisticsController.setRoutes();
@@ -26,3 +27,12 @@ dataBaseConn.createDBConnection().then((connection)=>{
    app.listen(port, () => messageLog.displayServerListeningInfo(port));
 });
 
+
+function allowCORS(application){
+    application.all('/*', function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", 'http://localhost:3000');
+        res.header('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type,Accept');
+        next();
+      });
+}
