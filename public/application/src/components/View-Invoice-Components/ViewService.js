@@ -9,7 +9,7 @@ const ViewService = (props) =>{
             <td>{description}</td>
             <td>{quantity}</td>
             <td>{unitPrice}</td>
-            <td>{total}</td>
+            <td>{total.toFixed(2)}</td>
         </tr>
     )
 }
