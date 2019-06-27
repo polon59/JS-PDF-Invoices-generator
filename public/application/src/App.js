@@ -7,6 +7,7 @@ import EditInvoice from './components/Edit-Invoice-Components/EditInvoice';
 import MyAccount from './components/My-Account-Components/MyAccount';
 import StatisticsPanel from './components/Statistics-Components/StatisticsPanel';
 import ViewInvoice from './components/View-Invoice-Components/ViewInvoice';
+import Footer from './components/Footer Components/Footer';
 import DBAccess from './DBAcces/DBAcces';
 import Invoice from './model/invoice';
 import OfflineDAO from './DBAcces/offline-script/OfflineDAO';
@@ -238,6 +239,7 @@ class App extends Component {
                 changeInvoiceToEdit={this.changeInvoiceToEdit} 
                 invoiceToEdit={invoiceToEdit}/>}
           />
+          <Footer/>
         </div>
         
       </Router>
