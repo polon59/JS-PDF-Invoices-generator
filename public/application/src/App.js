@@ -179,7 +179,7 @@ class App extends Component {
     const {invoiceToEdit,invoices,inOfflineMode} = this.state;
     return (
         <Router>
-        
+        <div>
         <div className="container">
           <Navbar/>
           <Route 
@@ -239,9 +239,9 @@ class App extends Component {
                 changeInvoiceToEdit={this.changeInvoiceToEdit} 
                 invoiceToEdit={invoiceToEdit}/>}
           />
-          <Footer/>
         </div>
-        
+        <Footer/>
+        </div>
       </Router>
     );
   }

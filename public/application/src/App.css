@@ -5,12 +5,19 @@
 html{
   background-color:rgb(30, 30, 45);
   color: rgb(170, 170, 170);
-  /* font-family: 'Anton', sans-serif; */
+}
+
+body{
+  position: relative;
+  margin: 2px;
+  margin-bottom: 0;
+  min-height: 100%;
 }
 
 .container{
   margin: 2vw;
   margin-top:70px;
+  margin-bottom: 0;
 }
 
 .navIcon{
@@ -64,6 +71,14 @@ html{
 .invoicesTable .offlineIcon{
   color: rgb(212, 138, 0);
   font-size: inherit
+}
+
+
+footer{
+  height: 10%;
+  background-color: rgb(52, 109, 245);
+  width: 100%;
+  padding: 10px;
 }
 
 
