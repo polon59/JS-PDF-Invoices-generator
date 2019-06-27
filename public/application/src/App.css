@@ -73,15 +73,6 @@ body{
   font-size: inherit
 }
 
-
-footer{
-  height: 10%;
-  background-color: rgb(52, 109, 245);
-  width: 100%;
-  padding: 10px;
-}
-
-
 /* Edit invoice */
 
 .editInvoice-wrapper{
