@@ -13,6 +13,9 @@ const styles = {
       borderRadius: 3,
       color: 'gray',
     },
+    billToCell:{
+        minWidth : 200
+    }
   };
 
 const InvoiceListCell = (props) =>{
@@ -25,7 +28,7 @@ const InvoiceListCell = (props) =>{
             <td>{invoice.id}</td>
             <td>{invoice.date}</td>
             <td>{invoice.title}</td>
-            <td>{invoice.billTo}</td>
+            <td style={styles.billToCell}>{invoice.billTo}</td>
             <td>
                 <Button 
                     style={styles.editButton}
