@@ -39,8 +39,7 @@ const styles ={
         backgroundColor:'rgb(52, 109, 245)',
     },
     dateContainer:{
-        paddingLeft:'10%',
-        textAlign: 'left'
+        paddingLeft:'10%'
     },
     headerContainer:{
         marginTop:5,
@@ -105,9 +104,9 @@ class ViewInvoice extends Component{
                     </Paper>
                     <Grid style={styles.container} container spacing={24}>
                         <Grid style={styles.dateContainer} item sm={5} xs={12}>
-                            <h3>{title}</h3>
+                            <h3 className='viewInvoiceContainer'>{title}</h3>
                             <br/>
-                            <h4>{date}</h4>
+                            <h4 className='viewInvoiceContainer'>{date}</h4>
                         </Grid>
                         <Grid item sm={7} xs={12}>
                             <h4 style={styles.bills}>{billTo}</h4>
