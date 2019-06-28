@@ -87,7 +87,6 @@ class StatisticsPanel extends Component{
             return(
                 <div>
                     <h3>Statistics</h3>
-                    <p>image here and other stuff</p>
                     {this.renderPanelContent()}
                 </div>
             )
