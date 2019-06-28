@@ -66,7 +66,9 @@ class Services extends Component{
                 <Button style={styles.button} variant="outlined" onClick={this.addService}>
                     ADD SERVICE
                 </Button>
-                <h4> You have no active services</h4>
+                <div className='addService__buttonWrapper'>
+                    <h4> You have no active services</h4>
+                </div>
             </div>
         )
     }

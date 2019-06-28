@@ -149,6 +149,19 @@ body{
   border: 0.5px solid black;
 }
 
+.addService__buttonWrapper{
+  margin: auto;
+  padding: 8px;
+  color: #191919;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+  width: 95%;
+}
+
+.addService__buttonWrapper h4{
+  margin: 0;
+}
+
 .clickable:hover{
   cursor: pointer;
   color: rgb(14, 42, 107);
