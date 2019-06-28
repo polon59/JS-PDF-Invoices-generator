@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import ServiceComponent from './Service';
 import Service from './../../model/service';
 import Button from '@material-ui/core/Button';
+import PlaylistAdd from '@material-ui/icons/PlaylistAdd';
 
 const styles ={
     button: {
       margin:20,
+    },
+    addIcon:{
+        marginRight: 8
     }
   };
 
@@ -39,7 +43,7 @@ class Services extends Component{
             return(
                 <div className="invoice-services">
                     <Button style={styles.button} variant="outlined" onClick={this.addService}>
-                        ADD SERVICE
+                        <PlaylistAdd style={styles.addIcon}/>ADD SERVICE
                     </Button>
                     <div className='servicesTable-wrapper'>
                         <table className='servicesTable'>
@@ -64,7 +68,7 @@ class Services extends Component{
         return (
             <div className="invoice-services">
                 <Button style={styles.button} variant="outlined" onClick={this.addService}>
-                    ADD SERVICE
+                    <PlaylistAdd style={styles.addIcon}/> ADD SERVICE
                 </Button>
                 <div className='addService__buttonWrapper'>
                     <h4> You have no active services</h4>
