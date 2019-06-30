@@ -13,7 +13,7 @@ const styles ={
 class ButtonMenu extends React.Component{
 
     render(){
-        const {generatePDFFromInvoice, changeCurrentInvoice, id} = this.props;
+        const {generatePDFFromInvoice, id} = this.props;
         return(
             <div>
                 <Button variant="outlined" onClick={generatePDFFromInvoice}>

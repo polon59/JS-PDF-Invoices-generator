@@ -12,6 +12,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 const messageLog = new MessageDisplay();
 const dataBaseConn = new DbCon(messageLog);
 
+"use strict";
+
 dataBaseConn.createDBConnection().then((connection)=>{
    if (connection == null) {
        process.exit();
@@ -29,8 +31,9 @@ dataBaseConn.createDBConnection().then((connection)=>{
 
 
 function allowCORS(application){
+    // http://localhost:3000
     application.all('/*', function(req, res, next) {
-        res.header("Access-Control-Allow-Origin", 'http://localhost:3000');
+        res.header("Access-Control-Allow-Origin", '*',);
         res.header('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT,DELETE');
         res.header('Access-Control-Allow-Headers', 'Content-Type,Accept');
         next();

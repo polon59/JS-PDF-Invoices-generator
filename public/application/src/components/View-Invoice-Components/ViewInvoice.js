@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ViewServices from './ViewServices';
 import ViewInvoiceSummary from './ViewInvoiceSummary';
 import PDFGenerator from './PDF-generators/PDFGenerator';
-import {Link} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import logo from '../../resources/images/logo.png';
 import Grid from '@material-ui/core/Grid';
