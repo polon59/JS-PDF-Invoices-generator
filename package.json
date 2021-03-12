@@ -23,7 +23,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "mysql": "^2.16.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
